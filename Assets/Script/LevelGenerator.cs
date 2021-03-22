@@ -94,7 +94,6 @@ public class LevelGenerator : MonoBehaviour
         // C'est important la position du move() dans l'execution du code
 
         if (Physics2D.OverlapCircle(transform.position, Constants.CIRCLE_RADIUS) == null)
-            // [CodeReview] je me suis permi de le refactorisé dans une autre classe comme on a dit, vu que tu l'utilise partout
         {
             GameObject room = Instantiate(roomTemplate, transform.position, Quaternion.identity);
             Move(Direction.RNG);

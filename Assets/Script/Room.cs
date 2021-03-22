@@ -30,17 +30,26 @@ public class Room : MonoBehaviour
 
         GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.maskToDoor[mask];
 
-        /*
-         * Création des doors selons le mask
-         */
-        char[] array = mask.ToCharArray();
+        // Création des doors selons le mask
+        char[] array = mask.ToCharArray(); // On découpe notre mask en un tableau pour pouvoir récupérer individuellement chaque caractère (= char). 
         for (int i = 0; i < array.Length; i++)
         {
-            char c = array[i];
-            if (c == '1') // Si on a 1, alors ça veut dire qu'il faut créer une porte
+            char c = array[i]; // On garde en mémoire la caractère sur lequel on est...
+            if (c == '1') // Si on a 1, alors ça veut dire qu'il faut créer une porte (mais on ne sait pas encore à quel endroit)
             {
                 GameObject door = doorUp; // Bensie Filouterie... sorry... I didn't want to duplicate but I was forced
 
+                /*
+                 * Chaque caractère de notre mask correspond à une position dans la room.
+                 * Car 1: Porte de droite
+                 * Car 2: Porte du bas
+                 * Car 3: Porte de gauche
+                 * Car 4: Porte du haut
+                 * 
+                 * On enlève 1 à chaque fois car c'est un tableau
+                 * Ensuite dans chaque itération, on regarde la valeur de i qui nous dit où on en est dans le string. ça nous permet de savoir
+                 * ou instancier la porte si il y en a une.
+                 */
                 switch (i) // Selon notre position dans le mask on sait si il faut la faire en haut, bas, gauche, droite
                            //Right > Down > Left > Up
                 {
@@ -86,9 +95,8 @@ public class Room : MonoBehaviour
         mask += (Physics2D.OverlapCircle(leftCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
         mask += (Physics2D.OverlapCircle(upCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
 
-        /*
-         * A la fin notre mask sera bienune chaîne de 4 
-         */
+        // A la fin notre mask sera bienune chaîne de 4 
+
 
     }
 
