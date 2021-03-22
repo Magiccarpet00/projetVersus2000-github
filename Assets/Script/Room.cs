@@ -13,28 +13,14 @@ public class Room : MonoBehaviour
 
     public GameObject doorRight, doorLeft, doorUp, doorDown;
     public List<GameObject> doorsInRoom = new List<GameObject>();
-    public Dictionary<String, Sprite> maskToDoor = new Dictionary<string, Sprite>();
+    //public Dictionary<String, Sprite> maskToDoor = new Dictionary<string, Sprite>();
    
 
     public void TransformationRoom()
     {
         /* Right > Down > Left > Up
          * Création de notre dictionnaire pour le mask. Une entrée = un layout en sortie. */
-        maskToDoor["1000"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0100"] = LevelGenerator.instance.DOWN.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0010"] = LevelGenerator.instance.LEFT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0001"] = LevelGenerator.instance.UP.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1001"] = LevelGenerator.instance.UP_RIGHT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1100"] = LevelGenerator.instance.RIGHT_DOWN.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0110"] = LevelGenerator.instance.DOWN_LEFT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0011"] = LevelGenerator.instance.LEFT_UP.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0101"] = LevelGenerator.instance.UP_DOWN.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1010"] = LevelGenerator.instance.LEFT_RIGHT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1101"] = LevelGenerator.instance.UP_RIGHT_DOWN.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1110"] = LevelGenerator.instance.RIGHT_DOWN_LEFT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0111"] = LevelGenerator.instance.DOWN_LEFT_UP.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1011"] = LevelGenerator.instance.LEFT_UP_RIGHT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1111"] = LevelGenerator.instance.UP_RIGHT_DOWN_LEFT.GetComponent<SpriteRenderer>().sprite;
+
 
         /*
          * Traduction de nos booleans d'entrées en mask 
@@ -42,7 +28,7 @@ public class Room : MonoBehaviour
         //Cette methode va rensegné les boolean ci-dessus
         ApertureCheck();
 
-        GetComponent<SpriteRenderer>().sprite = maskToDoor[mask];
+        GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.maskToDoor[mask];
 
         /*
          * Création des doors selons le mask
@@ -70,6 +56,9 @@ public class Room : MonoBehaviour
                     case 3:
                         door = Instantiate(doorUp, transform.position, Quaternion.identity);
                         break;
+                    default:
+                        Debug.LogError("Benoit is a looser");
+                        break;
                 }
                 doorsInRoom.Add(door);
             }
@@ -88,47 +77,14 @@ public class Room : MonoBehaviour
         Vector2 upCheck = new Vector2(transform.position.x, transform.position.y + Constants.OFFSET);
         Vector2 downCheck = new Vector2(transform.position.x, transform.position.y - Constants.OFFSET);
 
-        if (Physics2D.OverlapCircle(rightCheck, Constants.CIRCLE_RADIUS) != null)
-        {
-            openRight = true;
-            mask += "1";
-        }
-        else
-        {
-            mask += "0";
-        }
+        mask +=  
+            (Physics2D.OverlapCircle(rightCheck, Constants.CIRCLE_RADIUS) != null) ? // condition qu'on test
+            "1" // valeur renvoyée si condition vraie
+            : "0"; // Valeur renvoyée si condition fausse
 
-        if (Physics2D.OverlapCircle(downCheck, Constants.CIRCLE_RADIUS) != null)
-        {
-            openDown = true;
-            mask += "1";
-        }
-        else
-        {
-            mask += "0";
-        }
-
-
-        if (Physics2D.OverlapCircle(leftCheck, Constants.CIRCLE_RADIUS) != null)
-        {
-            openLeft = true;
-            mask += "1";
-        }
-        else
-        {
-            mask += "0";
-        }
-
-
-        if (Physics2D.OverlapCircle(upCheck, Constants.CIRCLE_RADIUS) != null)
-        {
-            openUp = true;
-            mask += "1";
-        }
-        else
-        {
-            mask += "0";
-        }
+        mask += (Physics2D.OverlapCircle(downCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
+        mask += (Physics2D.OverlapCircle(leftCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
+        mask += (Physics2D.OverlapCircle(upCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
 
         /*
          * A la fin notre mask sera bienune chaîne de 4 
