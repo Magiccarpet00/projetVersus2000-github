@@ -133,6 +133,7 @@ public class Room : MonoBehaviour
                 GameObject door3 = Instantiate(doorDown, transform.position, Quaternion.identity);
                 doorsInRoom.Add(door3);
             }
+            //bretzels and chill
             if (openRight && !openDown && openLeft && openUp)
             {
                 GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.LEFT_UP_RIGHT.GetComponent<SpriteRenderer>().sprite;
