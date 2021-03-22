@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Room : MonoBehaviour
@@ -11,9 +12,27 @@ public class Room : MonoBehaviour
 
     public GameObject doorRight, doorLeft, doorUp, doorDown;
     public List<GameObject> doorsInRoom = new List<GameObject>();
+    public Dictionary<String, Sprite> maskToDoor = new Dictionary<string, Sprite>();
+   
 
     public void TransformationRoom()
     {
+        // Right > Down > Left > Up
+        maskToDoor["1000"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["0100"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["0010"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["0001"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["1001"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["1100"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["0110"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["0011"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["0101"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["1010"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["1101"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["1110"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["0111"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["1011"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["1111"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
         //Cette methode va rensegné les boolean ci-dessus
         ApertureCheck();
 
@@ -23,25 +42,34 @@ public class Room : MonoBehaviour
             /*
              * [Explications] Pour chaque room on va chercher le sprite correspondant en testant toutes les ouvertures
              * */
-            if (openRight && !openDown && !openLeft && !openUp)
+
+            /*
+             * ULDR
+             * 0001
+             * 0010
+             * 0100
+             * 1000
+             * 0001
+             */
+            if (openRight && !openDown && !openLeft && !openUp) // 0001
             {
                 GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
                 GameObject door = Instantiate(doorRight, transform.position, Quaternion.identity);
                 doorsInRoom.Add(door);
             }
-            if (!openRight && openDown && !openLeft && !openUp)
+            if (!openRight && openDown && !openLeft && !openUp) // 0010
             {
                 GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.DOWN.GetComponent<SpriteRenderer>().sprite;
                 GameObject door = Instantiate(doorDown, transform.position, Quaternion.identity);
                 doorsInRoom.Add(door);
             }
-            if (!openRight && !openDown && openLeft && !openUp)
+            if (!openRight && !openDown && openLeft && !openUp) // 0100
             {
                 GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.LEFT.GetComponent<SpriteRenderer>().sprite;
                 GameObject door = Instantiate(doorLeft, transform.position, Quaternion.identity);
                 doorsInRoom.Add(door);
             }
-            if (!openRight && !openDown && !openLeft && openUp)
+            if (!openRight && !openDown && !openLeft && openUp) // 1000
             {
                 GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.UP.GetComponent<SpriteRenderer>().sprite;
                 GameObject door = Instantiate(doorUp, transform.position, Quaternion.identity);
@@ -51,7 +79,7 @@ public class Room : MonoBehaviour
 
         // 2 ouvertures
         {            
-            if (openRight && !openDown && !openLeft && openUp)
+            if (openRight && !openDown && !openLeft && openUp) // 1001
             {
                 GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.UP_RIGHT.GetComponent<SpriteRenderer>().sprite;
                 GameObject door = Instantiate(doorUp, transform.position, Quaternion.identity);
@@ -162,8 +190,38 @@ public class Room : MonoBehaviour
             }
         }
 
-        // On ouvre toute les portes
-        OpenDoor();        
+
+        /*
+         * Création des doors selons le mask
+         */
+        String s = "1000"; // 1001 // 1111
+        char[] array = s.ToCharArray();
+        for (int i = 0; i < array.Length; i++)
+        {
+            char c = array[i];
+            if (c == '1') // Si on a 1, alors ça veut dire qu'il faut créer une porte
+            {
+                GameObject door;
+                switch (i) // Selon notre position dans le mask on sait si il faut la faire en haut, bas, gauche, droite
+                {
+                    case 0:
+                        door = Instantiate(door, transform.position, Quaternion.identity);
+                        break;
+                    case 1:
+                        door = Instantiate(door, transform.position, Quaternion.identity);
+                        break;
+                    case 2:
+                        door = Instantiate(door, transform.position, Quaternion.identity);
+                        break;
+                    case 3:
+                        door = Instantiate(door, transform.position, Quaternion.identity);
+                        break;
+                }
+            }
+        }
+    
+    // On ouvre toute les portes
+    OpenDoor();        
     }
     public void ApertureCheck()
     {

@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
         
     }
 
+    /*
+     * Check dans notre donjon où est le joueur & renvoie sa room.
+     */
     public GameObject whereIsPlayer()
     {
         for (int i = 0; i < levelGenerator.roomsInDongeon.Capacity; i++)
