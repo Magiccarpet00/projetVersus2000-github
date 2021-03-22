@@ -107,7 +107,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 8}
+  m_Size: {x: 7, y: 7}
   m_EdgeRadius: 0
 --- !u!114 &5670215723436823378
 MonoBehaviour:
@@ -121,3 +121,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 706e9cd870233484499051c2bc159f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  openRight: 0
+  openLeft: 0
+  openUp: 0
+  openDown: 0
+  doorRight: {fileID: 850454119114793156, guid: 025eb63d62feb0647a625e78a336c501,
+    type: 3}
+  doorLeft: {fileID: 8874860379675876636, guid: b46c93080a04c7444a9594b3500f7228,
+    type: 3}
+  doorUp: {fileID: 5958025030479687807, guid: b30354a20449c0a40862d50afe8c1dce, type: 3}
+  doorDown: {fileID: 4256170477095225660, guid: 5eccbcc77f6a9274392d83172a113d6d,
+    type: 3}
+  doorsInRoom: []
+  playerOnThisRoom: 0

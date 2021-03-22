@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+using System.ComponentModel;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -31,7 +33,7 @@ public class LevelGenerator : MonoBehaviour
 //--------Variable-------------
     public float offSet = 8f; // [CodeReview] Pour moi tu peux en faire une constante
 
-    [SerializeField]
+    [SerializeField]    
     private int nbOfRooms = 10;
 
 
@@ -46,10 +48,12 @@ public class LevelGenerator : MonoBehaviour
 
     private void Start()
     {
-        CreateLevelTemplate();        
+        StartCoroutine(CreateLevelTemplate());        
     }
 
-    private void CreateLevelTemplate()
+    
+
+    IEnumerator CreateLevelTemplate()
     {
         Move(Direction.UP);
 
@@ -57,6 +61,7 @@ public class LevelGenerator : MonoBehaviour
         for (int i = 0; i < nbOfRooms; i++)
         {      
             CreateRoomTemplate();
+            yield return new WaitForSeconds(.1f);
         }
 
         // Ici on va transformé les roomTemplate en room avec des ouvertures sur les cotés
@@ -70,30 +75,29 @@ public class LevelGenerator : MonoBehaviour
     {
         // C'est important la position du move() dans l'execution du code
 
-        if (Physics2D.OverlapCircle(transform.position, Constants.CIRCLE_RADIUS) == null) 
+        if (Physics2D.OverlapCircle(transform.position, Constants.CIRCLE_RADIUS) == null)
             // [CodeReview] je me suis permi de le refactorisé dans une autre classe comme on a dit, vu que tu l'utilise partout
-        {            
+        {
             GameObject room = Instantiate(roomTemplate, transform.position, Quaternion.identity);
             Move(Direction.RNG);
             roomsInDongeon.Add(room);
         }
         else
         {
+            nbOfRooms++;
             Move(Direction.UP);
-            GameObject room = Instantiate(roomTemplate, transform.position, Quaternion.identity);
-            roomsInDongeon.Add(room);
         }
     }
 
     // Such a baby coding... We could use anothe function with the same name in order to refactor it
     private void Move(Direction direction)
     {       
-        int rng = Random.Range(0, 3);
+        int rng = Random.Range(0, 2);
 
         // C'est une petite filoutrie, pour le cas ou on veux aller forcement en up
         if(direction == Direction.UP)
         {
-            rng = 1;
+            rng = 2;
         }
 
         if(rng == 0) // LEFT
@@ -102,13 +106,13 @@ public class LevelGenerator : MonoBehaviour
             transform.position = newPos;
         }
 
-        if(rng == 1) // UP
+        if(rng == 2) // UP
         {
             Vector2 newPos = new Vector2(transform.position.x, transform.position.y + offSet);
             transform.position = newPos;
         }
 
-        if(rng == 2) // RIGHT
+        if(rng == 1) // RIGHT
         {
             Vector2 newPos = new Vector2(transform.position.x + offSet, transform.position.y);
             transform.position = newPos;
