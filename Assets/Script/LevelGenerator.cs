@@ -12,7 +12,6 @@ public class LevelGenerator : MonoBehaviour
                        UP_RIGHT_DOWN, RIGHT_DOWN_LEFT, DOWN_LEFT_UP, LEFT_UP_RIGHT,
                        UP_RIGHT_DOWN_LEFT;
     
-    
     enum Direction
     {
         UP,
@@ -27,11 +26,7 @@ public class LevelGenerator : MonoBehaviour
 
     public List<GameObject> roomsInDongeon = new List<GameObject>();
 
-    
-
-
 //--------Variable-------------
-    public float offSet = 8f; // [CodeReview] Pour moi tu peux en faire une constante
 
     [SerializeField]    
     private int nbOfRooms = 10;
@@ -102,19 +97,19 @@ public class LevelGenerator : MonoBehaviour
 
         if(rng == 0) // LEFT
         {
-            Vector2 newPos = new Vector2(transform.position.x - offSet, transform.position.y);
+            Vector2 newPos = new Vector2(transform.position.x - Constants.OFFSET, transform.position.y);
             transform.position = newPos;
         }
 
         if(rng == 2) // UP
         {
-            Vector2 newPos = new Vector2(transform.position.x, transform.position.y + offSet);
+            Vector2 newPos = new Vector2(transform.position.x, transform.position.y + Constants.OFFSET);
             transform.position = newPos;
         }
 
         if(rng == 1) // RIGHT
         {
-            Vector2 newPos = new Vector2(transform.position.x + offSet, transform.position.y);
+            Vector2 newPos = new Vector2(transform.position.x + Constants.OFFSET, transform.position.y);
             transform.position = newPos;
         }
     }

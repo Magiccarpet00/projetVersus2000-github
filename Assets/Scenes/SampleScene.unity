@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 1319672013}
   - component: {fileID: 1319672012}
   - component: {fileID: 1319672011}
+  - component: {fileID: 1319672014}
   m_Layer: 0
   m_Name: PlayerTest
   m_TagString: Player
@@ -381,6 +382,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!247 &1319672014
+ConstantForce2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319672010}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: 0
 --- !u!1 &1677949998
 GameObject:
   m_ObjectHideFlags: 0
