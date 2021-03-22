@@ -6,12 +6,11 @@ using System.ComponentModel;
 public class LevelGenerator : MonoBehaviour
 {
     //--------Room-------------
-                  // La liste des games objects room que j'ai remplie dans Unity
+    // La liste des games objects room que j'ai remplie dans Unity
     public GameObject UP, RIGHT, LEFT, DOWN,
                        UP_RIGHT, RIGHT_DOWN, DOWN_LEFT, LEFT_UP, UP_DOWN, LEFT_RIGHT,
                        UP_RIGHT_DOWN, RIGHT_DOWN_LEFT, DOWN_LEFT_UP, LEFT_UP_RIGHT,
-                       UP_RIGHT_DOWN_LEFT;
-    
+                       UP_RIGHT_DOWN_LEFT;    
     enum Direction
     {
         UP,
@@ -79,17 +78,19 @@ public class LevelGenerator : MonoBehaviour
         }
         else
         {
-            nbOfRooms++;
+            nbOfRooms++; // [CodeReview] On augmente le nombre total de room à créer au cas où on a pas réussi (sinon on peut se retrouver avec 8 rooms sur 10) 
             Move(Direction.UP);
         }
     }
 
-    // Such a baby coding... We could use anothe function with the same name in order to refactor it
     private void Move(Direction direction)
     {       
         int rng = Random.Range(0, 2);
 
         // C'est une petite filoutrie, pour le cas ou on veux aller forcement en up
+         /*
+         [CodeReview] A REVOIR !!!!!!
+         */
         if(direction == Direction.UP)
         {
             rng = 2;

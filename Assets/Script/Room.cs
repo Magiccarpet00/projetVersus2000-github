@@ -18,7 +18,11 @@ public class Room : MonoBehaviour
         ApertureCheck();
 
         // 1 ouverture
+        // [CodeReview] Comment refactoriser ?
         {
+            /*
+             * [Explications] Pour chaque room on va chercher le sprite correspondant en testant toutes les ouvertures
+             * */
             if (openRight && !openDown && !openLeft && !openUp)
             {
                 GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
@@ -46,7 +50,7 @@ public class Room : MonoBehaviour
         }
 
         // 2 ouvertures
-        {
+        {            
             if (openRight && !openDown && !openLeft && openUp)
             {
                 GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.UP_RIGHT.GetComponent<SpriteRenderer>().sprite;
@@ -162,6 +166,9 @@ public class Room : MonoBehaviour
     }
     public void ApertureCheck()
     {
+        /*
+         * [Explications] On test si on à des templates voisins avec une boîte de collision. On modifie juste les bools 
+         */
         Vector2 rightCheck = new Vector2(transform.position.x + Constants.OFFSET, transform.position.y);
         Vector2 leftCheck = new Vector2(transform.position.x - Constants.OFFSET, transform.position.y);
         Vector2 upCheck = new Vector2(transform.position.x, transform.position.y + Constants.OFFSET);
