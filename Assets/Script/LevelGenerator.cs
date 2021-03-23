@@ -21,17 +21,12 @@ public class LevelGenerator : MonoBehaviour
         RNG
     }
 
-    public Dictionary<String, Sprite> maskToDoor = new Dictionary<string, Sprite>();
-
-
-   
+    public Dictionary<String, Sprite> maskToDoor = new Dictionary<string, Sprite>();   
 
     [SerializeField] // La room utilise uniquement pour la premiere structur du donjon
     private GameObject roomTemplate;
 
     public List<GameObject> roomsInDongeon = new List<GameObject>();
-
-//--------Variable-------------
 
     [SerializeField]    
     private int nbOfRooms = 10;
@@ -78,7 +73,8 @@ public class LevelGenerator : MonoBehaviour
         // On commence par crée la structur de base du donjon, sans les portes ni la forme des room
         for (int i = 0; i < nbOfRooms; i++)
         {      
-            CreateRoomTemplate();
+            CreateRoomTemplate(i);
+            
             yield return new WaitForSeconds(.1f);
         }
 
@@ -89,13 +85,13 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private void CreateRoomTemplate()
+    private void CreateRoomTemplate(int idRoom)
     {
         // C'est important la position du move() dans l'execution du code
-
         if (Physics2D.OverlapCircle(transform.position, Constants.CIRCLE_RADIUS) == null)
         {
             GameObject room = Instantiate(roomTemplate, transform.position, Quaternion.identity);
+            room.name = "Room" + idRoom.ToString();
             Move(Direction.RNG);
             roomsInDongeon.Add(room);
         }
@@ -137,4 +133,6 @@ public class LevelGenerator : MonoBehaviour
             transform.position = newPos;
         }
     }
+
+    
 }

@@ -54,7 +54,8 @@ public class Room : MonoBehaviour
                            //Right > Down > Left > Up
                 {
                     case 0:
-                        door = Instantiate(doorRight, transform.position, Quaternion.identity);
+                        door = Instantiate(doorRight, transform.position, Quaternion.identity); 
+                        
                         break;
                     case 1:
                         door = Instantiate(doorDown, transform.position, Quaternion.identity);
@@ -69,6 +70,7 @@ public class Room : MonoBehaviour
                         Debug.LogError("Benoit is a looser");
                         break;
                 }
+                door.transform.parent = this.transform;
                 doorsInRoom.Add(door);
             }
         }
@@ -115,13 +117,6 @@ public class Room : MonoBehaviour
             doorsInRoom[i].gameObject.SetActive(true);
         }
     }
-//----------------------------------------------------------
-
-
-
-
-
-
 
 
     //-----------Detection du joueur de dans la room------------
