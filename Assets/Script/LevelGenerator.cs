@@ -11,7 +11,12 @@ public class LevelGenerator : MonoBehaviour
     public GameObject UP, RIGHT, LEFT, DOWN,
                        UP_RIGHT, RIGHT_DOWN, DOWN_LEFT, LEFT_UP, UP_DOWN, LEFT_RIGHT,
                        UP_RIGHT_DOWN, RIGHT_DOWN_LEFT, DOWN_LEFT_UP, LEFT_UP_RIGHT,
-                       UP_RIGHT_DOWN_LEFT;    
+                       UP_RIGHT_DOWN_LEFT;
+
+    // La liste de tous les pattern de monstre que j'ai remplie dans Unity
+    public List<GameObject> allPatternInGame = new List<GameObject>();
+
+
     enum Direction
     {
         UP,
@@ -94,6 +99,7 @@ public class LevelGenerator : MonoBehaviour
             room.name = "Room" + idRoom.ToString();
             Move(Direction.RNG);
             roomsInDongeon.Add(room);
+            TypeOfRoom(idRoom, room);
         }
         else
         {
@@ -131,6 +137,25 @@ public class LevelGenerator : MonoBehaviour
         {
             Vector2 newPos = new Vector2(transform.position.x + Constants.OFFSET, transform.position.y);
             transform.position = newPos;
+        }
+    }
+
+    private void TypeOfRoom(int idRoom, GameObject room) 
+    {
+        if(idRoom == 5) // Defois ya pas de room avec l'id 5 du coup ya pas de shop dans le donjon
+        {
+            //Shop room
+            room.GetComponent<Room>().shopRoom = true;
+        }
+        else if(idRoom == nbOfRooms) //ça sa marche pas
+        {
+            //Boss room
+            room.GetComponent<Room>().bossRoom = true;
+        }
+        else
+        {
+            // Classique room
+            room.GetComponent<Room>().classicRoom = true;
         }
     }
 

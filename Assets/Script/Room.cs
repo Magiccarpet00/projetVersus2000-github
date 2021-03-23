@@ -14,7 +14,7 @@ public class Room : MonoBehaviour
     public GameObject doorRight, doorLeft, doorUp, doorDown;
     public List<GameObject> doorsInRoom = new List<GameObject>();
     //public Dictionary<String, Sprite> maskToDoor = new Dictionary<string, Sprite>();
-   
+
 
     public void TransformationRoom()
     {
@@ -27,6 +27,7 @@ public class Room : MonoBehaviour
          * */
         //Cette methode va rensegné les boolean ci-dessus
         ApertureCheck();
+        ChangeTypeOfRoom();
 
         GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.maskToDoor[mask];
 
@@ -118,7 +119,6 @@ public class Room : MonoBehaviour
         }
     }
 
-
     //-----------Detection du joueur de dans la room------------
 
     // Ici on peut se retrouver dans le cas ou le joueur est dans 2 rooms à la fois quand il est entre 2 rooms
@@ -147,7 +147,43 @@ public class Room : MonoBehaviour
             playerOnThisRoom = false;
         }
     }
-//----------------------------------------------------------
+
+
+    //-----------Creation des Pattern d'enemies-----------------
+
+    // Je voulais le faire avec des enums mais je comprend pas, ou ptet des classes 
+    // abstraite, du coup je vais faire ça comme un sagouin et on verra en code CodeReview
+
+    public bool shopRoom;
+    public bool bossRoom;
+    public bool classicRoom;
+
+    public GameObject patternInThisRoom;
+
+    public void ChangeTypeOfRoom()
+    {
+        if (shopRoom)
+        {
+            roomFinnished = true;
+        }
+
+        if (bossRoom)
+        {
+
+        }
+
+        if (classicRoom)
+        {
+            int rng = UnityEngine.Random.Range(0, LevelGenerator.instance.allPatternInGame.Count);
+            patternInThisRoom = Instantiate(LevelGenerator.instance.allPatternInGame[rng], transform.position, Quaternion.identity);
+            patternInThisRoom.transform.parent = this.transform;
+        }
+    }
+
+
+
+
+
 
 
 

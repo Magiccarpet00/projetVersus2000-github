@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public bool dead;
 
     // Varriable patrol
+    public float maxSpeed;
     public float speed;
     public Transform[] wayPoints;
     public Transform target;
