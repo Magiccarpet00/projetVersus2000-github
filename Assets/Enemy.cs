@@ -13,24 +13,34 @@ public class Enemy : MonoBehaviour
     // Varriable patrol
     public float speed;
     public Transform[] wayPoints;
-    private Transform target;
+    public Transform target;
     private int destinationPoint;
     public bool activated;
+    public float timeBeforeMove;
+
 
     // Varrible bubble 
     public bool haveBubble;
-
-    public void Start()
-    {        
-        target = wayPoints[0];
-    }
-
+    
+    
     private void Update()
     {
-        if (activated && !dead)
+        if (activated && !dead && timeBeforeMove ==0)
         {
             Patrol();
         }        
+    }
+
+    private void FixedUpdate()
+    {
+        if (timeBeforeMove > 0 && activated)
+        {
+            timeBeforeMove -= Time.fixedDeltaTime;
+        }
+        else if(timeBeforeMove <= 0 && activated)
+        {
+            timeBeforeMove = 0;
+        }
     }
 
     public void Patrol()
