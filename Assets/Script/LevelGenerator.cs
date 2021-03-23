@@ -142,7 +142,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void TypeOfRoom(int idRoom, GameObject room) 
     {
-        if(idRoom == 5) // Defois ya pas de room avec l'id 5 du coup ya pas de shop dans le donjon
+        if(idRoom == 5) // Defois ya pas de room avec l'id 5 du coup ya pas de shop dans le donjon.
         {
             //Shop room
             room.GetComponent<Room>().shopRoom = true;

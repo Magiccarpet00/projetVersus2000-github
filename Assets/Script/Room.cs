@@ -137,7 +137,11 @@ public class Room : MonoBehaviour
             {
                 CloseDoor();
             }
-            
+
+            if (classicRoom && roomFinnished == false)
+            {
+                patternInThisRoom.GetComponent<PatternEnemy>().ActivationEnnemy();
+            }           
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -178,15 +182,7 @@ public class Room : MonoBehaviour
             patternInThisRoom = Instantiate(LevelGenerator.instance.allPatternInGame[rng], transform.position, Quaternion.identity);
             patternInThisRoom.transform.parent = this.transform;
         }
+        
     }
-
-
-
-
-
-
-
-
-
 
 }
