@@ -169,11 +169,15 @@ public class Room : MonoBehaviour
         if (shopRoom)
         {
             roomFinnished = true;
+            GameObject shop = Instantiate(LevelGenerator.instance.shop, transform.position, Quaternion.identity);
+            shop.transform.parent = this.transform;
         }
 
         if (bossRoom)
         {
-
+            int rng = UnityEngine.Random.Range(0, LevelGenerator.instance.allBossInGame.Count);
+            GameObject bossInRoom = Instantiate(LevelGenerator.instance.allBossInGame[rng], transform.position, Quaternion.identity);
+            bossInRoom.transform.parent = this.transform;
         }
 
         if (classicRoom)

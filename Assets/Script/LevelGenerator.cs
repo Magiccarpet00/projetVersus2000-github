@@ -16,6 +16,10 @@ public class LevelGenerator : MonoBehaviour
     // La liste de tous les pattern de monstre que j'ai remplie dans Unity
     public List<GameObject> allPatternInGame = new List<GameObject>();
 
+    public List<GameObject> allBossInGame = new List<GameObject>();
+
+    public GameObject shop;
+
 
     enum Direction
     {

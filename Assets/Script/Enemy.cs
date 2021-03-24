@@ -58,9 +58,14 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         dead = true;
+        OpenDoorWhenRoomCleared();
+    }
+
+    public void OpenDoorWhenRoomCleared() // Cette methode prend plein d'info de partout, je sais pas si sa place est ici
+    {
         GameObject currentRoom = GameManager.instance.whereIsPlayer();
         bool allEnemiesInRoomAreDead = currentRoom.GetComponent<Room>().patternInThisRoom.GetComponent<PatternEnemy>().PatternEnemyCleaned();
-        if(allEnemiesInRoomAreDead == true)
+        if (allEnemiesInRoomAreDead == true)
         {
             currentRoom.GetComponent<Room>().roomFinnished = true;
             currentRoom.GetComponent<Room>().OpenDoor();
