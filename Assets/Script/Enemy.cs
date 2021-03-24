@@ -28,12 +28,6 @@ public class Enemy : MonoBehaviour
         {
             Patrol();
         }
-
-        if(currentHealth <= 0)
-        {
-            Die();
-        }
-
     }
 
     private void FixedUpdate()
@@ -72,5 +66,20 @@ public class Enemy : MonoBehaviour
             currentRoom.GetComponent<Room>().OpenDoor();
         }
     }
+
+
+    // Provisoire
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (!dead)
+            {
+                Die();
+            }            
+        }
+    }
+
+
 
 }

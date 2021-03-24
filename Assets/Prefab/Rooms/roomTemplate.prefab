@@ -107,7 +107,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.5, y: 6.5}
+  m_Size: {x: 6.8, y: 6.8}
   m_EdgeRadius: 0
 --- !u!114 &5670215723436823378
 MonoBehaviour:
@@ -125,6 +125,7 @@ MonoBehaviour:
   openLeft: 0
   openUp: 0
   openDown: 0
+  mask: 
   doorRight: {fileID: 850454119114793156, guid: 025eb63d62feb0647a625e78a336c501,
     type: 3}
   doorLeft: {fileID: 8874860379675876636, guid: b46c93080a04c7444a9594b3500f7228,
@@ -134,3 +135,8 @@ MonoBehaviour:
     type: 3}
   doorsInRoom: []
   playerOnThisRoom: 0
+  roomFinnished: 0
+  shopRoom: 0
+  bossRoom: 0
+  classicRoom: 0
+  patternInThisRoom: {fileID: 0}
