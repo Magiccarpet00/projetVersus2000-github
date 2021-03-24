@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
             GameObject room = whereIsPlayer();
             Debug.Log(room);
         }
-        
     }
 
     /*

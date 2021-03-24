@@ -76,21 +76,26 @@ public class LevelGenerator : MonoBehaviour
         Move(Direction.UP);
 
         // On commence par crée la structur de base du donjon, sans les portes ni la forme des room
-        for (int i = 0; i < nbOfRooms; i++)
-        {      
-            CreateRoomTemplate(i);
-            
-            yield return new WaitForSeconds(.1f);
-        }
+        int id = 0;
+        while (id < nbOfRooms)
+        {
+            bool createdRoom = CreateRoomTemplate(id);
 
-        // Ici on va transformé les roomTemplate en room avec des ouvertures sur les cotés
+            if (createdRoom == true)
+            {
+                id++;
+            }
+            yield return new WaitForSeconds(.1f);
+        }       
+
+        //Ici on va transformé les roomTemplate en room avec des ouvertures sur les cotés
         for (int i = 0; i < roomsInDongeon.Count; i++)
         {
             roomsInDongeon[i].GetComponent<Room>().TransformationRoom();
         }
     }
 
-    private void CreateRoomTemplate(int idRoom)
+    private bool CreateRoomTemplate(int idRoom)
     {
         // C'est important la position du move() dans l'execution du code
         if (Physics2D.OverlapCircle(transform.position, Constants.CIRCLE_RADIUS) == null)
@@ -100,11 +105,12 @@ public class LevelGenerator : MonoBehaviour
             Move(Direction.RNG);
             roomsInDongeon.Add(room);
             TypeOfRoom(idRoom, room);
+            return true;
         }
         else
-        {
-            nbOfRooms++; // [CodeReview] On augmente le nombre total de room à créer au cas où on a pas réussi (sinon on peut se retrouver avec 8 rooms sur 10) 
+        {            
             Move(Direction.UP);
+            return false;
         }
     }
 
@@ -142,12 +148,12 @@ public class LevelGenerator : MonoBehaviour
 
     private void TypeOfRoom(int idRoom, GameObject room) 
     {
-        if(idRoom == 5) // Defois ya pas de room avec l'id 5 du coup ya pas de shop dans le donjon.
+        if(idRoom == 5)
         {
             //Shop room
             room.GetComponent<Room>().shopRoom = true;
         }
-        else if(idRoom == nbOfRooms) //ça sa marche pas
+        else if(idRoom == nbOfRooms-1)
         {
             //Boss room
             room.GetComponent<Room>().bossRoom = true;

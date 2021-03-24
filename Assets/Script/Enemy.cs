@@ -19,17 +19,21 @@ public class Enemy : MonoBehaviour
     public bool activated;
     public float timeBeforeMove;
 
-
     // Varrible bubble 
-    public bool haveBubble;
-    
+    public bool haveBubble;    
     
     private void Update()
     {
         if (activated && !dead && timeBeforeMove ==0)
         {
             Patrol();
-        }        
+        }
+
+        if(currentHealth <= 0)
+        {
+            Die();
+        }
+
     }
 
     private void FixedUpdate()
@@ -54,6 +58,18 @@ public class Enemy : MonoBehaviour
         {
             destinationPoint = (destinationPoint + 1) % wayPoints.Length;
             target = wayPoints[destinationPoint];
+        }
+    }
+
+    public void Die()
+    {
+        dead = true;
+        GameObject currentRoom = GameManager.instance.whereIsPlayer();
+        bool allEnemiesInRoomAreDead = currentRoom.GetComponent<Room>().patternInThisRoom.GetComponent<PatternEnemy>().PatternEnemyCleaned();
+        if(allEnemiesInRoomAreDead == true)
+        {
+            currentRoom.GetComponent<Room>().roomFinnished = true;
+            currentRoom.GetComponent<Room>().OpenDoor();
         }
     }
 
