@@ -58,6 +58,8 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         dead = true;
+        this.GetComponent<BoxCollider2D>().enabled = false;
+        this.GetComponentInChildren<SpriteRenderer>().enabled = false;
         OpenDoorWhenRoomCleared();
     }
 

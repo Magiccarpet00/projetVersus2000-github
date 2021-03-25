@@ -186,7 +186,5 @@ public class Room : MonoBehaviour
             patternInThisRoom = Instantiate(LevelGenerator.instance.allPatternInGame[rng], transform.position, Quaternion.identity);
             patternInThisRoom.transform.parent = this.transform;
         }
-        
     }
-
 }

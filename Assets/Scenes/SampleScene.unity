@@ -508,6 +508,9 @@ MonoBehaviour:
   allPatternInGame:
   - {fileID: 4243784699040087873, guid: 1fe320ebeb615ff4f9cfdcf72419038b, type: 3}
   - {fileID: 6048442294966027120, guid: 43cfd9e08103ce845820ecc0e944666e, type: 3}
+  allBossInGame:
+  - {fileID: 4520089852928657234, guid: ab7b83125d91710468940e6c9e520d98, type: 3}
+  shop: {fileID: 4311658509053371382, guid: 30aeae702448c934ea3c8771461fb995, type: 3}
   roomTemplate: {fileID: 8924454163981090457, guid: 3d447a2a67c55d549a15eb8e28610e50,
     type: 3}
   roomsInDongeon: []
