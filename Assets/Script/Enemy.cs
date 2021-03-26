@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
      * A voir pour mettre dans la classe Room. Pour moi l'ennemy doit informer la room qu'il y a des morts, mais pas faire
      * l'ouverture à sa place 
      */
-    public void OpenDoorWhenRoomCleared() // Cette methode prend plein d'info de partout, je sais pas si sa place est ici
+    public void OpenDoorWhenRoomCleared() // Cette methode prend plein d'info de partout, je sais pas si sa place est ici (très bonne question)
     {
         GameObject currentRoom = GameManager.instance.whereIsPlayer();
         bool allEnemiesInRoomAreDead = currentRoom.GetComponent<Room>().patternInThisRoom.GetComponent<PatternEnemy>().PatternEnemyCleaned();
