@@ -5,8 +5,8 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
 
-    // La on a tout les item qui savent comment on les achettes
-    // C'est peut etre mieux l'inventaire qui sais comment on achette des items
+    // La on a : "tout les item qui savent comment on les achètes"
+    // C'est peut etre mieux :"l'inventaire qui sais comment on achette des items"
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
