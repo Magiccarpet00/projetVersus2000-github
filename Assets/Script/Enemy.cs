@@ -55,14 +55,22 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    //[codeReview]
     public void Die()
     {
         dead = true;
         this.GetComponent<BoxCollider2D>().enabled = false;
         this.GetComponentInChildren<SpriteRenderer>().enabled = false;
-        OpenDoorWhenRoomCleared();
+        OpenDoorWhenRoomCleared(); // non !!! ce n'est pas à l'ennemi d'ouvrir les portes lui il meurt et annonce qu'il meurt c'est tout
+
+        GameManager.instance.whereIsPlayer().GetComponent<Room>().notifyDeath();
     }
 
+    //[codeReview]
+    /*
+     * A voir pour mettre dans la classe Room. Pour moi l'ennemy doit informer la room qu'il y a des morts, mais pas faire
+     * l'ouverture à sa place 
+     */
     public void OpenDoorWhenRoomCleared() // Cette methode prend plein d'info de partout, je sais pas si sa place est ici
     {
         GameObject currentRoom = GameManager.instance.whereIsPlayer();

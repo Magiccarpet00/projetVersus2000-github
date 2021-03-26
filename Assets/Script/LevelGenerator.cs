@@ -120,30 +120,38 @@ public class LevelGenerator : MonoBehaviour
 
     private void Move(Direction direction)
     {
-        int rng = UnityEngine.Random.Range(0, 2);
-
-        // C'est une petite filoutrie, pour le cas ou on veux aller forcement en up
-         /*
-         [CodeReview] A REVOIR !!!!!!
-         */
-        if(direction == Direction.UP)
+        Direction final = default; // ;-) permet de remplacer une déclaration à null qui fera hurler le compilateur
+        if(direction == Direction.RNG)
         {
-            rng = 2;
+           int rng = UnityEngine.Random.Range(0, 2);
+         switch (rng)
+            {
+                case 0:
+                    final = Direction.LEFT;
+                    break;
+                case 1:
+                    final = Direction.RIGHT;
+                    break;
+            }
+        }
+        else
+        {
+            final = direction; // Direction.UP par défaut
         }
 
-        if(rng == 0) // LEFT
+        if(final == Direction.LEFT) 
         {
             Vector2 newPos = new Vector2(transform.position.x - Constants.OFFSET, transform.position.y);
             transform.position = newPos;
         }
 
-        if(rng == 2) // UP
+        if (final == Direction.UP) 
         {
             Vector2 newPos = new Vector2(transform.position.x, transform.position.y + Constants.OFFSET);
             transform.position = newPos;
         }
 
-        if(rng == 1) // RIGHT
+        if (final == Direction.RIGHT)
         {
             Vector2 newPos = new Vector2(transform.position.x + Constants.OFFSET, transform.position.y);
             transform.position = newPos;
@@ -155,17 +163,18 @@ public class LevelGenerator : MonoBehaviour
         if(idRoom == 5)
         {
             //Shop room
-            room.GetComponent<Room>().shopRoom = true;
+
+            room.GetComponent<Room>().typeRoom = TypeRoom.SHOP;
         }
         else if(idRoom == nbOfRooms-1)
         {
             //Boss room
-            room.GetComponent<Room>().bossRoom = true;
+            room.GetComponent<Room>().typeRoom = TypeRoom.BOSS;
         }
         else
         {
             // Classique room
-            room.GetComponent<Room>().classicRoom = true;
+            room.GetComponent<Room>().typeRoom = TypeRoom.VANILLA;
         }
     }
 

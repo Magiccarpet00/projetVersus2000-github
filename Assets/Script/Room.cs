@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-//-----------Creation de la structure des rooms-------------
+    
+
+    //-----------Creation de la structure des rooms-------------
     public bool openRight;    
     public bool openLeft;    
     public bool openUp;    
     public bool openDown;
     public String mask;
+    public String maskDoor;
 
     public GameObject doorRight, doorLeft, doorUp, doorDown;
     public List<GameObject> doorsInRoom = new List<GameObject>();
     //public Dictionary<String, Sprite> maskToDoor = new Dictionary<string, Sprite>();
 
+    /* 
+     * Type of room
+     * */
+    public bool shopRoom;
+    public bool bossRoom;
+    public bool classicRoom;
+    public GameObject patternInThisRoom;
 
+    public TypeRoom typeRoom;
+
+    
+    //public TypeOfRoom typeOfRoom;
     public void TransformationRoom()
     {
         /* Right > Down > Left > Up
@@ -38,7 +52,7 @@ public class Room : MonoBehaviour
             char c = array[i]; // On garde en mémoire la caractère sur lequel on est...
             if (c == '1') // Si on a 1, alors ça veut dire qu'il faut créer une porte (mais on ne sait pas encore à quel endroit)
             {
-                GameObject door = doorUp; // Bensie Filouterie... sorry... I didn't want to duplicate but I was forced
+                GameObject door = default; 
 
                 /*
                  * Chaque caractère de notre mask correspond à une position dans la room.
@@ -56,7 +70,6 @@ public class Room : MonoBehaviour
                 {
                     case 0:
                         door = Instantiate(doorRight, transform.position, Quaternion.identity); 
-                        
                         break;
                     case 1:
                         door = Instantiate(doorDown, transform.position, Quaternion.identity);
@@ -79,6 +92,14 @@ public class Room : MonoBehaviour
     // On ouvre toute les portes
     OpenDoor();        
     }
+
+    internal void notifyDeath()
+    {
+        /*
+         * On stock le nombre de mort dans la salle et une fois arrivé au nombre max on ouvre les portes
+         * */
+    }
+
     public void ApertureCheck()
     {
         /*
@@ -153,43 +174,39 @@ public class Room : MonoBehaviour
     }
 
 
+
+
+
     //-----------Creation des Pattern d'enemies-----------------
 
     // Je voulais le faire avec des enums mais je comprend pas, ou ptet des classes 
-    // abstraite, du coup je vais faire ça comme un sagouin et on verra en code CodeReview
-
-    public bool shopRoom;
-    public bool bossRoom;
-    public bool classicRoom;
-
-    enum TypeOfRoom
-    {
-        SHOP_ROOM,
-        BOSS_ROOM,
-        CLASSIC_ROOM        
-    }
-
-    public GameObject patternInThisRoom;
-
+    // abstraite, du coup je vais faire ça comme un sagouin et on verra en code CodeReview    
     public void ChangeTypeOfRoom()
     {
-        if (shopRoom)
+        GameObject room = patternInThisRoom; // Valeur par défaut, elle sera remplacée quand on entrera dans une branche du if
+        if (typeRoom == TypeRoom.SHOP)
         {
             roomFinnished = true;
             GameObject shop = Instantiate(LevelGenerator.instance.shop, transform.position, Quaternion.identity);
             shop.transform.parent = this.transform;
         }
-        else if (bossRoom)
+        else if (typeRoom == TypeRoom.BOSS)
         {
             int rng = UnityEngine.Random.Range(0, LevelGenerator.instance.allBossInGame.Count);
             GameObject bossInRoom = Instantiate(LevelGenerator.instance.allBossInGame[rng], transform.position, Quaternion.identity);
             bossInRoom.transform.parent = this.transform;
         }
-        else if (classicRoom)
+        else if (typeRoom == TypeRoom.VANILLA)
         {
             int rng = UnityEngine.Random.Range(0, LevelGenerator.instance.allPatternInGame.Count);
             patternInThisRoom = Instantiate(LevelGenerator.instance.allPatternInGame[rng], transform.position, Quaternion.identity);
             patternInThisRoom.transform.parent = this.transform;
         }
+        else
+        {
+            // Si on tombe ici c'est la merde
+            Debug.LogError("On devrait pas tomber ici");
+        }
+
     }
 }

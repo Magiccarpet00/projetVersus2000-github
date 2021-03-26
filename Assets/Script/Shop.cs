@@ -19,6 +19,7 @@ public class Shop : MonoBehaviour
         {
             int rng = Random.Range(0, allItemInGame.Count);
             GameObject item =Instantiate(allItemInGame[rng], slotItem[i].position, Quaternion.identity);
+            item.transform.parent = this.transform;
             itemToSell.Add(item);
         }
     }

@@ -625,4 +625,4 @@ MonoBehaviour:
   roomTemplate: {fileID: 8924454163981090457, guid: 3d447a2a67c55d549a15eb8e28610e50,
     type: 3}
   roomsInDongeon: []
-  nbOfRooms: 10
+  nbOfRooms: 50
