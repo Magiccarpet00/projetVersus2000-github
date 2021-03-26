@@ -18,7 +18,7 @@ public class PatternEnemy : MonoBehaviour
         }
     }
 
-    public bool PatternEnemyCleaned()
+    public bool PatternEnemyCleaned() //[code review]
     {
         int nb = 0;
         for (int i = 0; i < enemiesInPattern.Count; i++)
@@ -39,6 +39,5 @@ public class PatternEnemy : MonoBehaviour
             Debug.Log("room pas fini");
             return false;
         }
-
     }
 }

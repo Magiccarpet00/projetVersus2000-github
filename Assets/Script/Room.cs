@@ -162,6 +162,13 @@ public class Room : MonoBehaviour
     public bool bossRoom;
     public bool classicRoom;
 
+    enum TypeOfRoom
+    {
+        SHOP_ROOM,
+        BOSS_ROOM,
+        CLASSIC_ROOM        
+    }
+
     public GameObject patternInThisRoom;
 
     public void ChangeTypeOfRoom()
@@ -172,15 +179,13 @@ public class Room : MonoBehaviour
             GameObject shop = Instantiate(LevelGenerator.instance.shop, transform.position, Quaternion.identity);
             shop.transform.parent = this.transform;
         }
-
-        if (bossRoom)
+        else if (bossRoom)
         {
             int rng = UnityEngine.Random.Range(0, LevelGenerator.instance.allBossInGame.Count);
             GameObject bossInRoom = Instantiate(LevelGenerator.instance.allBossInGame[rng], transform.position, Quaternion.identity);
             bossInRoom.transform.parent = this.transform;
         }
-
-        if (classicRoom)
+        else if (classicRoom)
         {
             int rng = UnityEngine.Random.Range(0, LevelGenerator.instance.allPatternInGame.Count);
             patternInThisRoom = Instantiate(LevelGenerator.instance.allPatternInGame[rng], transform.position, Quaternion.identity);
