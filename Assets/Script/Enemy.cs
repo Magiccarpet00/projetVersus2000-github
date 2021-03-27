@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float currentHealth;
     public float damage;
     public bool dead;
+    public bool haveBubble;
 
     // Varriable patrol
     public float maxSpeed;
@@ -20,7 +21,8 @@ public class Enemy : MonoBehaviour
     public float timeBeforeMove;
 
     // Varrible bubble 
-    public bool haveBubble;    
+
+    public Room currentRoom;
     
     private void Update()
     {

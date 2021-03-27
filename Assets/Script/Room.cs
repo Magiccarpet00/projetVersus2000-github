@@ -28,6 +28,9 @@ public class Room : MonoBehaviour
 
     public TypeRoom typeRoom;
 
+    public int maxEnnemies;
+    public int deadEnnemies;
+
     
     //public TypeOfRoom typeOfRoom;
     public void TransformationRoom()
@@ -96,8 +99,14 @@ public class Room : MonoBehaviour
     internal void notifyDeath()
     {
         /*
-         * On stock le nombre de mort dans la salle et une fois arrivé au nombre max on ouvre les portes
+         * On stock le nombre de morts dans la salle et une fois arrivé au nombre max on ouvre les portes
          * */
+        deadEnnemies++;
+        if (deadEnnemies == maxEnnemies)
+        {
+            roomFinnished = true;
+            OpenDoor();
+        }
     }
 
     public void ApertureCheck()
@@ -183,7 +192,6 @@ public class Room : MonoBehaviour
     // abstraite, du coup je vais faire ça comme un sagouin et on verra en code CodeReview    
     public void ChangeTypeOfRoom()
     {
-        GameObject room = patternInThisRoom; // Valeur par défaut, elle sera remplacée quand on entrera dans une branche du if
         if (typeRoom == TypeRoom.SHOP)
         {
             roomFinnished = true;
@@ -201,10 +209,12 @@ public class Room : MonoBehaviour
             int rng = UnityEngine.Random.Range(0, LevelGenerator.instance.allPatternInGame.Count);
             patternInThisRoom = Instantiate(LevelGenerator.instance.allPatternInGame[rng], transform.position, Quaternion.identity);
             patternInThisRoom.transform.parent = this.transform;
-        }
+            this.maxEnnemies = patternInThisRoom.GetComponent<PatternEnemy>().enemiesInPattern.Count; // Transfert du nombre d'ennemi du Pattern au niveau de la room
+          
+         }
         else
         {
-            // Si on tombe ici c'est la merde
+            // Si on tombe ici c'est la merde car on est dans un type de room non défini.
             Debug.LogError("On devrait pas tomber ici");
         }
 
