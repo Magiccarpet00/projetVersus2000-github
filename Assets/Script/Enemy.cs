@@ -50,41 +50,25 @@ public class Enemy : MonoBehaviour
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
         //Si l'ennemi est quasiment arriver à destination
-        if (Vector3.Distance(transform.position, target.position) < Constants.DESTINATION_PROCHE)
+        if (Vector3.Distance(transform.position, target.position) < Constants.DESTINATION_NEARBY)
         {
             destinationPoint = (destinationPoint + 1) % wayPoints.Length;
             target = wayPoints[destinationPoint];
         }
     }
 
-    //[codeReview]
+    /*
+     * Désactive le gameobject et signifie à la pièce du monstre qu'on a tout nettoyé
+     * */
     public void Die()
     {
         dead = true;
         this.GetComponent<BoxCollider2D>().enabled = false;
         this.GetComponentInChildren<SpriteRenderer>().enabled = false;
-        OpenDoorWhenRoomCleared(); // non !!! ce n'est pas à l'ennemi d'ouvrir les portes lui il meurt et annonce qu'il meurt c'est tout
-
+        
         //GameManager.instance.whereIsPlayer().GetComponent<Room>().notifyDeath(); // Baby version
         currentRoom.notifyDeath(); // Adult version
     }
-
-    //[codeReview]
-    /*
-     * A voir pour mettre dans la classe Room. Pour moi l'ennemy doit informer la room qu'il y a des morts, mais pas faire
-     * l'ouverture à sa place 
-     */
-    public void OpenDoorWhenRoomCleared() // Cette methode prend plein d'info de partout, je sais pas si sa place est ici (très bonne question)
-    {
-        GameObject currentRoom = GameManager.instance.whereIsPlayer();
-        bool allEnemiesInRoomAreDead = currentRoom.GetComponent<Room>().patternInThisRoom.GetComponent<PatternEnemy>().PatternEnemyCleaned();
-        if (allEnemiesInRoomAreDead == true)
-        {
-            currentRoom.GetComponent<Room>().roomFinnished = true;
-            currentRoom.GetComponent<Room>().OpenDoor();
-        }
-    }
-
 
     // Provisoire
     private void OnTriggerEnter2D(Collider2D collision)

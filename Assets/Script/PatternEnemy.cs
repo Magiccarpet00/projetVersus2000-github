@@ -23,27 +23,4 @@ public class PatternEnemy : MonoBehaviour
             enemiesInPattern[i].currentRoom = patternRoom;
         }
     }
-
-    public bool PatternEnemyCleaned() //[code review]
-    {
-        int nb = 0;
-        for (int i = 0; i < enemiesInPattern.Count; i++)
-        {
-            if (enemiesInPattern[i].dead == true)
-            {
-                nb++;
-            }
-        }
-
-        if(nb == enemiesInPattern.Count)
-        {
-            Debug.Log("room fini");
-            return true;
-        }
-        else
-        {
-            Debug.Log("room pas fini");
-            return false;
-        }
-    }
 }

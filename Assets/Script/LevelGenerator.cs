@@ -124,15 +124,15 @@ public class LevelGenerator : MonoBehaviour
         if(direction == Direction.RNG)
         {
            int rng = UnityEngine.Random.Range(0, 2);
-         switch (rng)
-            {
-                case 0:
-                    final = Direction.LEFT;
-                    break;
-                case 1:
-                    final = Direction.RIGHT;
-                    break;
-            }
+        switch (rng)
+        {
+            case 0:
+                final = Direction.LEFT;
+                break;
+            case 1:
+                final = Direction.RIGHT;
+                break;
+        }
         }
         else
         {
@@ -160,7 +160,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void TypeOfRoom(int idRoom, GameObject room) 
     {
-        if(idRoom == 5)
+        if(idRoom == Constants.SHOP_ROOM) // 
         {
             //Shop room
 

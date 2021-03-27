@@ -96,15 +96,14 @@ public class Room : MonoBehaviour
     OpenDoor();        
     }
 
+    /*
+     * Appelé à chaque fois qu'un ennemi meurt. Permet de contrôler l'ouverture des portes
+     */
     internal void notifyDeath()
     {
-        /*
-         * On stock le nombre de morts dans la salle et une fois arrivé au nombre max on ouvre les portes
-         * */
-        Debug.Log("Un mort");
         deadEnnemies++;
         if (deadEnnemies == maxEnnemies)
-        {
+        {  
             roomFinnished = true;
             OpenDoor();
         }
@@ -113,7 +112,7 @@ public class Room : MonoBehaviour
     public void ApertureCheck()
     {
         /*
-         * [Explications] On test si on à des templates voisins avec une boîte de collision. On modifie juste les bools 
+         * On test si on à des templates voisins avec une boîte de collision. On modifie juste les bools 
          */
         Vector2 rightCheck = new Vector2(transform.position.x + Constants.OFFSET, transform.position.y);
         Vector2 leftCheck = new Vector2(transform.position.x - Constants.OFFSET, transform.position.y);
@@ -181,9 +180,6 @@ public class Room : MonoBehaviour
             playerOnThisRoom = false;
         }
     }
-
-
-
 
 
     //-----------Creation des Pattern d'enemies-----------------
