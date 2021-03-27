@@ -21,9 +21,6 @@ public class Room : MonoBehaviour
     /* 
      * Type of room
      * */
-    public bool shopRoom;
-    public bool bossRoom;
-    public bool classicRoom;
     public GameObject patternInThisRoom;
 
     public TypeRoom typeRoom;
@@ -31,7 +28,10 @@ public class Room : MonoBehaviour
     public int maxEnnemies;
     public int deadEnnemies;
 
-    
+    public bool playerOnThisRoom; // Cette varriable est accsesible depuis LevelGenerator dans la liste roomsInDugeon
+    public bool roomFinnished;
+
+
     //public TypeOfRoom typeOfRoom;
     public void TransformationRoom()
     {
@@ -101,6 +101,7 @@ public class Room : MonoBehaviour
         /*
          * On stock le nombre de morts dans la salle et une fois arrivé au nombre max on ouvre les portes
          * */
+        Debug.Log("Un mort");
         deadEnnemies++;
         if (deadEnnemies == maxEnnemies)
         {
@@ -154,8 +155,7 @@ public class Room : MonoBehaviour
     // Ici on peut se retrouver dans le cas ou le joueur est dans 2 rooms à la fois quand il est entre 2 rooms
     // Je ferrais des ferification au moment des super pour savoir si le joueur n'est pas entre les rooms
 
-    public bool playerOnThisRoom; // Cette varriable est accsesible depuis LevelGenerator dans la liste roomsInDugeon
-    public bool roomFinnished;
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -168,7 +168,7 @@ public class Room : MonoBehaviour
                 CloseDoor();
             }
 
-            if (classicRoom && roomFinnished == false)
+            if (typeRoom == TypeRoom.VANILLA && roomFinnished == false)
             {
                 patternInThisRoom.GetComponent<PatternEnemy>().ActivationEnnemy();
             }           
@@ -209,8 +209,13 @@ public class Room : MonoBehaviour
             int rng = UnityEngine.Random.Range(0, LevelGenerator.instance.allPatternInGame.Count);
             patternInThisRoom = Instantiate(LevelGenerator.instance.allPatternInGame[rng], transform.position, Quaternion.identity);
             patternInThisRoom.transform.parent = this.transform;
-            this.maxEnnemies = patternInThisRoom.GetComponent<PatternEnemy>().enemiesInPattern.Count; // Transfert du nombre d'ennemi du Pattern au niveau de la room
-          
+
+            /*
+             * Partage d'information entre Room et Pattern
+             */
+            patternInThisRoom.GetComponent<PatternEnemy>().patternRoom = this;
+
+            this.maxEnnemies = patternInThisRoom.GetComponent<PatternEnemy>().enemiesInPattern.Count; // Transfert du nombre d'ennemi du Pattern au niveau de la room          
          }
         else
         {

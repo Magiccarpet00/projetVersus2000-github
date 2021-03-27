@@ -65,7 +65,8 @@ public class Enemy : MonoBehaviour
         this.GetComponentInChildren<SpriteRenderer>().enabled = false;
         OpenDoorWhenRoomCleared(); // non !!! ce n'est pas à l'ennemi d'ouvrir les portes lui il meurt et annonce qu'il meurt c'est tout
 
-        GameManager.instance.whereIsPlayer().GetComponent<Room>().notifyDeath();
+        //GameManager.instance.whereIsPlayer().GetComponent<Room>().notifyDeath(); // Baby version
+        currentRoom.notifyDeath(); // Adult version
     }
 
     //[codeReview]
