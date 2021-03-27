@@ -87,6 +87,7 @@ public class Room : MonoBehaviour
                         Debug.LogError("Benoit is a looser");
                         break;
                 }
+                door.GetComponent<Door>().origine = this; // Dans 
                 door.transform.parent = this.transform;
                 doorsInRoom.Add(door);
             }
@@ -127,11 +128,22 @@ public class Room : MonoBehaviour
         mask += (Physics2D.OverlapCircle(downCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
         mask += (Physics2D.OverlapCircle(leftCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
         mask += (Physics2D.OverlapCircle(upCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
-
-        // A la fin notre mask sera bienune chaîne de 4 
+        
+        /*
+         * Mon idée c'est de récupérer nos voisins, pour savoir les room de destination
+         * Si j'ai une room à droite, notre right door aura pour destination cette room
+         */
+        if (Physics2D.OverlapCircle(upCheck, Constants.CIRCLE_RADIUS) != null)
+        {
+            Collider2D yo = Physics2D.OverlapCircle(upCheck, Constants.CIRCLE_RADIUS);
+            Room g = yo.GetComponent<Room>();
+        }
+            
 
 
     }
+
+    public void createDoors
 
     public void OpenDoor()
     {

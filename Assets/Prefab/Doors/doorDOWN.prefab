@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8147946185052342120}
   - component: {fileID: 361676904816151375}
   - component: {fileID: 438896001926761845}
+  - component: {fileID: -955815592650983678}
   m_Layer: 0
   m_Name: doorDOWN
   m_TagString: Untagged
@@ -108,3 +109,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.76, y: 0.37}
   m_EdgeRadius: 0
+--- !u!114 &-955815592650983678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4256170477095225660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37cd2d6eb9006f14ead2954a13ae1d6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
