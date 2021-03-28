@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Shop : MonoBehaviour
 {
-    // Tout les items du jeux renseigné dans unity
-    public List<GameObject> allItemInGame = new List<GameObject>();
-
+    
     // La position ou apparaissent les item dans le jeu
     public Transform[] slotItem;
 
