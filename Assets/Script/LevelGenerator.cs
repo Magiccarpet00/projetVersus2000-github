@@ -176,7 +176,6 @@ public class LevelGenerator : MonoBehaviour
         if(idRoom == Constants.SHOP_ROOM) // 
         {
             //Shop room
-
             room.GetComponent<Room>().typeRoom = TypeRoom.SHOP;
         }
         else if(idRoom == nbOfRooms-1)
