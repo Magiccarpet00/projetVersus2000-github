@@ -56,6 +56,8 @@ MonoBehaviour:
   - {fileID: 6170636805412919608}
   - {fileID: 6170636805424606938}
   - {fileID: 6170636805130348677}
+  maxEnemies: 6
+  patternRoom: {fileID: 0}
 --- !u!1001 &6448126990475479698
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -54,6 +54,7 @@ public class LevelGenerator : MonoBehaviour
     {
         StartCoroutine(CreateLevelTemplate());
         FillMaskToSprite();
+        
     }
 
     private void FillMaskToSprite()
@@ -96,6 +97,18 @@ public class LevelGenerator : MonoBehaviour
         for (int i = 0; i < roomsInDongeon.Count; i++)
         {
             roomsInDongeon[i].GetComponent<Room>().TransformationRoom();
+        }
+        DuplicateDongeon();
+    }
+
+    public void DuplicateDongeon()
+    {
+        for (int i = 0; i < roomsInDongeon.Count; i++)
+        {
+            Instantiate(roomsInDongeon[i], new Vector3(roomsInDongeon[i].transform.position.x,
+                                                       roomsInDongeon[i].transform.position.y + Constants.OFFSET_DONGEON,
+                                                       roomsInDongeon[i].transform.position.z),
+                                                       Quaternion.identity);
         }
     }
 
