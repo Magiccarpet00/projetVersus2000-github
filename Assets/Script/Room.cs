@@ -139,11 +139,8 @@ public class Room : MonoBehaviour
             Room g = yo.GetComponent<Room>();
         }
             
-
-
     }
 
-    public void createDoors
 
     public void OpenDoor()
     {
