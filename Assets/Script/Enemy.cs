@@ -65,9 +65,7 @@ public class Enemy : MonoBehaviour
         dead = true;
         this.GetComponent<BoxCollider2D>().enabled = false;
         this.GetComponentInChildren<SpriteRenderer>().enabled = false;
-        
-        //GameManager.instance.whereIsPlayer().GetComponent<Room>().notifyDeath(); // Baby version
-        currentRoom.notifyDeath(); // Adult version
+        currentRoom.notifyDeath();
     }
 
     // Provisoire

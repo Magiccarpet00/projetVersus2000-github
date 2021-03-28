@@ -54,7 +54,7 @@ public class LevelGenerator : MonoBehaviour
     {
         StartCoroutine(CreateLevelTemplate());
         FillMaskToSprite();
-        
+        DuplicateDongeon();
     }
 
     private void FillMaskToSprite()
