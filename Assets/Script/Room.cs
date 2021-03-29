@@ -48,6 +48,10 @@ public class Room : MonoBehaviour
 
         GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.maskToDoor[mask];
 
+        
+
+
+
         // Création des doors selons le mask
         char[] array = mask.ToCharArray(); // On découpe notre mask en un tableau pour pouvoir récupérer individuellement chaque caractère (= char). 
         for (int i = 0; i < array.Length; i++)
