@@ -48,9 +48,8 @@ public class Room : MonoBehaviour
 
         GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.maskToDoor[mask].GetComponent<SpriteRenderer>().sprite;
 
-        
-
-
+        //Faire des murs avec des GameObjects
+        MakeWalls();
 
         // Création des doors selons le mask
         char[] array = mask.ToCharArray(); // On découpe notre mask en un tableau pour pouvoir récupérer individuellement chaque caractère (= char). 
@@ -98,6 +97,20 @@ public class Room : MonoBehaviour
     
     // On ouvre toute les portes
     OpenDoor();        
+    }
+
+    private void MakeWalls()
+    {
+        int nbWall = LevelGenerator.instance.maskToDoor[mask].GetComponent<Walls>().wallsInRoom.Count;
+
+        for (int i = 0; i < nbWall; i++)
+        {
+            GameObject wall = Instantiate(LevelGenerator.instance.maskToDoor[mask].GetComponent<Walls>().wallsInRoom[i],
+                                          transform.position,
+                                          Quaternion.identity);
+
+            wall.transform.parent = this.gameObject.transform;
+        }
     }
 
     /*
