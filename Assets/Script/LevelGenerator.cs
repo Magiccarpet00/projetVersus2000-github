@@ -30,7 +30,7 @@ public class LevelGenerator : MonoBehaviour
         RNG
     }
 
-    public Dictionary<String, Sprite> maskToDoor = new Dictionary<string, Sprite>();   
+    public Dictionary<String, GameObject> maskToDoor = new Dictionary<string, GameObject>();   
 
     [SerializeField] // La room utilise uniquement pour la premiere structur du donjon
     private GameObject roomTemplate;
@@ -59,21 +59,21 @@ public class LevelGenerator : MonoBehaviour
 
     private void FillMaskToSprite()
     {
-        maskToDoor["1000"] = LevelGenerator.instance.RIGHT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0100"] = LevelGenerator.instance.DOWN.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0010"] = LevelGenerator.instance.LEFT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0001"] = LevelGenerator.instance.UP.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1001"] = LevelGenerator.instance.UP_RIGHT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1100"] = LevelGenerator.instance.RIGHT_DOWN.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0110"] = LevelGenerator.instance.DOWN_LEFT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0011"] = LevelGenerator.instance.LEFT_UP.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0101"] = LevelGenerator.instance.UP_DOWN.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1010"] = LevelGenerator.instance.LEFT_RIGHT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1101"] = LevelGenerator.instance.UP_RIGHT_DOWN.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1110"] = LevelGenerator.instance.RIGHT_DOWN_LEFT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["0111"] = LevelGenerator.instance.DOWN_LEFT_UP.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1011"] = LevelGenerator.instance.LEFT_UP_RIGHT.GetComponent<SpriteRenderer>().sprite;
-        maskToDoor["1111"] = LevelGenerator.instance.UP_RIGHT_DOWN_LEFT.GetComponent<SpriteRenderer>().sprite;
+        maskToDoor["1000"] = LevelGenerator.instance.RIGHT;
+        maskToDoor["0100"] = LevelGenerator.instance.DOWN;
+        maskToDoor["0010"] = LevelGenerator.instance.LEFT;
+        maskToDoor["0001"] = LevelGenerator.instance.UP;
+        maskToDoor["1001"] = LevelGenerator.instance.UP_RIGHT;
+        maskToDoor["1100"] = LevelGenerator.instance.RIGHT_DOWN;
+        maskToDoor["0110"] = LevelGenerator.instance.DOWN_LEFT;
+        maskToDoor["0011"] = LevelGenerator.instance.LEFT_UP;
+        maskToDoor["0101"] = LevelGenerator.instance.UP_DOWN;
+        maskToDoor["1010"] = LevelGenerator.instance.LEFT_RIGHT;
+        maskToDoor["1101"] = LevelGenerator.instance.UP_RIGHT_DOWN;
+        maskToDoor["1110"] = LevelGenerator.instance.RIGHT_DOWN_LEFT;
+        maskToDoor["0111"] = LevelGenerator.instance.DOWN_LEFT_UP;
+        maskToDoor["1011"] = LevelGenerator.instance.LEFT_UP_RIGHT;
+        maskToDoor["1111"] = LevelGenerator.instance.UP_RIGHT_DOWN_LEFT;
     }
 
     IEnumerator CreateLevelTemplate()

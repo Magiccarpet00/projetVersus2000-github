@@ -46,7 +46,7 @@ public class Room : MonoBehaviour
         ApertureCheck();
         ChangeTypeOfRoom();
 
-        GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.maskToDoor[mask];
+        GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.maskToDoor[mask].GetComponent<SpriteRenderer>().sprite;
 
         
 
