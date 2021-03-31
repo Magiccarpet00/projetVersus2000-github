@@ -7,7 +7,7 @@ public static class Constants
     public const float DESTINATION_NEARBY = .01f;
     public const float OFFSET = 8f;
     public const int SHOP_ROOM = 5;
-    public const float OFFSET_DONGEON = 50f;
+    public const float OFFSET_DONGEON = 60f;
     public const int SHOP_ITEMS = 2;
 
 }

@@ -178,6 +178,18 @@ public class Room : MonoBehaviour
         {
             playerOnThisRoom = true;
 
+            // [Problème pour benoit]
+            //******************************************************************************************************************
+            // Pour le follow Camera
+            // GameManager.instance.playersPosition. #j'aimerais bien changer la value du dictionaire 
+            //                                         par le GameObject de cette classe room#
+
+            //                                        #Et on peut recupérer la clef player pcq on à collision dans la methode
+            //                                         OnTriggerEnter2D juste au dessus#
+
+            //******************************************************************************************************************
+
+
             // Si on revient dans une room qu'on a fini on reste enfermé dedant sinon
             if (roomFinnished == false)
             {
@@ -187,14 +199,14 @@ public class Room : MonoBehaviour
             if (typeRoom == TypeRoom.VANILLA && roomFinnished == false)
             {
                 patternInThisRoom.GetComponent<PatternEnemy>().ActivationEnnemy();
-            }           
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            playerOnThisRoom = false;
+            playerOnThisRoom = false;            
         }
     }
 
@@ -229,12 +241,11 @@ public class Room : MonoBehaviour
             patternInThisRoom.GetComponent<PatternEnemy>().patternRoom = this;
 
             this.maxEnnemies = patternInThisRoom.GetComponent<PatternEnemy>().enemiesInPattern.Count; // Transfert du nombre d'ennemi du Pattern au niveau de la room          
-         }
+        }
         else
         {
             // Si on tombe ici c'est la merde car on est dans un type de room non défini.
             Debug.LogError("On devrait pas tomber ici");
         }
-
     }
 }

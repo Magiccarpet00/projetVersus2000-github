@@ -4,40 +4,46 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    public static Room playerPosition;
+    public static GameManager instance;    
     
     private void Awake()
     {
         instance = this;
     }
 
+    // Provisoir je pense, c'est pour le follow de la camera
+   // public Room playerPosition;
+
+    // Pour la possiton des player
+    public GameObject[] players;
+    
+    // [Problème pour benoit]
+//*************************************************************************************************************
+    // C'est une variable qui garde en memoire 
+    // dans quelle room se trouve chaque joueur <player, room>
+    public Dictionary<GameObject, GameObject> playersPosition = new Dictionary<GameObject, GameObject>();
+//*************************************************************************************************************
+
+    //Ref au autre partit du code
     public LevelGenerator levelGenerator;
-    public GameObject startRoom;
+    public GameObject[] startRooms;
+
+    private void Start()
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            playersPosition.Add(players[i], startRooms[i]);
+        }
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
-        {
-            GameObject room = whereIsPlayer();
-            Debug.Log(room);
-        }
-    }
-
-    /*
-     * Check dans notre donjon où est le joueur & renvoie sa room.
-     */
-    public GameObject whereIsPlayer()
-    {
-        for (int i = 0; i < levelGenerator.roomsInDongeon.Capacity; i++)
-        {
-            if(levelGenerator.roomsInDongeon[i].GetComponent<Room>().playerOnThisRoom == true)
+        {            
+            for (int i = 0; i < players.Length; i++)
             {
-                return levelGenerator.roomsInDongeon[i];
-            }      
+                Debug.Log(playersPosition[players[i]]);
+            }
         }
-        return startRoom;
-    }
-
-
+    } 
 }
