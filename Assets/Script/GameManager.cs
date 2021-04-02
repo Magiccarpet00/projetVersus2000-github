@@ -46,9 +46,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Debug.Log("hey");
-        }
+       
     }
 }

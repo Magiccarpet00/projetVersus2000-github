@@ -9,5 +9,6 @@ public static class Constants
     public const int SHOP_ROOM = 5;
     public const float OFFSET_DONGEON = 60f;
     public const int SHOP_ITEMS = 2;
+    public const float RADIUS_JOYSTICK = 0.3f;
 
 }
