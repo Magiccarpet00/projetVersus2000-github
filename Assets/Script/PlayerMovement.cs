@@ -10,14 +10,14 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movement;
 
     
-    enum InputBufferDirection
+    public enum InputBufferDirection
     {
         UP,
         RIGHT,
         DOWN,
         LEFT
     }
-    InputBufferDirection InputBuffer = InputBufferDirection.DOWN; //Pcq quand tu commences tu regardes vers le bas
+    public InputBufferDirection InputBuffer = InputBufferDirection.DOWN; //Pcq quand tu commences tu regardes vers le bas
 
     private void Start()
     {
