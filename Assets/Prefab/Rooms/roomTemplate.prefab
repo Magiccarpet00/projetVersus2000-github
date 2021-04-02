@@ -96,7 +96,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.5596905}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -107,7 +107,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.8, y: 6.8}
+  m_Size: {x: 6.8, y: 5.6806192}
   m_EdgeRadius: 0
 --- !u!114 &5670215723436823378
 MonoBehaviour:
@@ -126,6 +126,7 @@ MonoBehaviour:
   openUp: 0
   openDown: 0
   mask: 
+  maskDoor: 
   doorRight: {fileID: 850454119114793156, guid: 025eb63d62feb0647a625e78a336c501,
     type: 3}
   doorLeft: {fileID: 8874860379675876636, guid: b46c93080a04c7444a9594b3500f7228,
@@ -134,9 +135,9 @@ MonoBehaviour:
   doorDown: {fileID: 4256170477095225660, guid: 5eccbcc77f6a9274392d83172a113d6d,
     type: 3}
   doorsInRoom: []
+  patternInThisRoom: {fileID: 0}
+  typeRoom: 0
+  maxEnnemies: 0
+  deadEnnemies: 0
   playerOnThisRoom: 0
   roomFinnished: 0
-  shopRoom: 0
-  bossRoom: 0
-  classicRoom: 0
-  patternInThisRoom: {fileID: 0}

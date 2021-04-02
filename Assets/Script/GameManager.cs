@@ -39,11 +39,16 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
-        {            
+        {
             for (int i = 0; i < players.Length; i++)
             {
                 Debug.Log(playersPosition[players[i]]);
             }
         }
-    } 
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Debug.Log("hey");
+        }
+    }
 }
