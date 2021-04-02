@@ -11,14 +11,12 @@ public class FollowCamera : MonoBehaviour
     private Vector3 velocity;
 
     //Pour 2 joueurs
-    public GameObject playerToFollow;
-    /*
+    public GameObject playerToFollow;    
+
     private void Update()
     {
-        if(GameManager.instance.playersPosition. != null)
-        {
-            transform.position = Vector3.SmoothDamp(transform.position, GameManager.instance.playerPosition.transform.position + posOffSet, ref velocity, timeOffSet);
-        }        
+         newPos = GameManager.instance.playersPosition[playerToFollow].GetComponent<Transform>();
+         transform.position = Vector3.SmoothDamp(transform.position, newPos.position + posOffSet, ref velocity, timeOffSet);                
     }
-    */
+    
 }

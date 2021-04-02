@@ -151,9 +151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbd4c4f31e1a2d4098897139732a23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPosition: {fileID: 0}
+  players:
+  - {fileID: 1319672010}
+  - {fileID: 810835629}
   levelGenerator: {fileID: 1677950000}
-  startRoom: {fileID: 928673516}
+  startRooms:
+  - {fileID: 928673516}
+  - {fileID: 388002314}
 --- !u!4 &100424933
 Transform:
   m_ObjectHideFlags: 0
@@ -323,9 +327,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1f1fa16d637a74a9e37140d079fe69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newPos: {fileID: 0}
+  newPos: {fileID: 928673519}
   timeOffSet: 0.2
   posOffSet: {x: 0, y: 0, z: -10}
+  playerToFollow: {fileID: 1319672010}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -811,9 +816,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc1f1fa16d637a74a9e37140d079fe69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newPos: {fileID: 0}
+  newPos: {fileID: 388002317}
   timeOffSet: 0.2
   posOffSet: {x: 0, y: 0, z: -10}
+  playerToFollow: {fileID: 810835629}
 --- !u!20 &1472467427
 Camera:
   m_ObjectHideFlags: 0

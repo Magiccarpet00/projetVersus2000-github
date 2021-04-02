@@ -187,6 +187,9 @@ public class Room : MonoBehaviour
             //                                        #Et on peut recupérer la clef player pcq on à collision dans la methode
             //                                         OnTriggerEnter2D juste au dessus#
 
+            GameManager.instance.playersPosition[collision.gameObject] = this.gameObject;
+
+
             //******************************************************************************************************************
 
 
