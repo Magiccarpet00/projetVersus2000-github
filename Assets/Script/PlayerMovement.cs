@@ -9,7 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 movement;
 
-    
+    public InputBufferDirection InputBuffer = InputBufferDirection.DOWN; //Pcq quand tu commences tu regardes vers le bas
+
     public enum InputBufferDirection
     {
         UP,
@@ -17,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
         DOWN,
         LEFT
     }
-    public InputBufferDirection InputBuffer = InputBufferDirection.DOWN; //Pcq quand tu commences tu regardes vers le bas
+    
 
     private void Start()
     {
