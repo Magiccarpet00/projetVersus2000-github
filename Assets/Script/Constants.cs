@@ -10,5 +10,5 @@ public static class Constants
     public const float OFFSET_DONGEON = 60f;
     public const int SHOP_ITEMS = 2;
     public const float RADIUS_JOYSTICK = 0.3f;
-
+    public const float OFFSET_ATTACK = 1f;
 }
