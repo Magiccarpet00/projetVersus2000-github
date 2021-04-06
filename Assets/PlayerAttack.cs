@@ -5,6 +5,10 @@ using static PlayerMovement;
 
 public class PlayerAttack : MonoBehaviour
 {
+    public bool onAttack;
+
+    public Animator animator;
+
     Dictionary<InputBufferDirection, InfoAttack> directionOffSet_And_Rotation = new Dictionary<InputBufferDirection, InfoAttack>();
     public struct InfoAttack
     {
@@ -23,10 +27,10 @@ public class PlayerAttack : MonoBehaviour
     public void Awake()
     {
         // on regarde dans quelle dirrection est l'input buffer
-        directionOffSet_And_Rotation[InputBufferDirection.UP] = new InfoAttack(new Vector2(0f, Constants.OFFSET_ATTACK), 90f,0.5f);
-        directionOffSet_And_Rotation[InputBufferDirection.LEFT] = new InfoAttack(new Vector2(-Constants.OFFSET_ATTACK,0f), 180f, 0.5f);
-        directionOffSet_And_Rotation[InputBufferDirection.DOWN] = new InfoAttack(new Vector2(0f, -Constants.OFFSET_ATTACK), 270f, 0.5f);
-        directionOffSet_And_Rotation[InputBufferDirection.RIGHT] = new InfoAttack(new Vector2(Constants.OFFSET_ATTACK, 0f), 0f, 0.5f);
+        directionOffSet_And_Rotation[InputBufferDirection.UP] = new InfoAttack(new Vector2(0f, Constants.OFFSET_ATTACK), 90f,Constants.SECOND_ATTACK_CD);
+        directionOffSet_And_Rotation[InputBufferDirection.LEFT] = new InfoAttack(new Vector2(-Constants.OFFSET_ATTACK,0f), 180f, Constants.SECOND_ATTACK_CD);
+        directionOffSet_And_Rotation[InputBufferDirection.DOWN] = new InfoAttack(new Vector2(0f, -Constants.OFFSET_ATTACK), 270f, Constants.SECOND_ATTACK_CD);
+        directionOffSet_And_Rotation[InputBufferDirection.RIGHT] = new InfoAttack(new Vector2(Constants.OFFSET_ATTACK, 0f), 0f, Constants.SECOND_ATTACK_CD);
 
     }
     public GameObject epeePrefab;
@@ -34,21 +38,27 @@ public class PlayerAttack : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            //Stop les mouvements
+        if (Input.GetButton("Fire1"))
+        {                                  
             playerMovement.StopMovement();
+
+            //annimation
+            animator.SetTrigger("pre_attack");
         }
 
-        if (Input.GetButtonUp("Fire1"))
+        if (Input.GetButtonUp("Fire1") && onAttack == false)
         {
             //lance l'attaque
-            StartCoroutine(Attack()); // C'est bof d'après félix
+            onAttack = true;
+            animator.SetBool("onAttack", true);
+            StartCoroutine(Attack()); // C'est bof d'après félix            
         }        
     }
 
     public IEnumerator Attack()
     {
+        //Annimation
+        animator.SetTrigger("attack");
 
         InfoAttack infoAttack = directionOffSet_And_Rotation[playerMovement.InputBuffer];
         GameObject epee = Instantiate(epeePrefab, transform.position + transform.TransformDirection(infoAttack.OffsetAttack), infoAttack.RotationAttack);
@@ -63,5 +73,10 @@ public class PlayerAttack : MonoBehaviour
         
         Destroy(epee);
         playerMovement.UnStopMovement();
+        onAttack = false;
+
+        //Annimation
+        animator.SetBool("onAttack", false);
+        animator.SetTrigger("ilde");
     }
 }
