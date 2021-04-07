@@ -39,26 +39,27 @@ public class PlayerAttack : MonoBehaviour
     void Update()
     {
         if (Input.GetButton("Fire1"))
-        {                                  
-            playerMovement.StopMovement();
+        {
+            //[Annimation]
+            animator.SetBool("Button_Down", true);
 
-            //annimation
-            animator.SetTrigger("pre_attack");
+            playerMovement.StopMovement();
         }
 
         if (Input.GetButtonUp("Fire1") && onAttack == false)
         {
-            //lance l'attaque
-            onAttack = true;
-            animator.SetBool("onAttack", true);
+            //[Annimation]
+            animator.SetBool("Button_Down", false);
+
+            //Lance l'attaque
+            onAttack = true;            
             StartCoroutine(Attack()); // C'est bof d'après félix            
         }        
     }
 
     public IEnumerator Attack()
     {
-        //Annimation
-        animator.SetTrigger("attack");
+        
 
         InfoAttack infoAttack = directionOffSet_And_Rotation[playerMovement.InputBuffer];
         GameObject epee = Instantiate(epeePrefab, transform.position + transform.TransformDirection(infoAttack.OffsetAttack), infoAttack.RotationAttack);
@@ -75,8 +76,6 @@ public class PlayerAttack : MonoBehaviour
         playerMovement.UnStopMovement();
         onAttack = false;
 
-        //Annimation
-        animator.SetBool("onAttack", false);
-        animator.SetTrigger("ilde");
+        
     }
 }
