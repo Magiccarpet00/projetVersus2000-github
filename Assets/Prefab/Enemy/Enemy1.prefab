@@ -49,6 +49,7 @@ MonoBehaviour:
   currentHealth: 10
   damage: 2
   dead: 0
+  haveBubble: 0
   maxSpeed: 0
   speed: 2
   wayPoints:
@@ -57,7 +58,7 @@ MonoBehaviour:
   target: {fileID: 0}
   activated: 0
   timeBeforeMove: 0
-  haveBubble: 0
+  currentRoom: {fileID: 0}
 --- !u!61 &4551905556961645558
 BoxCollider2D:
   m_ObjectHideFlags: 0

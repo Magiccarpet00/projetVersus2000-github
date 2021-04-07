@@ -20,8 +20,9 @@ public class Enemy : MonoBehaviour
     public bool activated;
     public float timeBeforeMove;
 
-    // Varrible bubble 
+    public Vector3 dir;
 
+    // Varrible bubble
     public Room currentRoom;
     
     private void Update()
@@ -46,7 +47,7 @@ public class Enemy : MonoBehaviour
 
     public void Patrol()
     {
-        Vector3 dir = target.position - transform.position;
+        dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
         //Si l'ennemi est quasiment arriver à destination
@@ -72,11 +73,22 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
+        {            
+            if (!dead)
+            {
+                if(collision.GetComponent<PlayerMovement>().isBump == false)
+                {
+                    StartCoroutine(collision.GetComponent<PlayerMovement>().Bumping(dir));
+                }                
+            }
+        }
+
+        if (collision.CompareTag("Epée"))
         {
             if (!dead)
             {
                 Die();
-            }            
+            }
         }
     }
 }

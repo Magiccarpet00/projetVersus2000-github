@@ -17,12 +17,9 @@ public class GameManager : MonoBehaviour
     // Pour la possiton des player
     public GameObject[] players;
     
-    // [Problème pour benoit]
-//*************************************************************************************************************
     // C'est une variable qui garde en memoire 
     // dans quelle room se trouve chaque joueur <player, room>
     public Dictionary<GameObject, GameObject> playersPosition = new Dictionary<GameObject, GameObject>();
-//*************************************************************************************************************
 
     //Ref au autre partit du code
     public LevelGenerator levelGenerator;
@@ -44,8 +41,12 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log(playersPosition[players[i]]);
             }
-        }
-
-       
+        }       
     }
 }
+
+// [memo]
+/* -les enemy sont is_trigger
+ * -le joueur est solid avec rb
+ * -l'epée est is_trigger avec rb
+ * */

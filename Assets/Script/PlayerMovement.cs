@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movement;
 
     public InputBufferDirection InputBuffer = InputBufferDirection.DOWN; //Pcq quand tu commences tu regardes vers le bas
-
     public enum InputBufferDirection
     {
         UP,
@@ -18,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
         DOWN,
         LEFT
     }
+
+    public bool isBump;
+    public Vector2 bumpForce;
     
 
     private void Start()
@@ -35,7 +37,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
+        if (!isBump)
+        {
+            rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
+        }
+        else if (isBump)
+        {
+            rb.MovePosition(rb.position + bumpForce * Time.fixedDeltaTime);
+        }        
     }
 
     private void UpdateInputBuffer()
@@ -69,5 +78,23 @@ public class PlayerMovement : MonoBehaviour
     public void UnStopMovement()
     {
         currentMoveSpeed = maxMoveSpeed;
+    }
+
+    public IEnumerator Bumping(Vector2 _bumpForce)
+    {
+
+
+
+        bumpForce.x = _bumpForce.normalized.x 
+                      + Random.Range(-Constants.OFFSET_RANDOM_BUMPING, Constants.OFFSET_RANDOM_BUMPING) 
+                      * Constants.SPEED_BUMPING;
+
+        bumpForce.y = _bumpForce.normalized.y 
+                      + Random.Range(-Constants.OFFSET_RANDOM_BUMPING, Constants.OFFSET_RANDOM_BUMPING) 
+                      * Constants.SPEED_BUMPING;
+
+        isBump = true;
+        yield return new WaitForSeconds(Constants.TIME_TO_BUMPING);
+        isBump = false;
     }
 }
