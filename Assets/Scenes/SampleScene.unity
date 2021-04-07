@@ -793,7 +793,10 @@ MonoBehaviour:
   maxMoveSpeed: 5
   currentMoveSpeed: 0
   rb: {fileID: 1319672012}
+  animator: {fileID: 1800445370}
   InputBuffer: 2
+  isBump: 0
+  bumpForce: {x: 0, y: 0}
 --- !u!1 &1472467425
 GameObject:
   m_ObjectHideFlags: 0

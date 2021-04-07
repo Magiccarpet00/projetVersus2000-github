@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 movement;
 
+    public Animator animator;
+
     public InputBufferDirection InputBuffer = InputBufferDirection.DOWN; //Pcq quand tu commences tu regardes vers le bas
     public enum InputBufferDirection
     {
@@ -82,8 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator Bumping(Vector2 _bumpForce)
     {
-
-
+        
 
         bumpForce.x = _bumpForce.normalized.x 
                       + Random.Range(-Constants.OFFSET_RANDOM_BUMPING, Constants.OFFSET_RANDOM_BUMPING) 
@@ -94,7 +95,15 @@ public class PlayerMovement : MonoBehaviour
                       * Constants.SPEED_BUMPING;
 
         isBump = true;
+
+        //[Annimation]
+        animator.SetBool("isBump", true);
+
         yield return new WaitForSeconds(Constants.TIME_TO_BUMPING);
+
         isBump = false;
+
+        //[Annimation]
+        animator.SetBool("isBump", false);
     }
 }
