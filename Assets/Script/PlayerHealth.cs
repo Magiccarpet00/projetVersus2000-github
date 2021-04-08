@@ -26,17 +26,17 @@ public class PlayerHealth : MonoBehaviour
         playerMovement.StopMovement();
 
         //[Annimation]
-        animator.SetBool("isDamageHit", true);
+        animator.SetBool("receiveHit", true);
 
         StartCoroutine(playerMovement.Bumping(_bumpForce));
 
-        yield return new WaitForSeconds(Constants.TIME_TO_HITSTUN);
+        yield return new WaitForSeconds(Constants.TIME_TO_HITSTUN); // Après être repousé on ne peut plus bouger pendant TIME TO HITSTUN secondes
 
         //Freeze le gugus
         playerMovement.UnStopMovement();
 
         //[Annimation]
-        animator.SetBool("isDamageHit", false); // Pour l'instant je triche pcq l'annime s'arrete pas au bon momment
+        animator.SetBool("receiveHit", false); // Pour l'instant je triche pcq l'annime s'arrete pas au bon momment
 
         yield return new WaitForSeconds(Constants.TIME_INVINCIBLE_AFTER_HITSTUN);
         isInvincible = false;        

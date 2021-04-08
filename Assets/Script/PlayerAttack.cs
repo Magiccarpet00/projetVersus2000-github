@@ -10,6 +10,10 @@ public class PlayerAttack : MonoBehaviour
     public Animator animator;
 
     Dictionary<InputBufferDirection, InfoAttack> directionOffSet_And_Rotation = new Dictionary<InputBufferDirection, InfoAttack>();
+
+    public GameObject epeePrefab;
+    public PlayerMovement playerMovement;
+    public PlayerHealth playerHealth;
     public struct InfoAttack
     {
         public InfoAttack(Vector2 offsetAttack, float rotationAttack, float delayAttack)
@@ -33,9 +37,7 @@ public class PlayerAttack : MonoBehaviour
         directionOffSet_And_Rotation[InputBufferDirection.RIGHT] = new InfoAttack(new Vector2(Constants.OFFSET_ATTACK, 0f), 0f, Constants.SECOND_ATTACK_CD);
 
     }
-    public GameObject epeePrefab;
-    public PlayerMovement playerMovement;
-    public PlayerHealth playerHealth;
+    
     
     void Update()
     {
@@ -47,7 +49,7 @@ public class PlayerAttack : MonoBehaviour
             playerMovement.StopMovement();
         }
 
-        if (Input.GetButtonUp("Fire1") && onAttack == false && playerHealth.isInvincible == false) // isInvincible c'est quand on se fait touché donc c'est ptet bof comme nom...
+        else if (Input.GetButtonUp("Fire1") && onAttack == false && playerHealth.isInvincible == false) // isInvincible c'est quand on se fait touché donc c'est ptet bof comme nom...
         {
             //[Annimation]
             animator.SetBool("Button_Down", false);
@@ -62,10 +64,6 @@ public class PlayerAttack : MonoBehaviour
     {
         InfoAttack infoAttack = directionOffSet_And_Rotation[playerMovement.InputBuffer];
         GameObject epee = Instantiate(epeePrefab, transform.position + transform.TransformDirection(infoAttack.OffsetAttack), infoAttack.RotationAttack);
-
-        //GameObject epee = Instantiate(epeePrefab,
-        //                               new Vector2(transform.position.x + directionOffSet_And_Rotation[playerMovement.InputBuffer].x, transform.position.y + directionOffSet_And_Rotation[playerMovement.InputBuffer].y),
-        //                               Quaternion.Euler(0f, 0f, directionOffSet_And_Rotation[playerMovement.InputBuffer].z));
 
         epee.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(infoAttack.DelayAttack);

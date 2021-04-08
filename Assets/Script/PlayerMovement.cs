@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
         }
-        else if (isBump)
+        else if (isBump) // On se fait déplacer par le bump sans contrôle du joueur
         {
             rb.MovePosition(rb.position + bumpForce * Time.fixedDeltaTime);
         }        
@@ -82,8 +82,12 @@ public class PlayerMovement : MonoBehaviour
         currentMoveSpeed = maxMoveSpeed;
     }
 
+    /*
+     * Rajoute un élément aléatoire lorsqu'on repousse le joueur
+     */
     public IEnumerator Bumping(Vector2 _bumpForce)
     {
+        // Calcul aléatoire
         bumpForce.x = _bumpForce.x
                       + Random.Range(-Constants.OFFSET_RANDOM_BUMPING, Constants.OFFSET_RANDOM_BUMPING);
 
@@ -96,6 +100,7 @@ public class PlayerMovement : MonoBehaviour
         bumpForce.y = bumpForce.normalized.y * Constants.SPEED_BUMPING;
 
 
+        //que peut faire ce boolean ???
         isBump = true;
 
         yield return new WaitForSeconds(Constants.TIME_TO_BUMPING);

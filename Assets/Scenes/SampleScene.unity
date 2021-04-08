@@ -765,6 +765,7 @@ MonoBehaviour:
   epeePrefab: {fileID: 3231854286922200953, guid: 0d6975ce1f3541a48b2ad267b3b464e3,
     type: 3}
   playerMovement: {fileID: 1319672016}
+  playerHealth: {fileID: 1319672017}
 --- !u!114 &1319672015
 MonoBehaviour:
   m_ObjectHideFlags: 0
