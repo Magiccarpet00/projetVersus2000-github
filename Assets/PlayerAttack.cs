@@ -35,6 +35,7 @@ public class PlayerAttack : MonoBehaviour
     }
     public GameObject epeePrefab;
     public PlayerMovement playerMovement;
+    public PlayerHealth playerHealth;
     
     void Update()
     {
@@ -46,7 +47,7 @@ public class PlayerAttack : MonoBehaviour
             playerMovement.StopMovement();
         }
 
-        if (Input.GetButtonUp("Fire1") && onAttack == false)
+        if (Input.GetButtonUp("Fire1") && onAttack == false && playerHealth.isInvincible == false) // isInvincible c'est quand on se fait touché donc c'est ptet bof comme nom...
         {
             //[Annimation]
             animator.SetBool("Button_Down", false);
@@ -59,11 +60,8 @@ public class PlayerAttack : MonoBehaviour
 
     public IEnumerator Attack()
     {
-        
-
         InfoAttack infoAttack = directionOffSet_And_Rotation[playerMovement.InputBuffer];
         GameObject epee = Instantiate(epeePrefab, transform.position + transform.TransformDirection(infoAttack.OffsetAttack), infoAttack.RotationAttack);
-
 
         //GameObject epee = Instantiate(epeePrefab,
         //                               new Vector2(transform.position.x + directionOffSet_And_Rotation[playerMovement.InputBuffer].x, transform.position.y + directionOffSet_And_Rotation[playerMovement.InputBuffer].y),
@@ -75,7 +73,5 @@ public class PlayerAttack : MonoBehaviour
         Destroy(epee);
         playerMovement.UnStopMovement();
         onAttack = false;
-
-        
     }
 }

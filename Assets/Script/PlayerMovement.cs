@@ -84,26 +84,22 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator Bumping(Vector2 _bumpForce)
     {
-        
+        bumpForce.x = _bumpForce.x
+                      + Random.Range(-Constants.OFFSET_RANDOM_BUMPING, Constants.OFFSET_RANDOM_BUMPING);
 
-        bumpForce.x = _bumpForce.normalized.x 
-                      + Random.Range(-Constants.OFFSET_RANDOM_BUMPING, Constants.OFFSET_RANDOM_BUMPING) 
-                      * Constants.SPEED_BUMPING;
+        bumpForce.x = bumpForce.normalized.x * Constants.SPEED_BUMPING;
 
-        bumpForce.y = _bumpForce.normalized.y 
-                      + Random.Range(-Constants.OFFSET_RANDOM_BUMPING, Constants.OFFSET_RANDOM_BUMPING) 
-                      * Constants.SPEED_BUMPING;
+
+        bumpForce.y = _bumpForce.y
+                      + Random.Range(-Constants.OFFSET_RANDOM_BUMPING, Constants.OFFSET_RANDOM_BUMPING);
+
+        bumpForce.y = bumpForce.normalized.y * Constants.SPEED_BUMPING;
+
 
         isBump = true;
-
-        //[Annimation]
-        animator.SetBool("isBump", true);
 
         yield return new WaitForSeconds(Constants.TIME_TO_BUMPING);
 
         isBump = false;
-
-        //[Annimation]
-        animator.SetBool("isBump", false);
     }
 }

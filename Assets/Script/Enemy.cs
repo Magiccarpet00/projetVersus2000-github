@@ -76,10 +76,16 @@ public class Enemy : MonoBehaviour
         {            
             if (!dead)
             {
-                if(collision.GetComponent<PlayerMovement>().isBump == false)
+                if(collision.GetComponent<PlayerHealth>().isInvincible == false)
                 {
-                    StartCoroutine(collision.GetComponent<PlayerMovement>().Bumping(dir));
-                }                
+                    StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(dir));
+                }
+
+                //if(collision.GetComponent<PlayerMovement>().isBump == false)
+                //{
+                //    StartCoroutine(collision.GetComponent<PlayerMovement>().Bumping(dir));
+                //}               
+
             }
         }
 
