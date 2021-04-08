@@ -39,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && onAttack == false && playerHealth.isInvincible == false)
         {
             //[Annimation]
             animator.SetBool("Button_Down", true);
