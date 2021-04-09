@@ -30,7 +30,8 @@ public class PlayerHealth : MonoBehaviour
         }
 
         //Freeze le gugus
-        //playerMovement.isBumped = true;
+        playerMovement.isStunned = true;
+        playerMovement.checkSwitchBoxMove("isStunned", playerMovement.isStunned);
 
         //[Annimation]
         animator.SetBool("receiveHit", true);
@@ -40,7 +41,8 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(Constants.TIME_TO_HITSTUN); // Après être repousé on ne peut plus bouger pendant TIME TO HITSTUN secondes
 
         //Freeze le gugus
-        //playerMovement.isBumped = false;
+        playerMovement.isStunned = false;
+        playerMovement.checkSwitchBoxMove("isStunned", playerMovement.isStunned);
 
         //[Annimation]
         animator.SetBool("receiveHit", false); // Pour l'instant je triche pcq l'annime s'arrete pas au bon momment

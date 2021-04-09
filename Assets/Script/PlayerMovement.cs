@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 bumpForce;
 
     public bool canMove;
-    
+    public bool isStunned;
 
     private void Start()
     {
@@ -127,12 +127,12 @@ public class PlayerMovement : MonoBehaviour
 
         //que peut faire ce boolean ???
         isBumped = true;
-        checkSwitchBoxMove("isBump", isBumped);
+        checkSwitchBoxMove("isBumped", isBumped);
 
         yield return new WaitForSeconds(Constants.TIME_TO_BUMPING);
 
         isBumped = false;
-        checkSwitchBoxMove("isBump", isBumped);
+        checkSwitchBoxMove("isBumped", isBumped);
     }
 
     public void checkSwitchBoxMove(string key, bool value)
