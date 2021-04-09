@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour
             {
                 if(collision.GetComponent<PlayerHealth>().isInvincible == false)
                 {
-                    StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(dir));
+                    StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(dir, damage));
                 }
 
                 //if(collision.GetComponent<PlayerMovement>().isBump == false)

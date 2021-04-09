@@ -7,6 +7,8 @@ public class PlayerHealth : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
 
+    public bool dead;
+
     public bool isInvincible;
 
     public Animator animator;
@@ -17,10 +19,15 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public IEnumerator TakeDamage(Vector2 _bumpForce)
+    public IEnumerator TakeDamage(Vector2 _bumpForce, float amount)
     {
         isInvincible = true;
-        //appliquer les dégats...
+
+        currentHealth -= amount;
+        if(currentHealth <= 0)
+        {
+            Die();
+        }
 
         //Freeze le gugus
         playerMovement.frezze = true;
@@ -40,5 +47,13 @@ public class PlayerHealth : MonoBehaviour
 
         yield return new WaitForSeconds(Constants.TIME_INVINCIBLE_AFTER_HITSTUN);
         isInvincible = false;        
+    }
+
+    public void Die()
+    {
+        dead = true;
+        this.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        this.GetComponent<CircleCollider2D>().enabled = false;
+        
     }
 }

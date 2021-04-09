@@ -41,7 +41,7 @@ public class PlayerAttack : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetButton("Fire1") && onAttack == false && playerHealth.isInvincible == false)
+        if (Input.GetButton("Fire1") && onAttack == false && playerHealth.isInvincible == false && playerHealth.dead == false)
         {
             //[Annimation]
             animator.SetBool("Button_Down", true);
@@ -49,7 +49,7 @@ public class PlayerAttack : MonoBehaviour
             playerMovement.frezze = true;
         }
 
-        else if (Input.GetButtonUp("Fire1") && onAttack == false && playerHealth.isInvincible == false) // isInvincible c'est quand on se fait touché donc c'est ptet bof comme nom...
+        else if (Input.GetButtonUp("Fire1") && onAttack == false && playerHealth.isInvincible == false && playerHealth.dead == false) // isInvincible c'est quand on se fait touché donc c'est ptet bof comme nom...
         {
             //[Annimation]
             animator.SetBool("Button_Down", false);
@@ -70,11 +70,13 @@ public class PlayerAttack : MonoBehaviour
         
         Destroy(epee);
 
+        //--------------WARRNING--------------------------------
         if(playerHealth.isInvincible == false) // ça permet de resoudre le probleme localement mais c'est pas clean
         {
             playerMovement.frezze = false;
         }
-        
+        //--------------WARRNING--------------------------------
+
         onAttack = false;
     }
 }

@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator animator;
 
+    public PlayerHealth playerHealth;
+
     public InputBufferDirection InputBuffer = InputBufferDirection.DOWN; //Pcq quand tu commences tu regardes vers le bas
     public enum InputBufferDirection
     {
@@ -53,11 +55,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isBump)
+        if (!isBump && playerHealth.dead == false)
         {
             rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
         }
-        else if (isBump) // On se fait déplacer par le bump sans contrôle du joueur
+        else if (isBump && playerHealth.dead == false) // On se fait déplacer par le bump sans contrôle du joueur
         {
             rb.MovePosition(rb.position + bumpForce * Time.fixedDeltaTime);
         }        
