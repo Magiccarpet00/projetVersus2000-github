@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isBump;
     public Vector2 bumpForce;
+
+    public bool frezze;
     
 
     private void Start()
@@ -31,10 +33,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        //Detection
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        //Buffer
         UpdateInputBuffer();
+
+        //Systeme de frezze
+        if(frezze == false)
+        {
+            currentMoveSpeed = maxMoveSpeed;
+        }
+        else
+        {
+            currentMoveSpeed = 0;
+        }
     }
 
     private void FixedUpdate()
@@ -72,15 +86,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void StopMovement()
-    {
-        currentMoveSpeed = 0;
-    }
+    //public void StopMovement()
+    //{
+    //    currentMoveSpeed = 0;
+    //}
 
-    public void UnStopMovement()
-    {
-        currentMoveSpeed = maxMoveSpeed;
-    }
+    //public void UnStopMovement()
+    //{        
+    //    currentMoveSpeed = maxMoveSpeed;              
+    //}
 
     /*
      * Rajoute un élément aléatoire lorsqu'on repousse le joueur

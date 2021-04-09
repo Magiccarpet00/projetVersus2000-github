@@ -46,7 +46,7 @@ public class PlayerAttack : MonoBehaviour
             //[Annimation]
             animator.SetBool("Button_Down", true);
 
-            playerMovement.StopMovement();
+            playerMovement.frezze = true;
         }
 
         else if (Input.GetButtonUp("Fire1") && onAttack == false && playerHealth.isInvincible == false) // isInvincible c'est quand on se fait touché donc c'est ptet bof comme nom...
@@ -69,7 +69,12 @@ public class PlayerAttack : MonoBehaviour
         yield return new WaitForSeconds(infoAttack.DelayAttack);
         
         Destroy(epee);
-        playerMovement.UnStopMovement();
+
+        if(playerHealth.isInvincible == false) // ça permet de resoudre le probleme localement mais c'est pas clean
+        {
+            playerMovement.frezze = false;
+        }
+        
         onAttack = false;
     }
 }
