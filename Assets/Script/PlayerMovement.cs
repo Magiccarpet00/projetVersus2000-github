@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public PlayerHealth playerHealth;
     public PlayerInput playerInput;
 
+    public Dictionary<string, bool> switchBoxMove;
+
     public InputBufferDirection InputBuffer = InputBufferDirection.DOWN; //Pcq quand tu commences tu regardes vers le bas
     public enum InputBufferDirection
     {
@@ -23,15 +26,20 @@ public class PlayerMovement : MonoBehaviour
         LEFT
     }
 
-    public bool isBump;
+    public bool isBumped;
+    
     public Vector2 bumpForce;
 
-    public bool frezze;
+    public bool canMove;
     
 
     private void Start()
     {
         currentMoveSpeed = maxMoveSpeed;
+        canMove = true;
+        switchBoxMove = new Dictionary<string, bool>();
+        switchBoxMove["isBumped"] = false;
+        
     }
 
     private void Update()
@@ -44,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateInputBuffer();
 
         //Systeme de frezze
-        if(frezze == false)
+        if(canMove == true)
         {
             currentMoveSpeed = maxMoveSpeed;
         }
@@ -56,11 +64,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isBump && playerHealth.dead == false)
+        if (!isBumped && playerHealth.dead == false)
         {
             rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
         }
-        else if (isBump && playerHealth.dead == false) // On se fait déplacer par le bump sans contrôle du joueur
+        else if (isBumped && playerHealth.dead == false) // On se fait déplacer par le bump sans contrôle du joueur
         {
             rb.MovePosition(rb.position + bumpForce * Time.fixedDeltaTime);
         }        
@@ -106,22 +114,45 @@ public class PlayerMovement : MonoBehaviour
     {
         // Calcul aléatoire
         bumpForce.x = _bumpForce.x
-                      + Random.Range(-Constants.OFFSET_RANDOM_BUMPING, Constants.OFFSET_RANDOM_BUMPING);
+                      + UnityEngine.Random.Range(-Constants.OFFSET_RANDOM_BUMPING, Constants.OFFSET_RANDOM_BUMPING);
 
         bumpForce.x = bumpForce.normalized.x * Constants.SPEED_BUMPING;
 
 
         bumpForce.y = _bumpForce.y
-                      + Random.Range(-Constants.OFFSET_RANDOM_BUMPING, Constants.OFFSET_RANDOM_BUMPING);
+                      + UnityEngine.Random.Range(-Constants.OFFSET_RANDOM_BUMPING, Constants.OFFSET_RANDOM_BUMPING);
 
         bumpForce.y = bumpForce.normalized.y * Constants.SPEED_BUMPING;
 
 
         //que peut faire ce boolean ???
-        isBump = true;
+        isBumped = true;
+        checkSwitchBoxMove("isBump", isBumped);
 
         yield return new WaitForSeconds(Constants.TIME_TO_BUMPING);
 
-        isBump = false;
+        isBumped = false;
+        checkSwitchBoxMove("isBump", isBumped);
+    }
+
+    public void checkSwitchBoxMove(string key, bool value)
+    {
+        switchBoxMove[key] = value;
+        /*
+         * Je regarde tous mes interrupteurs
+         * Si un seul est vrai je n'ai pas le droit de me déplacer
+         * Donc là j'appelle Containsvalue sur mon dictionnaire pour voir si il n'y a ne serait ce qu'une
+         * seule valeur qui est à vrai, dans ce cas je n'ai pas le droit de me déplacer. Sinon tout va bien
+         */
+        canMove = switchBoxMove.ContainsValue(true) ? false : true; // so easy... >;-) oh yeah
+
+        if (switchBoxMove.ContainsValue(true))
+        {
+            canMove = false;
+        }
+        else
+        {
+            canMove = true;
+        }
     }
 }

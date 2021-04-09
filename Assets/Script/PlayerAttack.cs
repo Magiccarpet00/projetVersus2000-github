@@ -5,7 +5,8 @@ using static PlayerMovement;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public bool onAttack;
+    public bool isAttacking;
+    public bool isBufferingAttack;
 
     public Animator animator;
 
@@ -15,17 +16,18 @@ public class PlayerAttack : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerHealth playerHealth;
     public PlayerInput playerInput;
+
     public struct InfoAttack
     {
-        public InfoAttack(Vector2 offsetAttack, float rotationAttack, float delayAttack)
+        public InfoAttack(Vector2 offsetAttack, float rotatiisAttacking, float delayAttack)
         {
             OffsetAttack = offsetAttack;
-            RotationAttack = Quaternion.Euler(0f, 0f, rotationAttack);
+            RotatiisAttacking = Quaternion.Euler(0f, 0f, rotatiisAttacking);
             DelayAttack = delayAttack;
         }
 
         public Vector2 OffsetAttack { get; set; }
-        public Quaternion RotationAttack { get; set; }
+        public Quaternion RotatiisAttacking { get; set; }
         public float DelayAttack { get; set; }
     }
 
@@ -36,27 +38,32 @@ public class PlayerAttack : MonoBehaviour
         directionOffSet_And_Rotation[InputBufferDirection.LEFT] = new InfoAttack(new Vector2(-Constants.OFFSET_ATTACK,0f), 180f, Constants.SECOND_ATTACK_CD);
         directionOffSet_And_Rotation[InputBufferDirection.DOWN] = new InfoAttack(new Vector2(0f, -Constants.OFFSET_ATTACK), 270f, Constants.SECOND_ATTACK_CD);
         directionOffSet_And_Rotation[InputBufferDirection.RIGHT] = new InfoAttack(new Vector2(Constants.OFFSET_ATTACK, 0f), 0f, Constants.SECOND_ATTACK_CD);
-
+        
     }
     
     
     void Update()
     {
-        if (Input.GetButton(playerInput.button0) && onAttack == false && playerHealth.isInvincible == false && playerHealth.dead == false)
+        if (Input.GetButton(playerInput.button0) && isAttacking == false && playerHealth.isInvincible == false && playerHealth.dead == false)
         {
             //[Annimation]
             animator.SetBool("Button_Down", true);
 
-            playerMovement.frezze = true;
+            isBufferingAttack = true;
+            playerMovement.checkSwitchBoxMove("isBufferingAttack", isBufferingAttack);
         }
 
-        else if (Input.GetButtonUp(playerInput.button0) && onAttack == false && playerHealth.isInvincible == false && playerHealth.dead == false) // isInvincible c'est quand on se fait touché donc c'est ptet bof comme nom...
+        else if (Input.GetButtonUp(playerInput.button0) && isAttacking == false && playerHealth.isInvincible == false && playerHealth.dead == false) // isInvincible c'est quand on se fait touché donc c'est ptet bof comme nom...
         {
+            isBufferingAttack = false;
+            playerMovement.checkSwitchBoxMove("isBufferingAttack", isBufferingAttack);
             //[Annimation]
             animator.SetBool("Button_Down", false);
 
             //Lance l'attaque
-            onAttack = true;            
+            isAttacking = true;
+            playerMovement.checkSwitchBoxMove("isAttacking", isAttacking);
+
             StartCoroutine(Attack()); // C'est bof d'après félix            
         }        
     }
@@ -64,20 +71,15 @@ public class PlayerAttack : MonoBehaviour
     public IEnumerator Attack()
     {
         InfoAttack infoAttack = directionOffSet_And_Rotation[playerMovement.InputBuffer];
-        GameObject epee = Instantiate(epeePrefab, transform.position + transform.TransformDirection(infoAttack.OffsetAttack), infoAttack.RotationAttack);
+        GameObject epee = Instantiate(epeePrefab, transform.position + transform.TransformDirection(infoAttack.OffsetAttack), infoAttack.RotatiisAttacking);
 
         epee.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(infoAttack.DelayAttack);
         
         Destroy(epee);
 
-        //--------------WARRNING--------------------------------
-        if(playerHealth.isInvincible == false) // ça permet de resoudre le probleme localement mais c'est pas clean
-        {
-            playerMovement.frezze = false;
-        }
-        //--------------WARRNING--------------------------------
-
-        onAttack = false;
+        isAttacking = false;
+        playerMovement.checkSwitchBoxMove("isAttacking", isAttacking);
+        
     }
 }
