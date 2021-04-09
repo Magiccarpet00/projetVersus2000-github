@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
     public GameObject epeePrefab;
     public PlayerMovement playerMovement;
     public PlayerHealth playerHealth;
+    public PlayerInput playerInput;
     public struct InfoAttack
     {
         public InfoAttack(Vector2 offsetAttack, float rotationAttack, float delayAttack)
@@ -41,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetButton("Fire1") && onAttack == false && playerHealth.isInvincible == false && playerHealth.dead == false)
+        if (Input.GetButton(playerInput.button0) && onAttack == false && playerHealth.isInvincible == false && playerHealth.dead == false)
         {
             //[Annimation]
             animator.SetBool("Button_Down", true);
@@ -49,7 +50,7 @@ public class PlayerAttack : MonoBehaviour
             playerMovement.frezze = true;
         }
 
-        else if (Input.GetButtonUp("Fire1") && onAttack == false && playerHealth.isInvincible == false && playerHealth.dead == false) // isInvincible c'est quand on se fait touché donc c'est ptet bof comme nom...
+        else if (Input.GetButtonUp(playerInput.button0) && onAttack == false && playerHealth.isInvincible == false && playerHealth.dead == false) // isInvincible c'est quand on se fait touché donc c'est ptet bof comme nom...
         {
             //[Annimation]
             animator.SetBool("Button_Down", false);

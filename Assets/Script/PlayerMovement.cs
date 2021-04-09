@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     public PlayerHealth playerHealth;
+    public PlayerInput playerInput;
 
     public InputBufferDirection InputBuffer = InputBufferDirection.DOWN; //Pcq quand tu commences tu regardes vers le bas
     public enum InputBufferDirection
@@ -36,8 +37,8 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         //Detection
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        movement.x = Input.GetAxisRaw(playerInput.horizontalAxeJoypad);
+        movement.y = Input.GetAxisRaw(playerInput.verticalAxeJoypad);
 
         //Buffer
         UpdateInputBuffer();
