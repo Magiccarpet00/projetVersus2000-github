@@ -79,16 +79,14 @@ public class Enemy : MonoBehaviour
         {            
             if (!dead)
             {
+                /**
+                 * COOOOOOOOOOOOOOOOOOOOOOODE REVIEW !!!!
+                 */
                 if(collision.GetComponent<PlayerHealth>().isInvincible == false)
                 {
                     StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(dir, damage));
+                    ComboManager.instance.BankCombo(collision.gameObject); // dégueu je sais pas ou le mettre est ce que c vraiment dégueu ?
                 }
-
-                //if(collision.GetComponent<PlayerMovement>().isBump == false)
-                //{
-                //    StartCoroutine(collision.GetComponent<PlayerMovement>().Bumping(dir));
-                //}               
-
             }
         }
 

@@ -47,11 +47,11 @@ public class ComboManager : MonoBehaviour
         List<ComboItem> currentComboJ1 = new List<ComboItem>();
         playerToCombos = new Dictionary<GameObject, List<List<ComboItem>>>();
         playerToCurrentCombo = new Dictionary<GameObject, List<ComboItem>>();
-   
-
+        
         playerToCombos.Add(player1, allCombosJ1);
         playerToCurrentCombo.Add(player1, currentComboJ1);
 
+        // Todo joueur 2
         //comboPlayerComboItem.Add(player2, comboItemJ2);
     }
 
@@ -63,11 +63,24 @@ public class ComboManager : MonoBehaviour
 
     public void BankCombo(GameObject player)
     {
+        /*
+         * WARNING TUTO PASSAGE PAR REFERENCE
+         */
         //playerToCombos[player].Add(playerToCurrentCombo[player]);  // oh yeah j'ai ajouté mon combo actuel à ma liste des combos :-) cool cool 
-        //playerToCurrentCombo[player].Clear();
+        //playerToCurrentCombo[player].Clear(); 
 
         List<ComboItem> cloneSafe = new List<ComboItem>(playerToCurrentCombo[player]);
         playerToCombos[player].Add(cloneSafe);
         playerToCurrentCombo[player].Clear();
+        /* Todo: Ne pas ajouter de combo vides (Liste 0 combo item)*/
+
+        int i = 1;
+        Debug.Log("Stockage d'un nouveau combo. Combo stockés:");
+        foreach (var item in playerToCombos[player])
+        {
+            Debug.Log("Combo: " + i + " de " + item.Count);
+            i++;
+        }
+
     }
 }
