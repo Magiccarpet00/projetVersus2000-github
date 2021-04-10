@@ -3,13 +3,10 @@ using UnityEngine;
 
 public class ComboManager : MonoBehaviour
 {
-    public Dictionary<GameObject, ComboItem> comboPlayerComboItem = new Dictionary<GameObject, ComboItem>();
+    public Dictionary<GameObject, List<ComboItem>> playerToCombo = new Dictionary<GameObject, List<ComboItem>>();
 
     public GameObject player1;
     public GameObject player2;
-
-    public ComboItem comboItemJ1;
-    public ComboItem comboItemJ2;
 
     public static ComboManager instance;
     private void Awake()
@@ -19,16 +16,23 @@ public class ComboManager : MonoBehaviour
 
     private void Start()
     {
-       
-          comboPlayerComboItem.Add(player1, comboItemJ1);
-          comboPlayerComboItem.Add(player2, comboItemJ2);
+        playerToCombo.Add(player1, new List<ComboItem>());
+          //comboPlayerComboItem.Add(player2, comboItemJ2);
     }
 
-    public void StartCombo(GameObject player)
+    public void AddToCombo(GameObject player)
     {
-        ComboItem comboItem = comboPlayerComboItem[player];
-        comboItem.comboCount++;
+        /*
+         * Combo existant ? 
+         * Si oui, on le rejoint
+         * Sinon on en crée un nouveau.
+         */
+        ComboItem comboItem = new ComboItem();
 
-        Debug.Log(comboItem.comboCount);
+        playerToCombo[player].Add(comboItem); // Je récupère la liste de combo associé à mon joueur et je rajoute un nouvel élément de combo.
+
+        //comboItem.comboCount++;
+
+        Debug.Log(playerToCombo[player].Count);
     }
 }

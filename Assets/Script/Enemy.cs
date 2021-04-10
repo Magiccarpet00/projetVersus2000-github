@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour
         currentRoom.notifyDeath();
 
         // Pour le combo
-        ComboManager.instance.StartCombo(sword.GetComponent<Sword>().player);        
+        ComboManager.instance.AddToCombo(sword.GetComponent<Sword>().player);        
     }
 
     // Provisoire
