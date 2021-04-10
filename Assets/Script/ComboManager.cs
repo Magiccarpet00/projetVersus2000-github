@@ -58,17 +58,16 @@ public class ComboManager : MonoBehaviour
     public void AddToCombo(GameObject player)
     {
         ComboItem comboItem = new ComboItem();
-        /*
-         * Combo existant ? 
-         * Si oui, on le rejoint
-         * Sinon on en crée un nouveau.
-         */
+        playerToCurrentCombo[player].Add(comboItem);
+    }
 
+    public void BankCombo(GameObject player)
+    {
+        //playerToCombos[player].Add(playerToCurrentCombo[player]);  // oh yeah j'ai ajouté mon combo actuel à ma liste des combos :-) cool cool 
+        //playerToCurrentCombo[player].Clear();
 
-        playerToCombo[player].Add(comboItem); // Je récupère la liste de combo associé à mon joueur et je rajoute un nouvel élément de combo.
-
-        //comboItem.comboCount++;
-
-        Debug.Log(playerToCombo[player].Count);
+        List<ComboItem> cloneSafe = new List<ComboItem>(playerToCurrentCombo[player]);
+        playerToCombos[player].Add(cloneSafe);
+        playerToCurrentCombo[player].Clear();
     }
 }

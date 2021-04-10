@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     public Animator animator;
     public PlayerMovement playerMovement;
 
+
     private void Start()
     {
         currentHealth = maxHealth;
