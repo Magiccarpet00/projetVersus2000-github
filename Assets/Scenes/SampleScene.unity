@@ -410,7 +410,7 @@ GameObject:
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &705792318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,7 +459,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c6bb021379df164380af38fdb9036b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onAttack: 0
+  isAttacking: 0
+  isBufferingAttack: 0
   animator: {fileID: 1910201828}
   epeePrefab: {fileID: 3231854286922200953, guid: 0d6975ce1f3541a48b2ad267b3b464e3,
     type: 3}
@@ -484,10 +485,12 @@ MonoBehaviour:
   animator: {fileID: 1910201828}
   playerHealth: {fileID: 705792319}
   playerInput: {fileID: 705792318}
+  playerAttack: {fileID: 0}
   InputBuffer: 2
-  isBump: 0
+  isBumped: 0
   bumpForce: {x: 0, y: 0}
-  frezze: 0
+  canMove: 0
+  isStunned: 0
 --- !u!114 &705792322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,7 +752,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c6bb021379df164380af38fdb9036b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onAttack: 0
+  isAttacking: 0
+  isBufferingAttack: 0
   animator: {fileID: 1800445370}
   epeePrefab: {fileID: 3231854286922200953, guid: 0d6975ce1f3541a48b2ad267b3b464e3,
     type: 3}
@@ -788,10 +792,12 @@ MonoBehaviour:
   animator: {fileID: 1800445370}
   playerHealth: {fileID: 1319672017}
   playerInput: {fileID: 1319672018}
+  playerAttack: {fileID: 1319672014}
   InputBuffer: 2
-  isBump: 0
+  isBumped: 0
   bumpForce: {x: 0, y: 0}
-  frezze: 0
+  canMove: 0
+  isStunned: 0
 --- !u!114 &1319672017
 MonoBehaviour:
   m_ObjectHideFlags: 0

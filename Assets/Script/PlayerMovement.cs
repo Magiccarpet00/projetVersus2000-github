@@ -14,8 +14,10 @@ public class PlayerMovement : MonoBehaviour
 
     public PlayerHealth playerHealth;
     public PlayerInput playerInput;
+    public PlayerAttack playerAttack;
 
     public Dictionary<string, bool> switchBoxMove;
+    public Dictionary<InputBufferDirection, Vector2> directionVector = new Dictionary<InputBufferDirection, Vector2>();
 
     public InputBufferDirection InputBuffer = InputBufferDirection.DOWN; //Pcq quand tu commences tu regardes vers le bas
     public enum InputBufferDirection
@@ -39,7 +41,14 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         switchBoxMove = new Dictionary<string, bool>();
         switchBoxMove["isBumped"] = false;
-        
+
+        //Dictornaire des directions pour l'attque 
+        directionVector.Add(InputBufferDirection.DOWN,new Vector2(0f, -Constants.VECTOR_DIRECTION_ATTACK));
+        directionVector.Add(InputBufferDirection.LEFT, new Vector2(-Constants.VECTOR_DIRECTION_ATTACK,0f));
+        directionVector.Add(InputBufferDirection.RIGHT, new Vector2(Constants.VECTOR_DIRECTION_ATTACK, 0f));
+        directionVector.Add(InputBufferDirection.UP, new Vector2(0f, Constants.VECTOR_DIRECTION_ATTACK));
+
+
     }
 
     private void Update()
@@ -64,37 +73,44 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isBumped && playerHealth.dead == false)
+        if (!isBumped && playerHealth.dead == false && playerAttack.isAttacking == true)
+        {
+            rb.MovePosition(rb.position + (directionVector[InputBuffer]) * Time.fixedDeltaTime);
+        }
+        else if (!isBumped && playerHealth.dead == false)
         {
             rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
         }
         else if (isBumped && playerHealth.dead == false) // On se fait déplacer par le bump sans contrôle du joueur
         {
             rb.MovePosition(rb.position + bumpForce * Time.fixedDeltaTime);
-        }        
+        }
     }
 
     private void UpdateInputBuffer()
     {
-        if (movement.x >= Constants.RADIUS_JOYSTICK)
+        if(playerAttack.isAttacking == false)
         {
-            InputBuffer = InputBufferDirection.RIGHT;
-        }
+            if (movement.x >= Constants.RADIUS_JOYSTICK)
+            {
+                InputBuffer = InputBufferDirection.RIGHT;
+            }
 
-        if (movement.x <= -Constants.RADIUS_JOYSTICK)
-        {
-            InputBuffer = InputBufferDirection.LEFT;
-        }
+            if (movement.x <= -Constants.RADIUS_JOYSTICK)
+            {
+                InputBuffer = InputBufferDirection.LEFT;
+            }
 
-        if (movement.y >= Constants.RADIUS_JOYSTICK)
-        {
-            InputBuffer = InputBufferDirection.UP;
-        }
+            if (movement.y >= Constants.RADIUS_JOYSTICK)
+            {
+                InputBuffer = InputBufferDirection.UP;
+            }
 
-        if (movement.y <= -Constants.RADIUS_JOYSTICK)
-        {
-            InputBuffer = InputBufferDirection.DOWN;
-        }
+            if (movement.y <= -Constants.RADIUS_JOYSTICK)
+            {
+                InputBuffer = InputBufferDirection.DOWN;
+            }
+        }        
     }
 
     //public void StopMovement()
