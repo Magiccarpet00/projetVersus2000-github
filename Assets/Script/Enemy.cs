@@ -61,12 +61,15 @@ public class Enemy : MonoBehaviour
     /*
      * Désactive le gameobject et signifie à la pièce du monstre qu'on a tout nettoyé
      * */
-    public void Die()
+    public void Die(Collider2D sword)
     {
         dead = true;
         this.GetComponent<BoxCollider2D>().enabled = false;
         this.GetComponentInChildren<SpriteRenderer>().enabled = false;
         currentRoom.notifyDeath();
+
+        // Pour le combo
+        ComboManager.instance.StartCombo(sword.GetComponent<Sword>().player);        
     }
 
     // Provisoire
@@ -93,7 +96,7 @@ public class Enemy : MonoBehaviour
         {
             if (!dead)
             {
-                Die();
+                Die(collision);
             }
         }
     }

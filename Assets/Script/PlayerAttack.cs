@@ -70,6 +70,7 @@ public class PlayerAttack : MonoBehaviour
     {
         InfoAttack infoAttack = directionOffSet_And_Rotation[playerMovement.InputBuffer];
         GameObject epee = Instantiate(epeePrefab, transform.position + transform.TransformDirection(infoAttack.OffsetAttack), infoAttack.RotatiisAttacking);
+        epee.GetComponent<Sword>().player = this.gameObject; // Pour dire à qui appartient cette épee;
 
         epee.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(infoAttack.DelayAttack);

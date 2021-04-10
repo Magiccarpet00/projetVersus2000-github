@@ -41,7 +41,19 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log(playersPosition[players[i]]);
             }
-        }       
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if(Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }            
+        }
     }
 }
 
