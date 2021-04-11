@@ -84,8 +84,7 @@ public class Enemy : MonoBehaviour
                  */
                 if(collision.GetComponent<PlayerHealth>().isInvincible == false)
                 {
-                    StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(dir, damage));
-                    ComboManager.instance.BankCombo(collision.gameObject); // dégueu je sais pas ou le mettre est ce que c vraiment dégueu ?
+                    StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(dir, damage));                    
                 }
             }
         }

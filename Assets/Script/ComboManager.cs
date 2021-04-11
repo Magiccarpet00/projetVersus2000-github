@@ -71,7 +71,8 @@ public class ComboManager : MonoBehaviour
         else if(currentTime[player1] > -1)
         {
             currentTime[player1] = -1;
-            Debug.Log("fin combo");            
+            Debug.Log("fin combo");
+            BankCombo(player1);
         }
 
         if(currentTime[player2] > 0)
@@ -105,7 +106,7 @@ public class ComboManager : MonoBehaviour
         playerToCurrentCombo[player].Clear();
         /* Todo: Ne pas ajouter de combo vides (Liste 0 combo item)*/
 
-        /*
+        
         int i = 1;
         Debug.Log("Stockage d'un nouveau combo. Combo stockés:");
         foreach (var item in playerToCombos[player])
@@ -113,6 +114,17 @@ public class ComboManager : MonoBehaviour
             Debug.Log("Combo: " + i + " de " + item.Count);
             i++;
         }
-        */
+
+        //Le mega cablage :"on recherche le nombres d'ennemy dans la room en cours"
+        GameObject currentRoom = GameManager.instance.playersPosition[player];
+        int nbEnemiesInRoom = currentRoom.GetComponent<Room>().
+                              patternInThisRoom.GetComponent<PatternEnemy>().enemiesInPattern.Count;
+
+        if (cloneSafe.Count == nbEnemiesInRoom)
+        {
+            Debug.Log("perfect");
+        }
+
+
     }
 }
