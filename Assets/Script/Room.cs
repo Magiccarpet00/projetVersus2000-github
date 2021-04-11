@@ -209,7 +209,9 @@ public class Room : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            playerOnThisRoom = false;            
+            playerOnThisRoom = false;
+
+            ComboManager.instance.BankCombo(collision.gameObject);
         }
     }
 
