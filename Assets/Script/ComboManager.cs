@@ -35,6 +35,9 @@ public class ComboManager : MonoBehaviour
     public GameObject player1;
     public GameObject player2;
 
+    public Dictionary<GameObject, float> currentTime = new Dictionary<GameObject, float>();
+    public float maxTimeCombo;
+
     public static ComboManager instance;
     private void Awake()
     {
@@ -53,12 +56,40 @@ public class ComboManager : MonoBehaviour
 
         // Todo joueur 2
         //comboPlayerComboItem.Add(player2, comboItemJ2);
+
+        //Ajout des dictonaire pour le timer
+        currentTime.Add(player1, 0f);
+        currentTime.Add(player2, 0f);
+    }
+
+    private void Update()
+    {
+        if(currentTime[player1] > 0)
+        {
+            currentTime[player1] -= Time.deltaTime;
+        }
+        else if(currentTime[player1] > -1)
+        {
+            currentTime[player1] = -1;
+            Debug.Log("fin combo");            
+        }
+
+        if(currentTime[player2] > 0)
+        {
+            currentTime[player2] -= Time.deltaTime;
+        }
+        else
+        {
+            currentTime[player2] = 0;
+        }
     }
 
     public void AddToCombo(GameObject player)
     {
         ComboItem comboItem = new ComboItem();
         playerToCurrentCombo[player].Add(comboItem);
+
+        currentTime[player] = maxTimeCombo;
     }
 
     public void BankCombo(GameObject player)
@@ -74,6 +105,7 @@ public class ComboManager : MonoBehaviour
         playerToCurrentCombo[player].Clear();
         /* Todo: Ne pas ajouter de combo vides (Liste 0 combo item)*/
 
+        /*
         int i = 1;
         Debug.Log("Stockage d'un nouveau combo. Combo stockés:");
         foreach (var item in playerToCombos[player])
@@ -81,6 +113,6 @@ public class ComboManager : MonoBehaviour
             Debug.Log("Combo: " + i + " de " + item.Count);
             i++;
         }
-
+        */
     }
 }
