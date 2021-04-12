@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class ComboManager : MonoBehaviour
 {
+    public Dictionary<Ressources, string> dico;
     public Dictionary<GameObject, List<List<ComboItem>>> playerToCombos;
     public Dictionary<GameObject, List<ComboItem>> playerToCurrentCombo;
     /*
@@ -43,6 +46,8 @@ public class ComboManager : MonoBehaviour
     public static ComboManager instance;
     private void Awake()
     {
+        dico = new Dictionary<Ressources, string>();
+        dico[Ressources.Hat] = "sousdossier/chapeau";
         instance = this;
     }
 
@@ -149,9 +154,9 @@ public class ComboManager : MonoBehaviour
         float rngY = Random.Range(-Constants.RANDOM_OFFSET_INSTANSIAT_FANTOM, Constants.RANDOM_OFFSET_INSTANSIAT_FANTOM);
         Vector3 offSetPossition = new Vector3(rngX, rngY, 0f);
 
-        GameObject newFantom = Instantiate(fantomPrefab, currentRoomPlayerDefenseur.transform.position + offSetPossition, Quaternion.identity);
-
-        newFantom.GetComponent<Fantom>().playerToFocus = playerDefenseur.transform;
+        // GameObject newFantom = Instantiate(fantomPrefab, currentRoomPlayerDefenseur.transform.position + offSetPossition, Quaternion.identity);
+        GameObject toto = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Hat]) as GameObject, currentRoomPlayerDefenseur.transform.position + offSetPossition, Quaternion.identity);
+        //newFantom.GetComponent<Fantom>().playerToFocus = playerDefenseur.transform;
     }
 
 }

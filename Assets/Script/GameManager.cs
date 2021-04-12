@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        PrefabFinder.Init();
     }
 
     // Provisoir je pense, c'est pour le follow de la camera
