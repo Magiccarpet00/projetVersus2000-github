@@ -38,6 +38,8 @@ public class ComboManager : MonoBehaviour
     public Dictionary<GameObject, float> currentTime = new Dictionary<GameObject, float>();
     public float maxTimeCombo;
 
+    public GameObject fantomPrefab;
+
     public static ComboManager instance;
     private void Awake()
     {
@@ -123,8 +125,27 @@ public class ComboManager : MonoBehaviour
         if (cloneSafe.Count == nbEnemiesInRoom)
         {
             Debug.Log("perfect");
+            AttackFantom(player);
+        }
+    }
+    
+    public void AttackFantom(GameObject playerAttaquant)
+    {
+        GameObject playerDefenseur;
+
+        if(player1 == playerAttaquant)
+        {
+            playerDefenseur = player2;
+        }
+        else
+        {
+            playerDefenseur = player1;
         }
 
+        GameObject currentRoomPlayerDefenseur = GameManager.instance.playersPosition[playerDefenseur];
+
+        Instantiate(fantomPrefab, currentRoomPlayerDefenseur.transform.position, Quaternion.identity);
 
     }
+
 }
