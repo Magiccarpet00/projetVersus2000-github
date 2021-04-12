@@ -165,3 +165,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerToFocus: {fileID: 0}
   speed: 2
+  spiral: {fileID: 1244761207764599507, guid: bf4560139265a5e4d83c829ebb81dec3, type: 3}
+  realSprite: {fileID: 7811420212960995406}
+  isActivated: 0

@@ -18,4 +18,5 @@ public static class Constants
     public const float TIME_TO_HITSTUN = 2f;
     public const float TIME_INVINCIBLE_AFTER_HITSTUN = 0.5f;
     public const float VECTOR_DIRECTION_ATTACK = 0.5f;
+    public const float RANDOM_OFFSET_INSTANSIAT_FANTOM = 2f;
 }
