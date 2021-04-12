@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Fantom : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform playerToFocus;
+    public float speed;  
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        transform.position = Vector2.MoveTowards(transform.position, playerToFocus.position, speed * Time.deltaTime);
     }
 }

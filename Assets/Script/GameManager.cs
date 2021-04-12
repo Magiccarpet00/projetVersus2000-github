@@ -61,4 +61,5 @@ public class GameManager : MonoBehaviour
 /* -les enemy sont is_trigger
  * -le joueur est solid avec rb
  * -l'epée est is_trigger avec rb
+ * -le petit fantom sont is_trigger
  * */

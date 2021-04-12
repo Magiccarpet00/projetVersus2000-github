@@ -144,8 +144,9 @@ public class ComboManager : MonoBehaviour
 
         GameObject currentRoomPlayerDefenseur = GameManager.instance.playersPosition[playerDefenseur];
 
-        Instantiate(fantomPrefab, currentRoomPlayerDefenseur.transform.position, Quaternion.identity);
+        GameObject newFantom = Instantiate(fantomPrefab, currentRoomPlayerDefenseur.transform.position, Quaternion.identity);
 
+        newFantom.GetComponent<Fantom>().playerToFocus = playerDefenseur.transform;
     }
 
 }
