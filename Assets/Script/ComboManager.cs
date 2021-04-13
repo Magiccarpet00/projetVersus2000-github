@@ -114,13 +114,13 @@ public class ComboManager : MonoBehaviour
         /* Todo: Ne pas ajouter de combo vides (Liste 0 combo item)*/
 
         
-        int i = 1;
-        Debug.Log("Stockage d'un nouveau combo. Combo stockés:");
-        foreach (var item in playerToCombos[player])
-        {
-            Debug.Log("Combo: " + i + " de " + item.Count);
-            i++;
-        }
+        //int i = 1;
+        //Debug.Log("Stockage d'un nouveau combo. Combo stockés:");
+        //foreach (var item in playerToCombos[player])
+        //{
+        //    Debug.Log("Combo: " + i + " de " + item.Count);
+        //    i++;
+        //}
 
         //Le mega cablage :"on recherche le nombres d'ennemy dans la room en cours"
         GameObject currentRoom = GameManager.instance.playersPosition[player];

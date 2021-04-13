@@ -6,4 +6,20 @@ public class DoorTrigger : MonoBehaviour
 {
     public Room roomOrigine;
     public Room roomDestination;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if(GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomOrigine)
+            {
+                Debug.Log("Je viens de " + roomOrigine + " et vais vers " + roomDestination);
+            }
+            else if (GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomDestination)
+            {
+                Debug.Log("Je viens de " + roomDestination + " et vais vers " + roomOrigine);
+            }
+
+        }
+    }
 }
