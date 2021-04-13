@@ -7,13 +7,12 @@ public class Fantom : MonoBehaviour
     public float speed;
 
     public Animator animator;
-    public float timeBeforeInvok;
+    public float timeBeforeInvok; // J'aimerrais bien utiliser avec lanimation au lieux d'une constante
 
     public bool isActivated;
 
     private void Start()
-    {
-        
+    {        
         StartCoroutine(Invocation());
     }
 
@@ -30,5 +29,4 @@ public class Fantom : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, playerToFocus.position, speed * Time.deltaTime);
         }        
     }
-
 }

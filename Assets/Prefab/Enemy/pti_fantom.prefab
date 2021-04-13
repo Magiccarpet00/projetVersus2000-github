@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 1263627913555232800, guid: e6d81d57efb5c554e9d7f6da6f7c359a,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7490196}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -166,4 +166,5 @@ MonoBehaviour:
   playerToFocus: {fileID: 0}
   speed: 2
   animator: {fileID: 7811420212960995407}
+  timeBeforeInvok: 0
   isActivated: 0
