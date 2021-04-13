@@ -6,8 +6,8 @@ public class Fantom : MonoBehaviour
     public Transform playerToFocus;
     public float speed;
 
-    public SpriteRenderer spiral;
-    public SpriteRenderer realSprite;
+    public Animator animator;
+    public float timeBeforeInvok; // J'aimerrais bien utiliser avec lanimation au lieux d'une constante
 
     public bool isActivated;
 
@@ -17,10 +17,8 @@ public class Fantom : MonoBehaviour
     }
 
     public IEnumerator Invocation()
-    {
-        GetComponent<SpriteRenderer>().sprite = spiral.sprite;
+    {        
         yield return new WaitForSeconds(1f);
-        GetComponent<SpriteRenderer>().sprite = realSprite.sprite;
         isActivated = true;
     }
 
@@ -31,5 +29,4 @@ public class Fantom : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, playerToFocus.position, speed * Time.deltaTime);
         }        
     }
-
 }
