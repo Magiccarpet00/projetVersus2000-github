@@ -21,15 +21,6 @@ public class LevelGenerator : MonoBehaviour
     public GameObject shop;
 
 
-    enum Direction
-    {
-        UP,
-        LEFT,
-        DOWN,
-        RIGHT,
-        RNG
-    }
-
     public Dictionary<String, GameObject> maskToDoor = new Dictionary<string, GameObject>();   
 
     [SerializeField] // La room utilise uniquement pour la premiere structur du donjon
@@ -98,6 +89,19 @@ public class LevelGenerator : MonoBehaviour
         {
             roomsInDongeon[i].GetComponent<Room>().TransformationRoom();
         }
+        /*
+         * oh yeaaaah
+         */
+        DoorTrigger[] a = UnityEngine.Object.FindObjectsOfType<DoorTrigger>();
+        foreach (var item in a)
+        {
+
+            BoxCollider2D yo = item.GetComponent<BoxCollider2D>();
+            Collider2D[] z = Physics2D.OverlapAreaAll(yo.bounds.min, yo.bounds.max);
+
+
+            //Physics2D.(item.GetComponent<BoxCollider2D>());
+        }
         DuplicateDongeon();
     }
 
@@ -119,6 +123,7 @@ public class LevelGenerator : MonoBehaviour
         {
             GameObject room = Instantiate(roomTemplate, transform.position, Quaternion.identity);
             room.name = "Room" + idRoom.ToString();
+
             Move(Direction.RNG);
             roomsInDongeon.Add(room);
             TypeOfRoom(idRoom, room);

@@ -18,7 +18,7 @@ public class Room : MonoBehaviour
 
     public GameObject doorRight, doorLeft, doorUp, doorDown;
     public List<GameObject> doorsInRoom = new List<GameObject>();
-    //public Dictionary<String, Sprite> maskToDoor = new Dictionary<string, Sprite>();
+    public Dictionary<Direction, Room> neighbors = new Dictionary<Direction, Room>();
 
     /* 
      * Type of room
@@ -32,15 +32,12 @@ public class Room : MonoBehaviour
 
     public bool playerOnThisRoom; // Cette varriable est accsesible depuis LevelGenerator dans la liste roomsInDugeon
     public bool roomFinnished;
+    
 
 
     //public TypeOfRoom typeOfRoom;
     public void TransformationRoom()
     {
-        /* Right > Down > Left > Up
-         * Création de notre dictionnaire pour le mask. Une entrée = un layout en sortie. */
-
-
         /*
          * Traduction de nos booleans d'entrées en mask 
          * */
@@ -56,8 +53,8 @@ public class Room : MonoBehaviour
         // Création des doors selons le mask
         MakeDoors();
     
-    // On ouvre toute les portes
-    OpenDoor();        
+        // On ouvre toute les portes
+        OpenDoor();        
     }
 
     private void MakeDoors()//[REFACTOT COLLISION ROOM] §1
@@ -89,6 +86,10 @@ public class Room : MonoBehaviour
                         door = Instantiate(doorRight, transform.position, Quaternion.identity);
                         doorTrigger = Instantiate(doorTrigger_RIGHT_LEFT, transform.position, Quaternion.identity);
                         doorTrigger.transform.parent = this.transform;
+
+                        //GameObject go = new GameObject();
+                        //go.AddComponent<BoxCollider2D>();
+                        //Instantiate(go, transform.position, Quaternion.identity);
                         break;
                     case 1:
                         door = Instantiate(doorDown, transform.position, Quaternion.identity);
@@ -134,6 +135,7 @@ public class Room : MonoBehaviour
         {  
             roomFinnished = true;
             OpenDoor();
+            
         }
     }
 
@@ -151,12 +153,34 @@ public class Room : MonoBehaviour
             (Physics2D.OverlapCircle(rightCheck, Constants.CIRCLE_RADIUS) != null) ? // condition qu'on test
             "1" // valeur renvoyée si condition vraie
             : "0"; // Valeur renvoyée si condition fausse
-
+        
         mask += (Physics2D.OverlapCircle(downCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
         mask += (Physics2D.OverlapCircle(leftCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
         mask += (Physics2D.OverlapCircle(upCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
 
-        // A la fin notre mask sera bienune chaîne de 4
+        /*
+         * Pas cool cool cool
+         * On ajoute au dico des voisins les rooms voisine (s'il y a lieu)
+         */
+        if (Physics2D.OverlapCircle(rightCheck, Constants.CIRCLE_RADIUS) != null)
+        {
+            this.neighbors[Direction.RIGHT] = Physics2D.OverlapCircle(rightCheck, Constants.CIRCLE_RADIUS).gameObject.GetComponent<Room>();
+        }
+
+        if (Physics2D.OverlapCircle(downCheck, Constants.CIRCLE_RADIUS) != null)
+        {
+            this.neighbors[Direction.DOWN] = Physics2D.OverlapCircle(downCheck, Constants.CIRCLE_RADIUS).gameObject.GetComponent<Room>();
+        }
+
+        if (Physics2D.OverlapCircle(leftCheck, Constants.CIRCLE_RADIUS) != null)
+        {
+            this.neighbors[Direction.LEFT] = Physics2D.OverlapCircle(leftCheck, Constants.CIRCLE_RADIUS).gameObject.GetComponent<Room>();
+        }
+
+        if (Physics2D.OverlapCircle(upCheck, Constants.CIRCLE_RADIUS) != null)
+        {
+            this.neighbors[Direction.UP] = Physics2D.OverlapCircle(upCheck, Constants.CIRCLE_RADIUS).gameObject.GetComponent<Room>();
+        }
     }
 
     public void OpenDoor()
@@ -185,6 +209,11 @@ public class Room : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            foreach (var item in neighbors.Keys)
+            {
+                Debug.Log("Mes voisins sont: " + neighbors[item]);
+            }
+            
             playerOnThisRoom = true;
 
             // [Problème pour benoit]
