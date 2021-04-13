@@ -200,7 +200,7 @@ public class Room : MonoBehaviour
 
             //******************************************************************************************************************
 
-            // Si on revient dans une room qu'on a fini on reste enfermé dedant sinon
+            // Si on revient dans une room qu'on à fini on reste enfermé dedant sinon
             if (roomFinnished == false)
             {
                 CloseDoor();

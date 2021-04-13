@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject roomOrigine;
+    public GameObject roomDestination;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
