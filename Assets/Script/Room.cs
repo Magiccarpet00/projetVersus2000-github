@@ -14,6 +14,8 @@ public class Room : MonoBehaviour
     public String mask;
     public String maskDoor;
 
+    public GameObject doorTrigger_UP_DOWN, doorTrigger_RIGHT_LEFT;
+
     public GameObject doorRight, doorLeft, doorUp, doorDown;
     public List<GameObject> doorsInRoom = new List<GameObject>();
     //public Dictionary<String, Sprite> maskToDoor = new Dictionary<string, Sprite>();
@@ -52,13 +54,22 @@ public class Room : MonoBehaviour
         MakeWalls();
 
         // Création des doors selons le mask
+        MakeDoors();
+    
+    // On ouvre toute les portes
+    OpenDoor();        
+    }
+
+    private void MakeDoors()//[REFACTOT COLLISION ROOM] §1
+    {
         char[] array = mask.ToCharArray(); // On découpe notre mask en un tableau pour pouvoir récupérer individuellement chaque caractère (= char). 
         for (int i = 0; i < array.Length; i++)
         {
             char c = array[i]; // On garde en mémoire la caractère sur lequel on est...
             if (c == '1') // Si on a 1, alors ça veut dire qu'il faut créer une porte (mais on ne sait pas encore à quel endroit)
             {
-                GameObject door = default; 
+                GameObject door = default;
+                GameObject doorTrigger = default;
 
                 /*
                  * Chaque caractère de notre mask correspond à une position dans la room.
@@ -75,7 +86,9 @@ public class Room : MonoBehaviour
                            //Right > Down > Left > Up
                 {
                     case 0:
-                        door = Instantiate(doorRight, transform.position, Quaternion.identity); 
+                        door = Instantiate(doorRight, transform.position, Quaternion.identity);
+                        doorTrigger = Instantiate(doorTrigger_RIGHT_LEFT, transform.position, Quaternion.identity);
+                        doorTrigger.transform.parent = this.transform;
                         break;
                     case 1:
                         door = Instantiate(doorDown, transform.position, Quaternion.identity);
@@ -85,6 +98,8 @@ public class Room : MonoBehaviour
                         break;
                     case 3:
                         door = Instantiate(doorUp, transform.position, Quaternion.identity);
+                        doorTrigger = Instantiate(doorTrigger_UP_DOWN, transform.position, Quaternion.identity);
+                        doorTrigger.transform.parent = this.transform;
                         break;
                     default:
                         Debug.LogError("Benoit is a looser");
@@ -94,9 +109,6 @@ public class Room : MonoBehaviour
                 doorsInRoom.Add(door);
             }
         }
-    
-    // On ouvre toute les portes
-    OpenDoor();        
     }
 
     private void MakeWalls()
@@ -108,8 +120,7 @@ public class Room : MonoBehaviour
             GameObject wall = Instantiate(LevelGenerator.instance.maskToDoor[mask].GetComponent<Walls>().wallsInRoom[i],
                                           transform.position,
                                           Quaternion.identity);
-
-            wall.transform.parent = this.gameObject.transform;
+            wall.transform.parent = this.gameObject.transform;    
         }
     }
 
@@ -145,9 +156,7 @@ public class Room : MonoBehaviour
         mask += (Physics2D.OverlapCircle(leftCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
         mask += (Physics2D.OverlapCircle(upCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
 
-        // A la fin notre mask sera bienune chaîne de 4 
-
-
+        // A la fin notre mask sera bienune chaîne de 4
     }
 
     public void OpenDoor()
@@ -189,9 +198,7 @@ public class Room : MonoBehaviour
 
             GameManager.instance.playersPosition[collision.gameObject] = this.gameObject;
 
-
             //******************************************************************************************************************
-
 
             // Si on revient dans une room qu'on a fini on reste enfermé dedant sinon
             if (roomFinnished == false)

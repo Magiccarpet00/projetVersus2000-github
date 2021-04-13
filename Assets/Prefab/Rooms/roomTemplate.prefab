@@ -127,6 +127,10 @@ MonoBehaviour:
   openDown: 0
   mask: 
   maskDoor: 
+  doorTrigger_UP_DOWN: {fileID: 3622052944588567505, guid: 6bb86e9ee4d87e9468649713f34c75bf,
+    type: 3}
+  doorTrigger_RIGHT_LEFT: {fileID: 6955541964096802423, guid: 03870cc9451118d49a631d35d76e2ab0,
+    type: 3}
   doorRight: {fileID: 850454119114793156, guid: 025eb63d62feb0647a625e78a336c501,
     type: 3}
   doorLeft: {fileID: 8874860379675876636, guid: b46c93080a04c7444a9594b3500f7228,
