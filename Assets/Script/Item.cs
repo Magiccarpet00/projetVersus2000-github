@@ -29,7 +29,7 @@ public class Item : MonoBehaviour
     private void RemoveObjectOfShop()
     {
         this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-        this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        //this.gameObject.GetComponent<SpriteRenderer>().enabled = false;
     }
 
 
