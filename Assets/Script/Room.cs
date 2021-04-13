@@ -87,6 +87,9 @@ public class Room : MonoBehaviour
                         doorTrigger = Instantiate(doorTrigger_RIGHT_LEFT, transform.position, Quaternion.identity);
                         doorTrigger.transform.parent = this.transform;
 
+                        doorTrigger.GetComponent<DoorTrigger>().roomOrigine = this;
+                        doorTrigger.GetComponent<DoorTrigger>().roomDestination = neighbors[Direction.RIGHT];
+
                         //GameObject go = new GameObject();
                         //go.AddComponent<BoxCollider2D>();
                         //Instantiate(go, transform.position, Quaternion.identity);
@@ -101,6 +104,9 @@ public class Room : MonoBehaviour
                         door = Instantiate(doorUp, transform.position, Quaternion.identity);
                         doorTrigger = Instantiate(doorTrigger_UP_DOWN, transform.position, Quaternion.identity);
                         doorTrigger.transform.parent = this.transform;
+
+                        doorTrigger.GetComponent<DoorTrigger>().roomOrigine = this;
+                        doorTrigger.GetComponent<DoorTrigger>().roomDestination = neighbors[Direction.UP];
                         break;
                     default:
                         Debug.LogError("Benoit is a looser");

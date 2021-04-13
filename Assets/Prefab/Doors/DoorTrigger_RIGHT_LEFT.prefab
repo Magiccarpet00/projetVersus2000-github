@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1393632854853216885}
   - component: {fileID: 1060373692389302139}
+  - component: {fileID: 3210791610210342717}
   m_Layer: 9
   m_Name: DoorTrigger_RIGHT_LEFT
   m_TagString: DoorsTrigger
@@ -57,3 +58,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.7572002, y: 0.7799225}
   m_EdgeRadius: 0
+--- !u!114 &3210791610210342717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6955541964096802423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b3819bb9fbbd843b4de2d686be02f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomOrigine: {fileID: 0}
+  roomDestination: {fileID: 0}

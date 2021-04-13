@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
 {
-    public GameObject roomOrigine;
-    public GameObject roomDestination;
-
-    
+    public Room roomOrigine;
+    public Room roomDestination;
 }

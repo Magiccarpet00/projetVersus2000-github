@@ -92,16 +92,16 @@ public class LevelGenerator : MonoBehaviour
         /*
          * oh yeaaaah
          */
-        DoorTrigger[] a = UnityEngine.Object.FindObjectsOfType<DoorTrigger>();
-        foreach (var item in a)
-        {
+        //DoorTrigger[] a = UnityEngine.Object.FindObjectsOfType<DoorTrigger>();
+        //foreach (var item in a)
+        //{
 
-            BoxCollider2D yo = item.GetComponent<BoxCollider2D>();
-            Collider2D[] z = Physics2D.OverlapAreaAll(yo.bounds.min, yo.bounds.max);
+        //    BoxCollider2D yo = item.GetComponent<BoxCollider2D>();
+        //    Collider2D[] z = Physics2D.OverlapAreaAll(yo.bounds.min, yo.bounds.max);
 
 
-            //Physics2D.(item.GetComponent<BoxCollider2D>());
-        }
+        //    //Physics2D.(item.GetComponent<BoxCollider2D>());
+        //}
         DuplicateDongeon();
     }
 
