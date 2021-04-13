@@ -61,6 +61,7 @@ public class Enemy : MonoBehaviour
     /*
      * Désactive le gameobject et signifie à la pièce du monstre qu'on a tout nettoyé
      * */
+
     public void Die(Collider2D sword)
     {
         dead = true;

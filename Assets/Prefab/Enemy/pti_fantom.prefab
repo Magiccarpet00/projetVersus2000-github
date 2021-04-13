@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7811420212960995393}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0, z: 0, w: -1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7811420212993515688}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 360}
 --- !u!212 &7811420212960995406
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -165,6 +165,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerToFocus: {fileID: 0}
   speed: 2
-  spiral: {fileID: 1244761207764599507, guid: bf4560139265a5e4d83c829ebb81dec3, type: 3}
-  realSprite: {fileID: 7811420212960995406}
+  animator: {fileID: 7811420212960995407}
   isActivated: 0
