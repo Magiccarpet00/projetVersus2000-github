@@ -34,6 +34,9 @@ public class PlayerMovement : MonoBehaviour
 
     public bool canMove;
     public bool isStunned;
+    public bool isBetweenRooms;
+
+    public Vector2 directionAutoWalk;
 
     private void Start()
     {
@@ -41,14 +44,13 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
         switchBoxMove = new Dictionary<string, bool>();
         switchBoxMove["isBumped"] = false;
+        switchBoxMove["betweenRooms"] = false;
 
         //Dictornaire des directions pour l'attque 
         directionVector.Add(InputBufferDirection.DOWN,new Vector2(0f, -Constants.VECTOR_DIRECTION_ATTACK));
         directionVector.Add(InputBufferDirection.LEFT, new Vector2(-Constants.VECTOR_DIRECTION_ATTACK,0f));
         directionVector.Add(InputBufferDirection.RIGHT, new Vector2(Constants.VECTOR_DIRECTION_ATTACK, 0f));
         directionVector.Add(InputBufferDirection.UP, new Vector2(0f, Constants.VECTOR_DIRECTION_ATTACK));
-
-
     }
 
     private void Update()
@@ -73,18 +75,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isBumped && playerHealth.dead == false && playerAttack.isAttacking == true)
+        if (!isBumped && !playerHealth.dead && playerAttack.isAttacking) // Pendant l'attaque, ça glisse, attention secousse !
         {
             rb.MovePosition(rb.position + (directionVector[InputBuffer]) * Time.fixedDeltaTime);
         }
-        else if (!isBumped && playerHealth.dead == false)
+        else if (!isBumped && !playerHealth.dead && isBetweenRooms) // Quand on est dans l'entre deux room
+        {
+            rb.MovePosition(rb.position + directionAutoWalk * maxMoveSpeed * Time.fixedDeltaTime);
+        }
+        else if (!isBumped && !playerHealth.dead) // Deplacement normale
         {
             rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
         }
-        else if (isBumped && playerHealth.dead == false) // On se fait déplacer par le bump sans contrôle du joueur
+        else if (isBumped && !playerHealth.dead) // On se fait déplacer par le bump sans contrôle du joueur
         {
             rb.MovePosition(rb.position + bumpForce * Time.fixedDeltaTime);
         }
+        
     }
 
     private void UpdateInputBuffer()
@@ -112,16 +119,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }        
     }
-
-    //public void StopMovement()
-    //{
-    //    currentMoveSpeed = 0;
-    //}
-
-    //public void UnStopMovement()
-    //{        
-    //    currentMoveSpeed = maxMoveSpeed;              
-    //}
 
     /*
      * Rajoute un élément aléatoire lorsqu'on repousse le joueur
@@ -171,4 +168,15 @@ public class PlayerMovement : MonoBehaviour
             canMove = true;
         }
     }
+
+    public void TapisRoulant(Room roomOrigine, Room roomDestination)
+    {
+        isBetweenRooms = true;
+        checkSwitchBoxMove("betweenRooms", true);
+        directionAutoWalk = new Vector2(roomDestination.transform.position.x - roomOrigine.transform.position.x,
+                                        roomDestination.transform.position.y - roomOrigine.transform.position.y);
+
+        directionAutoWalk = directionAutoWalk.normalized;
+    }
+
 }
