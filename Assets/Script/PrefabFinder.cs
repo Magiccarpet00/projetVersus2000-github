@@ -6,7 +6,8 @@ public enum Ressources
 {
     Hat,
     Ghost,
-       
+    Explosion,
+
 }
 public static class PrefabFinder
 {
@@ -20,6 +21,7 @@ public static class PrefabFinder
         RessourcesToURI = new Dictionary<Ressources, string> ();
         RessourcesToURI[Ressources.Hat] = "sousdossier/hat";
         RessourcesToURI[Ressources.Ghost] = "pti_fantom";
+        RessourcesToURI[Ressources.Explosion] = "explosion";
     }
 
 

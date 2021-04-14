@@ -23,7 +23,6 @@ public class DoorTrigger : MonoBehaviour
 
                 collision.GetComponent<PlayerMovement>().TapisRoulant(roomDestination, roomOrigine);
             }
-
         }
     }
 
