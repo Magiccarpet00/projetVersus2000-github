@@ -90,9 +90,6 @@ public class Room : MonoBehaviour
                         doorTrigger.GetComponent<DoorTrigger>().roomOrigine = this;
                         doorTrigger.GetComponent<DoorTrigger>().roomDestination = neighbors[Direction.RIGHT];
 
-                        //GameObject go = new GameObject();
-                        //go.AddComponent<BoxCollider2D>();
-                        //Instantiate(go, transform.position, Quaternion.identity);
                         break;
                     case 1:
                         door = Instantiate(doorDown, transform.position, Quaternion.identity);
@@ -107,9 +104,6 @@ public class Room : MonoBehaviour
 
                         doorTrigger.GetComponent<DoorTrigger>().roomOrigine = this;
                         doorTrigger.GetComponent<DoorTrigger>().roomDestination = neighbors[Direction.UP];
-                        break;
-                    default:
-                        Debug.LogError("Benoit is a looser");
                         break;
                 }
                 door.transform.parent = this.transform;
@@ -141,7 +135,6 @@ public class Room : MonoBehaviour
         {  
             roomFinnished = true;
             OpenDoor();
-            
         }
     }
 
@@ -230,6 +223,8 @@ public class Room : MonoBehaviour
 
             //                                        #Et on peut recupérer la clef player pcq on à collision dans la methode
             //                                         OnTriggerEnter2D juste au dessus#
+            /*
+             * Benoît: Bah c'est bon du coup non ?*/
 
             GameManager.instance.playersPosition[collision.gameObject] = this.gameObject;
 
