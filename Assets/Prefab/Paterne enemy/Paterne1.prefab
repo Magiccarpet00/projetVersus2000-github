@@ -53,6 +53,7 @@ MonoBehaviour:
   - {fileID: 6366935098138125127}
   - {fileID: 6366935099158543797}
   maxEnemies: 4
+  patternRoom: {fileID: 0}
 --- !u!1001 &3712371031338112692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -78,7 +79,7 @@ PrefabInstance:
     - target: {fileID: 7422425158517523284, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25
+      value: -1.25
       objectReference: {fileID: 0}
     - target: {fileID: 7422425158517523284, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
@@ -176,7 +177,7 @@ PrefabInstance:
     - target: {fileID: 7422425158517523284, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.75
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 7422425158517523284, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
@@ -279,7 +280,7 @@ PrefabInstance:
     - target: {fileID: 7422425158517523284, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4
+      value: -3.25
       objectReference: {fileID: 0}
     - target: {fileID: 7422425158517523284, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
@@ -382,7 +383,7 @@ PrefabInstance:
     - target: {fileID: 7422425158517523284, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7422425158517523284, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}

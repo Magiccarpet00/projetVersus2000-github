@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
      * Désactive le gameobject et signifie à la pièce du monstre qu'on a tout nettoyé
      * */
 
-    public void Die(Collider2D sword)
+    public IEnumerator Die(Collider2D sword)
     {
         dead = true;
         this.GetComponent<BoxCollider2D>().enabled = false;
@@ -70,8 +70,19 @@ public class Enemy : MonoBehaviour
         currentRoom.notifyDeath();
 
         // Pour le combo
-        ComboManager.instance.AddToCombo(sword.GetComponent<Sword>().player);
+        //if(sword != null)
+        //{
+        //    ComboManager.instance.AddToCombo(sword.GetComponent<Sword>().player);
+        //}
 
+        //On fait la detection de quelle joueur à tuer
+        GameObject detectionPlayer = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Detection_player]) as GameObject, transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(0.1f);
+        GameObject player = detectionPlayer.GetComponent<FindPlayer>().playerFind;
+
+        ComboManager.instance.AddToCombo(player);
+
+        // Et la boum boum
         Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Explosion]) as GameObject, transform.position, Quaternion.identity);
     }
 
@@ -96,7 +107,15 @@ public class Enemy : MonoBehaviour
         {
             if (!dead)
             {
-                Die(collision);
+                StartCoroutine(Die(collision));
+            }
+        }
+
+        if (collision.CompareTag("Explosion"))
+        {
+            if (!dead)
+            {
+                StartCoroutine(Die(null));
             }
         }
     }

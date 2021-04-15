@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 1289218907560706931}
   - component: {fileID: 7694358798723490958}
   - component: {fileID: 654180320}
+  - component: {fileID: 8666707482984706120}
   m_Layer: 0
   m_Name: explosion
   m_TagString: Explosion
@@ -164,3 +165,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitbox: {fileID: 7694358798723490958}
+--- !u!50 &8666707482984706120
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289218907560706930}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
