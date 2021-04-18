@@ -7,7 +7,8 @@ public enum Ressources
     Hat,
     Ghost,
     Explosion,
-    Detection_player
+    Detection_player,
+    Ghost_bullet
 }
 public static class PrefabFinder
 {
@@ -20,6 +21,7 @@ public static class PrefabFinder
         RessourcesToURI[Ressources.Ghost] = "pti_fantom"; // *regard désapprobateur* pour ce nom
         RessourcesToURI[Ressources.Explosion] = "explosion";
         RessourcesToURI[Ressources.Detection_player] = "detecteur_player";
+        RessourcesToURI[Ressources.Ghost_bullet] = "fantomball";
     }
 
 
