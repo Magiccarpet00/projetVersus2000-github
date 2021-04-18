@@ -40,12 +40,17 @@ public class Fantom : MonoBehaviour
         {
             isDead = true;
 
-            for (int i = 0; i < 4; i++) // Valeur en dure, mega naze :/ oui
-            {
-                GameObject bullet = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Ghost_bullet]) as GameObject, transform.position, Quaternion.identity);
-                bullet.GetComponent<Bullet>()._i = i;
-            }
+            GameObject bullet = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Ghost_bullet]) as GameObject, transform.position, Quaternion.identity);
+            bullet.GetComponent<Bullet>().currDir = Direction.UP;
+            GameObject bullet2 = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Ghost_bullet]) as GameObject, transform.position, Quaternion.identity);
+            bullet2.GetComponent<Bullet>().currDir = Direction.DOWN;
+            GameObject bullet3 = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Ghost_bullet]) as GameObject, transform.position, Quaternion.identity);
+            bullet3.GetComponent<Bullet>().currDir = Direction.LEFT;
+            GameObject bullet4 = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Ghost_bullet]) as GameObject, transform.position, Quaternion.identity);
+            bullet4.GetComponent<Bullet>().currDir = Direction.RIGHT;
+
+        }
             Destroy(this.gameObject);
         }
     }
-}
+

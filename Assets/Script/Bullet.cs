@@ -4,25 +4,26 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
-    private Dictionary<int, Vector2> allDirection = new Dictionary<int, Vector2>();
+    private Dictionary<Direction, Vector2> allDirection = new Dictionary<Direction, Vector2>();
+    public Direction currDir;
     public int _i;
     private float lifeTime = 1f;
 
     //[CodeReview?]
     void Start()
     {
-        allDirection.Add(0, new Vector2(1f, 0f));
-        allDirection.Add(1, new Vector2(0f, -1f));
-        allDirection.Add(2, new Vector2(-1f, 0f));
-        allDirection.Add(3, new Vector2(0f, 1f));
+        allDirection.Add(Direction.RIGHT, new Vector2(1f, 0f));
+        allDirection.Add(Direction.DOWN, new Vector2(0f, -1f));
+        allDirection.Add(Direction.LEFT, new Vector2(-1f, 0f));
+        allDirection.Add(Direction.UP, new Vector2(0f, 1f));
 
         StartCoroutine(LifeTime());
     }
 
     void Update()
     {
-        Vector2 newPos = new Vector2(transform.position.x + allDirection[_i].x, transform.position.y + allDirection[_i].y);
-
+        Vector2 newPos = new Vector2(transform.position.x + allDirection[currDir].x, transform.position.y + allDirection[currDir].y);
+        
         transform.position = Vector2.MoveTowards(transform.position, newPos, Constants.FANTOM_SHOT_FORCE * Time.deltaTime);
     }
 

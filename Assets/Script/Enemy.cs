@@ -70,6 +70,7 @@ public class Enemy : MonoBehaviour
         currentRoom.notifyDeath();
 
         //[CODE REVIEW] Faire en sorte d'avoir le joueur responsable d'une explosion / meurtre / truc en mémoire
+        // On peut faire ça par détection dans la pièce où on est
 
         //On fait la detection de quelle joueur à tuer le pauvre petit gugus
         GameObject detectionPlayer = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Detection_player]) as GameObject, transform.position, Quaternion.identity);
