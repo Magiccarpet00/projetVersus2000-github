@@ -75,23 +75,30 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isBumped && !playerHealth.dead && playerAttack.isAttacking) // Pendant l'attaque, ça glisse, attention secousse !
+        // Félix à "tout compris" ;)         
+        if (!playerHealth.dead)
         {
-            rb.MovePosition(rb.position + (directionVector[InputBuffer]) * Time.fixedDeltaTime);
+            if(!isBumped)
+            {
+                if (playerAttack.isAttacking) // Pendant l'attaque, ça glisse, attention secousse !
+                {
+                    rb.MovePosition(rb.position + (directionVector[InputBuffer]) * Time.fixedDeltaTime);
+                }
+                else if (isBetweenRooms) // Quand on est dans l'entre deux room
+                {
+                    rb.MovePosition(rb.position + directionAutoWalk * maxMoveSpeed * Time.fixedDeltaTime);
+                }
+                else // Deplacement normale
+                {
+                    rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
+                }
+            }
+            
+            else if (isBumped) // On se fait déplacer par le bump sans contrôle du joueur
+            {
+                rb.MovePosition(rb.position + bumpForce * Time.fixedDeltaTime);
+            }
         }
-        else if (!isBumped && !playerHealth.dead && isBetweenRooms) // Quand on est dans l'entre deux room
-        {
-            rb.MovePosition(rb.position + directionAutoWalk * maxMoveSpeed * Time.fixedDeltaTime);
-        }
-        else if (!isBumped && !playerHealth.dead) // Deplacement normale
-        {
-            rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
-        }
-        else if (isBumped && !playerHealth.dead) // On se fait déplacer par le bump sans contrôle du joueur
-        {
-            rb.MovePosition(rb.position + bumpForce * Time.fixedDeltaTime);
-        }
-        
     }
 
     private void UpdateInputBuffer()
@@ -148,6 +155,9 @@ public class PlayerMovement : MonoBehaviour
         checkSwitchBoxMove("isBumped", isBumped);
     }
 
+    /*
+     * Faudra remplacer la clé par une enumération
+     */
     public void checkSwitchBoxMove(string key, bool value)
     {
         switchBoxMove[key] = value;
@@ -172,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
     public void TapisRoulant(Room roomOrigine, Room roomDestination)
     {
         isBetweenRooms = true;
-        checkSwitchBoxMove("betweenRooms", true);
+        checkSwitchBoxMove("betweenRooms", isBetweenRooms);
         directionAutoWalk = new Vector2(roomDestination.transform.position.x - roomOrigine.transform.position.x,
                                         roomDestination.transform.position.y - roomOrigine.transform.position.y);
 

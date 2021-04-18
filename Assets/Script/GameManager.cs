@@ -63,5 +63,6 @@ public class GameManager : MonoBehaviour
  * -le joueur est solid avec rb
  * -l'epée est is_trigger avec rb
  * -le petit fantom sont is_trigger
- * -les explosion doivent etre quoi benoit du coup ??????????????????? :))))))))
+ * -les explosion doivent etre quoi benoit du coup ??????????????????? :)))))))) 
+ * *poing serré*-grrrrrrrrrrrrrrrrr je t'aurai la prochaine fois...
  * */

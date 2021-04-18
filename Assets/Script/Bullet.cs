@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     public int _i;
     private float lifeTime = 1f;
 
+    //[CodeReview?]
     void Start()
     {
         allDirection.Add(0, new Vector2(1f, 0f));

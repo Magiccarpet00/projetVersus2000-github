@@ -69,13 +69,15 @@ public class Enemy : MonoBehaviour
         this.GetComponentInChildren<SpriteRenderer>().enabled = false;
         currentRoom.notifyDeath();
 
+        //[CODE REVIEW] Faire en sorte d'avoir le joueur responsable d'une explosion / meurtre / truc en mémoire
+
         //On fait la detection de quelle joueur à tuer le pauvre petit gugus
         GameObject detectionPlayer = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Detection_player]) as GameObject, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.1f); //comme ça find player a le temps de find mdr
         GameObject player = detectionPlayer.GetComponent<FindPlayer>().playerFind;
 
         ComboManager.instance.AddToCombo(player);
-
+        
         // Et la boum boum
         Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Explosion]) as GameObject, transform.position, Quaternion.identity);
     }

@@ -11,12 +11,14 @@ public class DoorTrigger : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if(GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomOrigine)
+            // Debug.Log("Je viens de " + roomOrigine + " et vais vers " + roomDestination);
+            if (GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomOrigine)
             {
                 Debug.Log("Je viens de " + roomOrigine + " et vais vers " + roomDestination);
 
                 collision.GetComponent<PlayerMovement>().TapisRoulant(roomOrigine, roomDestination);
             }
+            //Debug.Log("Je viens de " + roomDestination + " et vais vers " + roomOrigine);
             else if (GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomDestination)
             {
                 Debug.Log("Je viens de " + roomDestination + " et vais vers " + roomOrigine);

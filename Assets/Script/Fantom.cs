@@ -40,7 +40,7 @@ public class Fantom : MonoBehaviour
         {
             isDead = true;
 
-            for (int i = 0; i < 4; i++) // Valeur en dure, mega naze :/
+            for (int i = 0; i < 4; i++) // Valeur en dure, mega naze :/ oui
             {
                 GameObject bullet = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Ghost_bullet]) as GameObject, transform.position, Quaternion.identity);
                 bullet.GetComponent<Bullet>()._i = i;

@@ -12,8 +12,13 @@ public class Explosion : MonoBehaviour
 
     public IEnumerator ActivationHitbox()
     {
-        yield return new WaitForSeconds(0.15f);
-        hitbox.enabled = true;
+        /*
+         * [CODE REVIEW] Comment retrouver la durée d'exécution d'une animation
+         * Félix est incapable de trouver ça tout seul du coup je vais l'aider "j'ai cherché et j'ai pas trouvé jte jure" (mon oeil)
+         */
+
+        yield return new WaitForSeconds(0.15f); // have you heard about Constants? 
+        hitbox.enabled = true; // pour pas buter instant les autres mobs
         yield return new WaitForSeconds(0.35f);
         Destroy(this.gameObject);
     }
