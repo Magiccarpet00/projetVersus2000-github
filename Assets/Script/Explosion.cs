@@ -7,10 +7,11 @@ public class Explosion : MonoBehaviour
     public Collider2D hitbox;
     private void Start()
     {
-        StartCoroutine(ActivationHitbox());
+        ActivationHitbox();
+        hitbox = this.GetComponent<Collider2D>();
     }
 
-    public IEnumerator ActivationHitbox()
+    public void ActivationHitbox()
     {
         Animator animator = this.GetComponentInChildren<Animator>();
         float animLength;
@@ -29,14 +30,18 @@ public class Explosion : MonoBehaviour
          * Félix est incapable de trouver ça tout seul du coup je vais l'aider "j'ai cherché et j'ai pas trouvé jte jure" (mon oeil)
          */
 
-        yield return new WaitForSeconds(0.15f); // have you heard about Constants? 
-        hitbox.enabled = true; // pour pas buter instant les autres mobs
-        yield return new WaitForSeconds(0.35f); // 350ms
-        Destroy(this.gameObject);
+        //yield return new WaitForSeconds(0.15f); // have you heard about Constants? 
+        //hitbox.enabled = true; // pour pas buter instant les autres mobs
+        //yield return new WaitForSeconds(0.35f); // 350ms
+        //Destroy(this.gameObject);
     }
 
-    public void called()
+    public void EnableHitbox()
     {
-
+        hitbox.enabled = true;
+    }
+    public void DestroyMe()
+    {
+        Destroy(this.gameObject);
     }
 }
