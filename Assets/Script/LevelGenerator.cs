@@ -89,19 +89,6 @@ public class LevelGenerator : MonoBehaviour
         {
             roomsInDongeon[i].GetComponent<Room>().TransformationRoom();
         }
-        /*
-         * oh yeaaaah
-         */
-        //DoorTrigger[] a = UnityEngine.Object.FindObjectsOfType<DoorTrigger>();
-        //foreach (var item in a)
-        //{
-
-        //    BoxCollider2D yo = item.GetComponent<BoxCollider2D>();
-        //    Collider2D[] z = Physics2D.OverlapAreaAll(yo.bounds.min, yo.bounds.max);
-
-
-        //    //Physics2D.(item.GetComponent<BoxCollider2D>());
-        //}
         DuplicateDongeon();
     }
 

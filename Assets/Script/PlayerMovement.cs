@@ -46,6 +46,9 @@ public class PlayerMovement : MonoBehaviour
         switchBoxMove["isBumped"] = false;
         switchBoxMove["betweenRooms"] = false;
 
+        /*
+         * [CODEREVIEW] Il faut utiliser les ENUM globales et pas celles locales
+         */
         //Dictornaire des directions pour l'attque 
         directionVector.Add(InputBufferDirection.DOWN,new Vector2(0f, -Constants.VECTOR_DIRECTION_ATTACK));
         directionVector.Add(InputBufferDirection.LEFT, new Vector2(-Constants.VECTOR_DIRECTION_ATTACK,0f));

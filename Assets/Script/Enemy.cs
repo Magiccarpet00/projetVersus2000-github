@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * code panique
+ * Diviser la partie waypoint / pas waypoint
+ */
 public class Enemy : MonoBehaviour
 {
     // Varrible Statistique
@@ -90,9 +94,6 @@ public class Enemy : MonoBehaviour
         {            
             if (!dead)
             {
-                /**
-                 * COOOOOOOOOOOOOOOOOOOOOOODE REVIEW !!!!
-                 */
                 if(collision.GetComponent<PlayerHealth>().isInvincible == false)
                 {
                     StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(dir, damage));                    
