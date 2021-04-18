@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FindPlayer : MonoBehaviour
@@ -12,5 +11,16 @@ public class FindPlayer : MonoBehaviour
         {
             playerFind = collision.gameObject;
         }
+    }
+
+    private void Start()
+    {
+        StartCoroutine(Autodestruction());
+    }
+
+    public IEnumerator Autodestruction()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(this.gameObject);
     }
 }
