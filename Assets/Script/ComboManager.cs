@@ -53,16 +53,25 @@ public class ComboManager : MonoBehaviour
 
     private void Start()
     {
+        //Joueur 1
         List<List<ComboItem>> allCombosJ1 = new List<List<ComboItem>>();
         List<ComboItem> currentComboJ1 = new List<ComboItem>();
+
+        //Joueur 2
+        List<List<ComboItem>> allCombosJ2 = new List<List<ComboItem>>();
+        List<ComboItem> currentComboJ2 = new List<ComboItem>();
+
         playerToCombos = new Dictionary<GameObject, List<List<ComboItem>>>();
         playerToCurrentCombo = new Dictionary<GameObject, List<ComboItem>>();
         
+        //Joueur 1
         playerToCombos.Add(player1, allCombosJ1);
         playerToCurrentCombo.Add(player1, currentComboJ1);
 
-        // Todo joueur 2
-        //comboPlayerComboItem.Add(player2, comboItemJ2);
+        //Joueur 2
+        playerToCombos.Add(player2, allCombosJ2);
+        playerToCurrentCombo.Add(player2, currentComboJ2);
+
 
         //Ajout des dictonaire pour le timer
         currentTime.Add(player1, 0f);
@@ -71,24 +80,25 @@ public class ComboManager : MonoBehaviour
 
     private void Update()
     {
-        if(currentTime[player1] > 0)
+        if (currentTime[player1] > 0)
         {
             currentTime[player1] -= Time.deltaTime;
         }
-        else if(currentTime[player1] > -1)
+        else if (currentTime[player1] > -1)
         {
             currentTime[player1] = -1;
             //Debug.Log("fin combo");
             BankCombo(player1);
         }
 
-        if(currentTime[player2] > 0)
+        if (currentTime[player2] > 0)
         {
             currentTime[player2] -= Time.deltaTime;
         }
-        else
+        else if (currentTime[player2] > -1)
         {
-            currentTime[player2] = 0;
+            currentTime[player2] = -1;
+            BankCombo(player2);
         }
     }
 
@@ -112,7 +122,6 @@ public class ComboManager : MonoBehaviour
         playerToCombos[player].Add(cloneSafe);
         playerToCurrentCombo[player].Clear();
         /* Todo: Ne pas ajouter de combo vides (Liste 0 combo item)*/
-
 
         int i = 1;
         Debug.Log("Stockage d'un nouveau combo. Combo stockés:");

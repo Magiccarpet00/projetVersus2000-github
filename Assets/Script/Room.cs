@@ -103,7 +103,7 @@ public class Room : MonoBehaviour
                         doorTrigger.transform.parent = this.transform;
 
                         doorTrigger.GetComponent<DoorTrigger>().roomOrigine = this;
-                        doorTrigger.GetComponent<DoorTrigger>().roomDestination = neighbors[Direction.UP];
+                        doorTrigger.GetComponent<DoorTrigger>().roomDestination = neighbors[Direction.UP]; //[BUG] quand on copies le dj ça marche pas du coup
                         break;
                 }
                 door.transform.parent = this.transform;

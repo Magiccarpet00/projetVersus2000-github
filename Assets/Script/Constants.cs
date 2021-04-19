@@ -20,5 +20,4 @@ public static class Constants
     public const float VECTOR_DIRECTION_ATTACK = 0.5f;
     public const float RANDOM_OFFSET_INSTANSIAT_FANTOM = 2f;
     public const float FANTOM_SHOT_FORCE = 10f;
-
 }

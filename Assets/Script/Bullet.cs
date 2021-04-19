@@ -3,11 +3,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
     private Dictionary<Direction, Vector2> allDirection = new Dictionary<Direction, Vector2>();
     public Direction currDir;
-    public int _i;
     private float lifeTime = 1f;
+    public float damage;
 
     //[CodeReview?]
     void Start()
@@ -31,5 +30,16 @@ public class Bullet : MonoBehaviour
     {
         yield return new WaitForSeconds(lifeTime);
         Destroy(this.gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (collision.GetComponent<PlayerHealth>().isInvincible == false)
+            {
+                StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(allDirection[currDir], damage));
+            }
+        }
     }
 }
