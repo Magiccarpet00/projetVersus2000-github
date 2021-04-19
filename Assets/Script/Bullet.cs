@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public Direction currDir;
     private float lifeTime = 1f;
     public float damage;
+    private bool hasToutch;
 
     //[CodeReview?]
     void Start()
@@ -38,7 +39,11 @@ public class Bullet : MonoBehaviour
         {
             if (collision.GetComponent<PlayerHealth>().isInvincible == false)
             {
-                StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(allDirection[currDir], damage));
+                if (hasToutch == false)
+                {
+                    hasToutch = true;
+                    StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(allDirection[currDir], damage));
+                }                
             }
         }
     }

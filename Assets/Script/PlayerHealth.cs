@@ -42,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(Constants.TIME_TO_HITSTUN); // Après être repousé on ne peut plus bouger pendant TIME TO HITSTUN secondes
 
         //Freeze le gugus
-        playerMovement.isStunned = false;
+        playerMovement.isStunned = false; //[BUG] ici on passe pas avec le debug en dirrait que unity se perd dans le waitForSeconds si dessus
         playerMovement.checkSwitchBoxMove("isStunned", playerMovement.isStunned);
 
         //[Annimation]
