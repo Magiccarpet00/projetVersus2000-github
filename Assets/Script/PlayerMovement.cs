@@ -93,13 +93,9 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else // Deplacement normale
                 {
-                    //rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
-
                     // truc trouver sur le web
                     rb.velocity = new Vector2(Mathf.Lerp(0, movement.x * currentMoveSpeed , 0.8f),
                                                 Mathf.Lerp(0, movement.y * currentMoveSpeed , 0.8f));
-
-                    
                 }
             }
             
