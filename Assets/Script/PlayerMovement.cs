@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Félix à "tout compris" ;)         
+        // Félix à "tout compris ;)         
         if (!playerHealth.dead)
         {
             if(!isBumped)
@@ -93,7 +93,13 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else // Deplacement normale
                 {
-                    rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
+                    //rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
+
+                    // truc trouver sur le web
+                    rb.velocity = new Vector2(Mathf.Lerp(0, movement.x * currentMoveSpeed , 0.8f),
+                                                Mathf.Lerp(0, movement.y * currentMoveSpeed , 0.8f));
+
+                    
                 }
             }
             
