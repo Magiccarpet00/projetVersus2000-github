@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     // Varrible Statistique
     public float maxHealth;
     public float currentHealth;
-    public float damage;
+    public int damage;
     public bool dead;
     public bool haveBubble;
 

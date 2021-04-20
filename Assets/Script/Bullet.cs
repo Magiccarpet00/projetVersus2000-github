@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
     private Dictionary<Direction, Vector2> allDirection = new Dictionary<Direction, Vector2>();
     public Direction currDir;
     private float lifeTime = 5f; //[DEUS EX FLOTINA BUGYBUG] c'est en augmentant le lifeTime que le bug de coroutine à été resolue
-    public float damage;
+    public int damage;
     private bool hasToutch;
 
     //[CodeReview?]

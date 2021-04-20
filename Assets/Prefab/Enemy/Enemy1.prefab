@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   currentHealth: 10
-  damage: 2
+  damage: 1
   dead: 0
   haveBubble: 0
   maxSpeed: 0

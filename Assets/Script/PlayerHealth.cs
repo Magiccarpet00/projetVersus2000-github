@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public float maxHealth;
-    public float currentHealth;
+    public int maxHealth;
+    public int currentHealth;
 
     public bool dead;
 
@@ -15,12 +16,20 @@ public class PlayerHealth : MonoBehaviour
     public PlayerMovement playerMovement;
 
 
+    //POUR LE CANVAS
+
+    public int NumOfHeart;
+    public Image[] heart;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
+
+
     private void Start()
     {
         currentHealth = maxHealth;
     }
 
-    public IEnumerator TakeDamage(Vector2 _bumpForce, float amount)
+    public IEnumerator TakeDamage(Vector2 _bumpForce, int amount)
     {
         isInvincible = true;
 
@@ -29,6 +38,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
+        UpdateHealthUI();
 
         //Freeze le gugus
         playerMovement.isStunned = true;
@@ -58,5 +68,20 @@ public class PlayerHealth : MonoBehaviour
         this.GetComponentInChildren<SpriteRenderer>().enabled = false;
         this.GetComponent<CircleCollider2D>().enabled = false;
         
+    }
+
+    public void UpdateHealthUI()
+    {
+        for (int i = 0; i < heart.Length; i++)
+        {
+            if(i < currentHealth)
+            {
+                heart[i].sprite = fullHeart;
+            }
+            else
+            {
+                heart[i].sprite = emptyHeart;
+            }
+        }
     }
 }
