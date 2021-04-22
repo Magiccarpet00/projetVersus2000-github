@@ -36,7 +36,7 @@ public class Room : MonoBehaviour
 
 
     //public TypeOfRoom typeOfRoom;   
-    public void TransformationRoom()
+    public void TransformationRoom(int roomRng,int bossRng)
     {
         /*
          * Traduction de nos booleans d'entrées en mask 
@@ -44,7 +44,7 @@ public class Room : MonoBehaviour
         //Cette methode va rensegné les boolean ci-dessus
         updateMask();
         ApertureCheck();
-        ChangeTypeOfRoom();
+        ChangeTypeOfRoom(roomRng,bossRng);
 
         GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.maskToDoor[mask].GetComponent<SpriteRenderer>().sprite;
 
@@ -267,7 +267,7 @@ public class Room : MonoBehaviour
 
     // Je voulais le faire avec des enums mais je comprend pas, ou ptet des classes 
     // abstraite, du coup je vais faire ça comme un sagouin et on verra en code CodeReview    
-    public void ChangeTypeOfRoom()
+    public void ChangeTypeOfRoom(int roomRng, int bossRng)
     {
         if (typeRoom == TypeRoom.SHOP)
         {
@@ -277,14 +277,12 @@ public class Room : MonoBehaviour
         }
         else if (typeRoom == TypeRoom.BOSS)
         {
-            int rng = UnityEngine.Random.Range(0, LevelGenerator.instance.allBossInGame.Count);
-            GameObject bossInRoom = Instantiate(LevelGenerator.instance.allBossInGame[rng], transform.position, Quaternion.identity);
+            GameObject bossInRoom = Instantiate(LevelGenerator.instance.allBossInGame[bossRng], transform.position, Quaternion.identity);
             bossInRoom.transform.parent = this.transform;
         }
         else if (typeRoom == TypeRoom.VANILLA)
         {
-            int rng = UnityEngine.Random.Range(0, LevelGenerator.instance.allPatternInGame.Count);
-            patternInThisRoom = Instantiate(LevelGenerator.instance.allPatternInGame[rng], transform.position, Quaternion.identity);
+            patternInThisRoom = Instantiate(LevelGenerator.instance.allPatternInGame[roomRng], transform.position, Quaternion.identity);
             patternInThisRoom.transform.parent = this.transform;
 
             /*

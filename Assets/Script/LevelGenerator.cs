@@ -71,7 +71,9 @@ public class LevelGenerator : MonoBehaviour
     IEnumerator CreateLevelTemplate()
     {
         Move(Direction.UP,-1);
-
+        int roomRngRange, bossRngRange, roomRng, bossRng;
+        roomRngRange = allPatternInGame.Count;
+        bossRngRange = allBossInGame.Count;
         // On commence par crée la structur de base du donjon, sans les portes ni la forme des room
         int id = 0;
         while (id < nbOfRooms)
@@ -88,27 +90,13 @@ public class LevelGenerator : MonoBehaviour
         //Ici on va transformé les roomTemplate en room avec des ouvertures sur les cotés
         for (int i = 0; i < roomsInDongeonP1.Count; i++) // ils sont ""sensés"" être les mêmes... Le seront il vraiment? ;-)
         {
-            roomsInDongeonP1[i].GetComponent<Room>().TransformationRoom();
-            roomsInDongeonP2[i].GetComponent<Room>().TransformationRoom();
+            roomRng = UnityEngine.Random.Range(0, roomRngRange);
+            bossRng= UnityEngine.Random.Range(0, bossRngRange);
+            roomsInDongeonP1[i].GetComponent<Room>().TransformationRoom(roomRng,bossRng);
+            roomsInDongeonP2[i].GetComponent<Room>().TransformationRoom(roomRng, bossRng);
         }
-        //DuplicateDongeon();
 
     }
-
-    //public void DuplicateDongeon()
-    //{
-    //    for (int i = 0; i < roomsInDongeon.Count; i++)
-    //    {
-    //      GameObject tmpRoom = Instantiate(roomsInDongeon[i], new Vector3(roomsInDongeon[i].transform.position.x,
-    //                                                   roomsInDongeon[i].transform.position.y + Constants.OFFSET_DONGEON,
-    //                                                   roomsInDongeon[i].transform.position.z),
-    //                                                   Quaternion.identity);
-    //     Room r = tmpRoom.GetComponent<Room>();
-    //     r.ApertureCheck();
-    //     r.MakeDoors();
-    //    }
-
-    //}
 
     
     private bool CreateRoomTemplate(int idRoom)
