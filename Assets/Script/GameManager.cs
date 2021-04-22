@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < players.Length; i++)
             {
                 Debug.Log(playersPosition[players[i]]);
+                GameObject go = playersPosition[players[i]];
+                Room r = playersPosition[players[i]].GetComponent<Room>();
             }
         }
 
