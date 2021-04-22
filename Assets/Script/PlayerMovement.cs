@@ -38,6 +38,10 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector2 directionAutoWalk;
 
+    // Pour le derappage 
+    public bool onSlide;
+    public Vector2 destinationSlide;
+
     private void Start()
     {
         currentMoveSpeed = maxMoveSpeed;
@@ -61,6 +65,15 @@ public class PlayerMovement : MonoBehaviour
         //Detection
         movement.x = Input.GetAxisRaw(playerInput.horizontalAxeJoypad);
         movement.y = Input.GetAxisRaw(playerInput.verticalAxeJoypad);
+
+        if(movement.magnitude > 0.1f)
+        {
+            onSlide = false;
+        }
+        else
+        {
+            onSlide = true;
+        }
 
         //Buffer
         UpdateInputBuffer();
@@ -94,8 +107,23 @@ public class PlayerMovement : MonoBehaviour
                 else // Deplacement normale
                 {
                     // truc trouver sur le web...
-                    rb.velocity = new Vector2(Mathf.Lerp(0, movement.x * currentMoveSpeed , 0.8f),
-                                                Mathf.Lerp(0, movement.y * currentMoveSpeed , 0.8f));
+                    //rb.velocity = new Vector2(Mathf.Lerp(0, movement.x * currentMoveSpeed, 0.8f),
+                    //                            Mathf.Lerp(0, movement.y * currentMoveSpeed, 0.8f));
+                    if (!onSlide)
+                    {
+                        rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
+                        destinationSlide = new Vector2(transform.position.x + movement.x, transform.position.y + movement.y);
+                       
+                    }
+                    else
+                    {
+                        transform.position = new Vector2(Mathf.Lerp(transform.position.x, destinationSlide.x, 0.1f),
+                                                         Mathf.Lerp(transform.position.y, destinationSlide.y, 0.1f));
+
+                        
+                    }
+
+
                 }
             }
             
