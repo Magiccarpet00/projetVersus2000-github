@@ -108,6 +108,22 @@ public class ComboManager : MonoBehaviour
         playerToCurrentCombo[player].Add(comboItem);
 
         currentTime[player] = maxTimeCombo;
+
+        PerfectCheck(player);
+    }
+
+    public void PerfectCheck(GameObject _player)
+    {
+        //[REFACTOT] j'ai mis ça ici pour que le perfect parte directe 
+        GameObject currentRoom = GameManager.instance.playersPosition[_player];
+        int nbEnemiesInRoom = currentRoom.GetComponent<Room>().
+                              patternInThisRoom.GetComponent<PatternEnemy>().enemiesInPattern.Count;
+
+        if (playerToCurrentCombo[_player].Count == nbEnemiesInRoom)
+        {
+            Debug.Log("perfect");
+            AttackFantom(_player);
+        }
     }
 
     public void BankCombo(GameObject player)
@@ -123,24 +139,13 @@ public class ComboManager : MonoBehaviour
         playerToCurrentCombo[player].Clear();
         /* Todo: Ne pas ajouter de combo vides (Liste 0 combo item)*/
 
-        int i = 1;
-        Debug.Log("Stockage d'un nouveau combo. Combo stockés:");
-        foreach (var item in playerToCombos[player])
-        {
-            Debug.Log("Combo: " + i + " de " + item.Count);
-            i++;
-        }
-
-        //Le mega cablage :"on recherche le nombres d'ennemy dans la room en cours"
-        GameObject currentRoom = GameManager.instance.playersPosition[player];
-        int nbEnemiesInRoom = currentRoom.GetComponent<Room>().
-                              patternInThisRoom.GetComponent<PatternEnemy>().enemiesInPattern.Count;
-
-        if (cloneSafe.Count == nbEnemiesInRoom)
-        {
-            Debug.Log("perfect");
-            AttackFantom(player);
-        }
+        //int i = 1;
+        //Debug.Log("Stockage d'un nouveau combo. Combo stockés:");
+        //foreach (var item in playerToCombos[player])
+        //{
+        //    Debug.Log("Combo: " + i + " de " + item.Count);
+        //    i++;
+        //}
     }
     
     public void AttackFantom(GameObject playerAttaquant)
