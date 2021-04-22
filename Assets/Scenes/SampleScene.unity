@@ -1680,7 +1680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ef4fc9807754e44a1d690f09f8b46d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMoveSpeed: 20
+  maxMoveSpeed: 3.6
   currentMoveSpeed: 0
   rb: {fileID: 1851930914}
   animator: {fileID: 1264510712}

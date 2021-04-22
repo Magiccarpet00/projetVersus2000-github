@@ -26,7 +26,8 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] // La room utilise uniquement pour la premiere structur du donjon
     private GameObject roomTemplate;
 
-    public List<GameObject> roomsInDongeon = new List<GameObject>();
+    public List<GameObject> roomsInDongeonP1 = new List<GameObject>();
+    public List<GameObject> roomsInDongeonP2 = new List<GameObject>();
 
     [SerializeField]    
     private int nbOfRooms = 10;
@@ -69,7 +70,7 @@ public class LevelGenerator : MonoBehaviour
 
     IEnumerator CreateLevelTemplate()
     {
-        Move(Direction.UP);
+        Move(Direction.UP,-1);
 
         // On commence par crée la structur de base du donjon, sans les portes ni la forme des room
         int id = 0;
@@ -85,63 +86,71 @@ public class LevelGenerator : MonoBehaviour
         }       
 
         //Ici on va transformé les roomTemplate en room avec des ouvertures sur les cotés
-        for (int i = 0; i < roomsInDongeon.Count; i++)
+        for (int i = 0; i < roomsInDongeonP1.Count; i++) // ils sont ""sensés"" être les mêmes... Le seront il vraiment? ;-)
         {
-            roomsInDongeon[i].GetComponent<Room>().TransformationRoom();
+            roomsInDongeonP1[i].GetComponent<Room>().TransformationRoom();
+            roomsInDongeonP2[i].GetComponent<Room>().TransformationRoom();
         }
-        DuplicateDongeon();
-    }
-
-    public void DuplicateDongeon()
-    {
-        for (int i = 0; i < roomsInDongeon.Count; i++)
-        {
-          GameObject tmpRoom = Instantiate(roomsInDongeon[i], new Vector3(roomsInDongeon[i].transform.position.x,
-                                                       roomsInDongeon[i].transform.position.y + Constants.OFFSET_DONGEON,
-                                                       roomsInDongeon[i].transform.position.z),
-                                                       Quaternion.identity);
-         Room r = tmpRoom.GetComponent<Room>();
-         r.ApertureCheck();
-         r.MakeDoors();
-        }
+        //DuplicateDongeon();
 
     }
 
+    //public void DuplicateDongeon()
+    //{
+    //    for (int i = 0; i < roomsInDongeon.Count; i++)
+    //    {
+    //      GameObject tmpRoom = Instantiate(roomsInDongeon[i], new Vector3(roomsInDongeon[i].transform.position.x,
+    //                                                   roomsInDongeon[i].transform.position.y + Constants.OFFSET_DONGEON,
+    //                                                   roomsInDongeon[i].transform.position.z),
+    //                                                   Quaternion.identity);
+    //     Room r = tmpRoom.GetComponent<Room>();
+    //     r.ApertureCheck();
+    //     r.MakeDoors();
+    //    }
+
+    //}
+
+    
     private bool CreateRoomTemplate(int idRoom)
     {
         // C'est important la position du move() dans l'execution du code
         if (Physics2D.OverlapCircle(transform.position, Constants.CIRCLE_RADIUS) == null)
         {
             GameObject room = Instantiate(roomTemplate, transform.position, Quaternion.identity);
-            room.name = "Room" + idRoom.ToString();
+            GameObject room2 = Instantiate(roomTemplate, new Vector2(transform.position.x, transform.position.y + Constants.OFFSET_DONGEON), Quaternion.identity);
 
-            Move(Direction.RNG);
-            roomsInDongeon.Add(room);
+            room.name = "J1-Room" + idRoom.ToString();
+            room2.name = "J2-Room" + idRoom.ToString(); // duplicati duplicata
+
+            int rng = UnityEngine.Random.Range(0, 2);
+            Move(Direction.RNG, rng); // oh no man !!! RNG !!
+            roomsInDongeonP1.Add(room);
+            roomsInDongeonP2.Add(room2);
             TypeOfRoom(idRoom, room);
+            TypeOfRoom(idRoom, room2); // la classe ;-)
             return true;
         }
         else
         {            
-            Move(Direction.UP);
+            Move(Direction.UP, -1);
             return false;
         }
     }
 
-    private void Move(Direction direction)
+    private void Move(Direction direction, int rng)
     {
         Direction final = default; // ;-) permet de remplacer une déclaration à null qui fera hurler le compilateur
         if(direction == Direction.RNG)
         {
-           int rng = UnityEngine.Random.Range(0, 2);
-        switch (rng)
-        {
-            case 0:
-                final = Direction.LEFT;
-                break;
-            case 1:
-                final = Direction.RIGHT;
-                break;
-        }
+            switch (rng)
+            {
+                case 0:
+                    final = Direction.LEFT;
+                    break;
+                case 1:
+                    final = Direction.RIGHT;
+                    break;
+            }
         }
         else
         {
@@ -167,7 +176,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private void TypeOfRoom(int idRoom, GameObject room) 
+    private void TypeOfRoom(int idRoom, GameObject room) //g honte 
     {
         if(idRoom == Constants.SHOP_ROOM) // 
         {

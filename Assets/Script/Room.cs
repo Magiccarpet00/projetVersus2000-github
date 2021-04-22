@@ -35,7 +35,7 @@ public class Room : MonoBehaviour
     
 
 
-    //public TypeOfRoom typeOfRoom;
+    //public TypeOfRoom typeOfRoom;   
     public void TransformationRoom()
     {
         /*
@@ -61,6 +61,7 @@ public class Room : MonoBehaviour
     public void MakeDoors()//[REFACTOT COLLISION ROOM] §1
     {
         char[] array = mask.ToCharArray(); // On découpe notre mask en un tableau pour pouvoir récupérer individuellement chaque caractère (= char). 
+        doorsInRoom.Clear(); // Nettoyage pour pas avoir le clone
         for (int i = 0; i < array.Length; i++)
         {
             char c = array[i]; // On garde en mémoire la caractère sur lequel on est...
