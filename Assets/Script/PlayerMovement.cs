@@ -39,8 +39,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 directionAutoWalk;
 
     // Pour le derappage 
-    public bool onSlide;
-    public Vector2 destinationSlide;
+    private bool onSlide;
+    private Vector2 destinationSlide;
 
     private void Start()
     {
@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw(playerInput.horizontalAxeJoypad);
         movement.y = Input.GetAxisRaw(playerInput.verticalAxeJoypad);
 
-        if(movement.magnitude > 0.1f)
+        if(movement.magnitude > Constants.RADIUS_JOYSTICK)
         {
             onSlide = false;
         }
@@ -97,8 +97,12 @@ public class PlayerMovement : MonoBehaviour
             if(!isBumped)
             {
                 if (playerAttack.isAttacking) // Pendant l'attaque, ça glisse, attention secousse !
-                {
+                {                    
                     rb.MovePosition(rb.position + (directionVector[InputBuffer]) * Time.fixedDeltaTime);
+                }
+                else if (playerAttack.isBufferingAttack)
+                {
+                    Slide();
                 }
                 else if (isBetweenRooms) // Quand on est dans l'entre deux room
                 {
@@ -112,18 +116,13 @@ public class PlayerMovement : MonoBehaviour
                     if (!onSlide)
                     {
                         rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
-                        destinationSlide = new Vector2(transform.position.x + movement.x, transform.position.y + movement.y);
-                       
+                        destinationSlide = new Vector2(transform.position.x + (movement.x)/Constants.SLIDE_DIVISION,
+                                                       transform.position.y + (movement.y)/Constants.SLIDE_DIVISION);
                     }
                     else
                     {
-                        transform.position = new Vector2(Mathf.Lerp(transform.position.x, destinationSlide.x, 0.1f),
-                                                         Mathf.Lerp(transform.position.y, destinationSlide.y, 0.1f));
-
-                        
+                        Slide();
                     }
-
-
                 }
             }
             
@@ -132,6 +131,12 @@ public class PlayerMovement : MonoBehaviour
                 rb.MovePosition(rb.position + bumpForce * Time.fixedDeltaTime);
             }
         }
+    }
+
+    public void Slide()
+    {
+        transform.position = new Vector2(Mathf.Lerp(transform.position.x, destinationSlide.x, Constants.SLIDE_MOVEMENT),
+                                                         Mathf.Lerp(transform.position.y, destinationSlide.y, Constants.SLIDE_MOVEMENT));
     }
 
     private void UpdateInputBuffer()
