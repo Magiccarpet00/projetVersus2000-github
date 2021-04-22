@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public Direction currDir;
     private float lifeTime = 5f; //[DEUS EX FLOTINA BUGYBUG] c'est en augmentant le lifeTime que le bug de coroutine à été resolue
     public int damage;
-    private bool hasToutch;
+    private bool hasToutch; //Has tchoutch? xDDDD
 
     //[CodeReview?]
     void Start()

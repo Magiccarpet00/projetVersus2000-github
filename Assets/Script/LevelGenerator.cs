@@ -96,11 +96,15 @@ public class LevelGenerator : MonoBehaviour
     {
         for (int i = 0; i < roomsInDongeon.Count; i++)
         {
-            Instantiate(roomsInDongeon[i], new Vector3(roomsInDongeon[i].transform.position.x,
+          GameObject tmpRoom = Instantiate(roomsInDongeon[i], new Vector3(roomsInDongeon[i].transform.position.x,
                                                        roomsInDongeon[i].transform.position.y + Constants.OFFSET_DONGEON,
                                                        roomsInDongeon[i].transform.position.z),
                                                        Quaternion.identity);
+         Room r = tmpRoom.GetComponent<Room>();
+         r.ApertureCheck();
+         r.MakeDoors();
         }
+
     }
 
     private bool CreateRoomTemplate(int idRoom)

@@ -42,6 +42,7 @@ public class Room : MonoBehaviour
          * Traduction de nos booleans d'entrées en mask 
          * */
         //Cette methode va rensegné les boolean ci-dessus
+        updateMask();
         ApertureCheck();
         ChangeTypeOfRoom();
 
@@ -57,7 +58,7 @@ public class Room : MonoBehaviour
         OpenDoor();        
     }
 
-    private void MakeDoors()//[REFACTOT COLLISION ROOM] §1
+    public void MakeDoors()//[REFACTOT COLLISION ROOM] §1
     {
         char[] array = mask.ToCharArray(); // On découpe notre mask en un tableau pour pouvoir récupérer individuellement chaque caractère (= char). 
         for (int i = 0; i < array.Length; i++)
@@ -138,6 +139,24 @@ public class Room : MonoBehaviour
         }
     }
 
+    public void updateMask()
+    {
+        Vector2 rightCheck = new Vector2(transform.position.x + Constants.OFFSET, transform.position.y);
+        Vector2 leftCheck = new Vector2(transform.position.x - Constants.OFFSET, transform.position.y);
+        Vector2 upCheck = new Vector2(transform.position.x, transform.position.y + Constants.OFFSET);
+        Vector2 downCheck = new Vector2(transform.position.x, transform.position.y - Constants.OFFSET);
+
+        // Passage de += a =, ça nique notre mask 
+        mask =
+            (Physics2D.OverlapCircle(rightCheck, Constants.CIRCLE_RADIUS) != null) ? // condition qu'on test
+            "1" // valeur renvoyée si condition vraie
+            : "0"; // Valeur renvoyée si condition fausse
+
+        mask += (Physics2D.OverlapCircle(downCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
+        mask += (Physics2D.OverlapCircle(leftCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
+        mask += (Physics2D.OverlapCircle(upCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
+    }
+
     public void ApertureCheck()
     {
         /*
@@ -148,17 +167,7 @@ public class Room : MonoBehaviour
         Vector2 upCheck = new Vector2(transform.position.x, transform.position.y + Constants.OFFSET);
         Vector2 downCheck = new Vector2(transform.position.x, transform.position.y - Constants.OFFSET);
 
-        mask +=  
-            (Physics2D.OverlapCircle(rightCheck, Constants.CIRCLE_RADIUS) != null) ? // condition qu'on test
-            "1" // valeur renvoyée si condition vraie
-            : "0"; // Valeur renvoyée si condition fausse
-        
-        mask += (Physics2D.OverlapCircle(downCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
-        mask += (Physics2D.OverlapCircle(leftCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
-        mask += (Physics2D.OverlapCircle(upCheck, Constants.CIRCLE_RADIUS) != null) ? "1" : "0";
-
         /*
-         * Pas cool cool cool
          * On ajoute au dico des voisins les rooms voisine (s'il y a lieu)
          */
         if (Physics2D.OverlapCircle(rightCheck, Constants.CIRCLE_RADIUS) != null)
