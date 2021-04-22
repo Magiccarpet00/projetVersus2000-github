@@ -136,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
     public void Slide()
     {
         transform.position = new Vector2(Mathf.Lerp(transform.position.x, destinationSlide.x, Constants.SLIDE_MOVEMENT),
-                                                         Mathf.Lerp(transform.position.y, destinationSlide.y, Constants.SLIDE_MOVEMENT));
+                                         Mathf.Lerp(transform.position.y, destinationSlide.y, Constants.SLIDE_MOVEMENT));
     }
 
     private void UpdateInputBuffer()
