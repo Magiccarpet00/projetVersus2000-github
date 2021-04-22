@@ -5,7 +5,8 @@ public class Bullet : MonoBehaviour
 {
     private Dictionary<Direction, Vector2> allDirection = new Dictionary<Direction, Vector2>();
     public Direction currDir;
-    private float lifeTime = 5f; //[DEUS EX FLOTINA BUGYBUG] c'est en augmentant le lifeTime que le bug de coroutine à été resolue
+    private float lifeTime = 0.8f;
+    private float lifeTimeSAFE = 5f; // Pour pas se prendre le bug de colision
     public int damage;
     private bool hasToutch; //Has tchoutch? xDDDD
 
@@ -30,6 +31,9 @@ public class Bullet : MonoBehaviour
     public System.Collections.IEnumerator LifeTime()
     {
         yield return new WaitForSeconds(lifeTime);
+        GetComponentInChildren<SpriteRenderer>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+        yield return new WaitForSeconds(lifeTimeSAFE);
         Destroy(this.gameObject);
     }
 

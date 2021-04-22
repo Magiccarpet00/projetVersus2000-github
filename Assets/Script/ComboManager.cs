@@ -123,6 +123,11 @@ public class ComboManager : MonoBehaviour
         {
             Debug.Log("perfect");
             AttackFantom(_player);
+
+            // Visuel sympa
+            Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Pentagrame]) as GameObject,
+                                       _player.transform.position,
+                                       Quaternion.identity);
         }
     }
 
