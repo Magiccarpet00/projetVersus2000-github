@@ -42,7 +42,11 @@ public class PlayerAttack : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetButton(playerInput.button0) && isAttacking == false && playerHealth.isInvincible == false && playerHealth.dead == false)
+        if (Input.GetButton(playerInput.button0) 
+            && !isAttacking 
+            && !playerHealth.isInvincible 
+            && !playerHealth.dead
+            && !playerMovement.isBetweenRooms)
         {
             //[Annimation]
             animator.SetBool("Button_Down", true);
@@ -51,7 +55,11 @@ public class PlayerAttack : MonoBehaviour
             playerMovement.checkSwitchBoxMove("isBufferingAttack", isBufferingAttack);
         }
 
-        else if (Input.GetButtonUp(playerInput.button0) && isAttacking == false && playerHealth.isInvincible == false && playerHealth.dead == false) // isInvincible c'est quand on se fait touché donc c'est ptet bof comme nom...
+        else if (Input.GetButtonUp(playerInput.button0)
+                && !isAttacking 
+                && !playerHealth.isInvincible 
+                && !playerHealth.dead
+                && !playerMovement.isBetweenRooms) // isInvincible c'est quand on se fait touché donc c'est ptet bof comme nom...
         {
             isBufferingAttack = false;
             playerMovement.checkSwitchBoxMove("isBufferingAttack", isBufferingAttack);

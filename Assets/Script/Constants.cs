@@ -11,7 +11,7 @@ public static class Constants
     public const int SHOP_ITEMS = 2;
     public const float RADIUS_JOYSTICK = 0.3f;
     public const float OFFSET_ATTACK = 0.5f;
-    public const float SECOND_ATTACK_CD = 0.6f;
+    public const float SECOND_ATTACK_CD = 0.5f;
     public const float OFFSET_RANDOM_BUMPING = 2.5f;
     public const float SPEED_BUMPING = 5f;
     public const float TIME_TO_BUMPING = 0.3f;
