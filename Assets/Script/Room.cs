@@ -220,7 +220,7 @@ public class Room : MonoBehaviour
         {
             foreach (var item in neighbors.Keys)
             {
-                Debug.Log("Mes voisins sont: " + neighbors[item]);
+                //Debug.Log("Mes voisins sont: " + neighbors[item]);
             }
             
             playerOnThisRoom = true;

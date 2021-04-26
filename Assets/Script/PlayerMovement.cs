@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Pour le derappage 
     private bool onSlide;
-    private Vector2 destinationSlide;
+    public Vector2 destinationSlide;
 
     private void Start()
     {
@@ -107,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
                 else if (isBetweenRooms) // Quand on est dans l'entre deux room
                 {
                     rb.MovePosition(rb.position + directionAutoWalk * maxMoveSpeed * Time.fixedDeltaTime);
+                    
                 }
                 else // Deplacement normale
                 {
@@ -118,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
                         rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
                         destinationSlide = new Vector2(transform.position.x + (movement.x)/Constants.SLIDE_DIVISION,
                                                        transform.position.y + (movement.y)/Constants.SLIDE_DIVISION);
+                        
                     }
                     else
                     {
@@ -134,9 +136,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Slide()
-    {
+    {        
         transform.position = new Vector2(Mathf.Lerp(transform.position.x, destinationSlide.x, Constants.SLIDE_MOVEMENT),
-                                         Mathf.Lerp(transform.position.y, destinationSlide.y, Constants.SLIDE_MOVEMENT));
+                                         Mathf.Lerp(transform.position.y, destinationSlide.y, Constants.SLIDE_MOVEMENT));        
     }
 
     private void UpdateInputBuffer()
@@ -221,6 +223,9 @@ public class PlayerMovement : MonoBehaviour
     {
         isBetweenRooms = true;
         checkSwitchBoxMove("betweenRooms", isBetweenRooms);
+
+       
+
         directionAutoWalk = new Vector2(roomDestination.transform.position.x - roomOrigine.transform.position.x,
                                         roomDestination.transform.position.y - roomOrigine.transform.position.y);
 

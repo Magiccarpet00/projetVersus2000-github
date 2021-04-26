@@ -116,7 +116,7 @@ public class LevelGenerator : MonoBehaviour
             roomsInDongeonP2.Add(room2);
             TypeOfRoom(idRoom, room);
             TypeOfRoom(idRoom, room2); // la classe ;-)
-            return true;
+            return true; 
         }
         else
         {            
