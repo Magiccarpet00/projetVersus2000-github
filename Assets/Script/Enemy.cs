@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     public float currentHealth;
     public int damage;
     public bool dead;
-    public bool haveBubble;
 
     // Varriable patrol
     public float maxSpeed;
@@ -26,9 +25,25 @@ public class Enemy : MonoBehaviour
 
     public Vector3 dir;
 
-    // Varrible bubble
     public Room currentRoom;
-    
+
+    //Bubble  variable
+    private GameObject bubble;
+    public bool haveBubble;
+    public bool destroyBubble;
+    public Animator animatorBubble;
+
+
+    public void Start()
+    {
+        if (haveBubble)
+        {
+            bubble = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Bubble]) as GameObject, transform.position, Quaternion.identity);
+            animatorBubble = bubble.GetComponent<Animator>();
+            bubble.transform.parent = this.transform;
+        }
+    }
+
     private void Update()
     {
         if (activated && !dead && timeBeforeMove ==0)
@@ -105,7 +120,15 @@ public class Enemy : MonoBehaviour
         {
             if (!dead)
             {
-                StartCoroutine(Die());
+                if(haveBubble && !destroyBubble)
+                {
+                    animatorBubble.SetTrigger("plop");
+                    destroyBubble = true;
+                }
+                else
+                {
+                    StartCoroutine(Die());
+                }
             }
         }
 
@@ -113,7 +136,15 @@ public class Enemy : MonoBehaviour
         {
             if (!dead)
             {
-                StartCoroutine(Die());
+                if (haveBubble && !destroyBubble)
+                {
+                    animatorBubble.SetTrigger("plop");
+                    destroyBubble = true;
+                }
+                else
+                {
+                    StartCoroutine(Die());
+                }
             }
         }
     }

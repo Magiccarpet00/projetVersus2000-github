@@ -66,6 +66,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 6090341774974130789}
+    - target: {fileID: 927416267954496023, guid: 71826ff6a50fc6f499890db2e0858493,
+        type: 3}
+      propertyPath: haveBubble
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7422425158517523284, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
       propertyPath: m_RootOrder

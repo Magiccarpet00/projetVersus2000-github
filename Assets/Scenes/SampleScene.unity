@@ -928,6 +928,7 @@ MonoBehaviour:
   isStunned: 0
   isBetweenRooms: 0
   directionAutoWalk: {x: 0, y: 0}
+  destinationSlide: {x: 0, y: 0}
 --- !u!114 &1319672017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1327,7 +1328,8 @@ MonoBehaviour:
   shop: {fileID: 4311658509053371382, guid: 30aeae702448c934ea3c8771461fb995, type: 3}
   roomTemplate: {fileID: 8924454163981090457, guid: 3d447a2a67c55d549a15eb8e28610e50,
     type: 3}
-  roomsInDongeon: []
+  roomsInDongeonP1: []
+  roomsInDongeonP2: []
   nbOfRooms: 10
 --- !u!1 &1685725050
 GameObject:
@@ -1694,6 +1696,7 @@ MonoBehaviour:
   isStunned: 0
   isBetweenRooms: 0
   directionAutoWalk: {x: 0, y: 0}
+  destinationSlide: {x: 0, y: 0}
 --- !u!114 &1851930912
 MonoBehaviour:
   m_ObjectHideFlags: 0

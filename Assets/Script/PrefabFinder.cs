@@ -9,7 +9,8 @@ public enum Ressources
     Explosion,
     Detection_player,
     Ghost_bullet,
-    Pentagrame
+    Pentagrame,
+    Bubble
 }
 public static class PrefabFinder
 {
@@ -24,6 +25,7 @@ public static class PrefabFinder
         RessourcesToURI[Ressources.Detection_player] = "detecteur_player";
         RessourcesToURI[Ressources.Ghost_bullet] = "fantomball";
         RessourcesToURI[Ressources.Pentagrame] = "invocation_fantom";
+        RessourcesToURI[Ressources.Bubble] = "bubule";
     }
 
 
