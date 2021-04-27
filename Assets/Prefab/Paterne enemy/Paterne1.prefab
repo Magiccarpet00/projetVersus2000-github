@@ -73,8 +73,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 927416267954496023, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
+      propertyPath: timeBeforeMove
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 927416267954496023, guid: 71826ff6a50fc6f499890db2e0858493,
+        type: 3}
       propertyPath: timeBeforeInvok
-      value: 1
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7422425158517523284, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
@@ -176,8 +181,13 @@ PrefabInstance:
       objectReference: {fileID: 3712371031071001985}
     - target: {fileID: 927416267954496023, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
+      propertyPath: timeBeforeMove
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 927416267954496023, guid: 71826ff6a50fc6f499890db2e0858493,
+        type: 3}
       propertyPath: timeBeforeInvok
-      value: 1
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7422425158517523284, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
@@ -279,8 +289,13 @@ PrefabInstance:
       objectReference: {fileID: 3712371032153234373}
     - target: {fileID: 927416267954496023, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
+      propertyPath: timeBeforeMove
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 927416267954496023, guid: 71826ff6a50fc6f499890db2e0858493,
+        type: 3}
       propertyPath: timeBeforeInvok
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5711440843843787913, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
@@ -387,8 +402,13 @@ PrefabInstance:
       objectReference: {fileID: 3712371030608477876}
     - target: {fileID: 927416267954496023, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
+      propertyPath: timeBeforeMove
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 927416267954496023, guid: 71826ff6a50fc6f499890db2e0858493,
+        type: 3}
       propertyPath: timeBeforeInvok
-      value: 1
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5711440843843787913, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}

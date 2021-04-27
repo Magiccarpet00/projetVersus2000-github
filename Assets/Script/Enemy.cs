@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public float currentHealth;
     public int damage;
     public bool dead;
-    public float timeBeforeInvok;
+    
     public Animator animator;
 
     // Varriable patrol
@@ -23,7 +23,12 @@ public class Enemy : MonoBehaviour
     public Transform target;
     private int destinationPoint;
     public bool activated;
+
+    [Range(0f, 10f)]
+    public float timeBeforeInvok;
+    [Range(0f,10f)]
     public float timeBeforeMove;
+    
 
     public Vector3 dir;
 
@@ -44,7 +49,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(timeBeforeInvok);
         animator.SetTrigger("Invok");
-        yield return new WaitForSeconds(1f); //Temps de la petit roue qui tourne
+        yield return new WaitForSeconds(Constants.ENEMY_INVOK_DURATION); //Temps de la petit roue qui tourne
 
         if (haveBubble)
         {
@@ -53,6 +58,7 @@ public class Enemy : MonoBehaviour
             bubble.transform.parent = this.transform;
         }
 
+        this.GetComponent<BoxCollider2D>().enabled = true;
         activated = true;
     }
 

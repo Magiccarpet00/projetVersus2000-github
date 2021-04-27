@@ -23,4 +23,5 @@ public static class Constants
     public const float SLIDE_MOVEMENT = 0.1f;
     public const float SLIDE_DIVISION = 3f;
     public const float OFFSET_TAPIS_ROULANT = 1f;
+    public const float ENEMY_INVOK_DURATION = 1f;
 }
