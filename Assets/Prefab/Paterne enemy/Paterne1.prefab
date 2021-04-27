@@ -71,6 +71,11 @@ PrefabInstance:
       propertyPath: haveBubble
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 927416267954496023, guid: 71826ff6a50fc6f499890db2e0858493,
+        type: 3}
+      propertyPath: timeBeforeInvok
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7422425158517523284, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
       propertyPath: m_RootOrder
@@ -169,6 +174,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 3712371031071001985}
+    - target: {fileID: 927416267954496023, guid: 71826ff6a50fc6f499890db2e0858493,
+        type: 3}
+      propertyPath: timeBeforeInvok
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7422425158517523284, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
       propertyPath: m_RootOrder
@@ -267,6 +277,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 3712371032153234373}
+    - target: {fileID: 927416267954496023, guid: 71826ff6a50fc6f499890db2e0858493,
+        type: 3}
+      propertyPath: timeBeforeInvok
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5711440843843787913, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -370,6 +385,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 3712371030608477876}
+    - target: {fileID: 927416267954496023, guid: 71826ff6a50fc6f499890db2e0858493,
+        type: 3}
+      propertyPath: timeBeforeInvok
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5711440843843787913, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -19,7 +19,7 @@ public class PatternEnemy : MonoBehaviour
     {
         for (int i = 0; i < enemiesInPattern.Count; i++)
         {
-            enemiesInPattern[i].activated = true;
+            enemiesInPattern[i].SetUp();
             enemiesInPattern[i].currentRoom = patternRoom;
         }
     }

@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     public float currentHealth;
     public int damage;
     public bool dead;
+    public float timeBeforeInvok;
+    public Animator animator;
 
     // Varriable patrol
     public float maxSpeed;
@@ -33,15 +35,25 @@ public class Enemy : MonoBehaviour
     public bool destroyBubble;
     public Animator animatorBubble;
 
-
-    public void Start()
+    public void SetUp()
     {
+        StartCoroutine(SetUpCoroutine());  // on est rusé nous ;)
+    }
+
+    public IEnumerator SetUpCoroutine()
+    {
+        yield return new WaitForSeconds(timeBeforeInvok);
+        animator.SetTrigger("Invok");
+        yield return new WaitForSeconds(1f); //Temps de la petit roue qui tourne
+
         if (haveBubble)
         {
             bubble = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Bubble]) as GameObject, transform.position, Quaternion.identity);
             animatorBubble = bubble.GetComponent<Animator>();
             bubble.transform.parent = this.transform;
         }
+
+        activated = true;
     }
 
     private void Update()
