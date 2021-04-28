@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 714580310871110031}
   - component: {fileID: 7769089784218858676}
   m_Layer: 0
-  m_Name: ColliderDOWN
-  m_TagString: Untagged
+  m_Name: ColliderDOWN_Close
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

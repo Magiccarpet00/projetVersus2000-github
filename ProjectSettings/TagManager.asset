@@ -8,6 +8,7 @@ TagManager:
   - "Ep\xE9e"
   - DoorsTrigger
   - Explosion
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TreeEditor;
 using UnityEngine;
 using static PlayerMovement;
 
@@ -11,7 +12,7 @@ public class PlayerAttack : MonoBehaviour
     public Animator animator;
 
     Dictionary<InputBufferDirection, InfoAttack> directionOffSet_And_Rotation = new Dictionary<InputBufferDirection, InfoAttack>();
-
+    public GameObject rangeAttackPrefab;
     public GameObject epeePrefab;
     public PlayerMovement playerMovement;
     public PlayerHealth playerHealth;
@@ -41,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
     }    
     
     void Update()
-    {
+    {   //ATTACK
         if (Input.GetButton(playerInput.button0) 
             && !isAttacking 
             && !playerHealth.isInvincible 
@@ -71,7 +72,23 @@ public class PlayerAttack : MonoBehaviour
             playerMovement.checkSwitchBoxMove("isAttacking", isAttacking);
 
             StartCoroutine(Attack()); // C'est bof d'après félix            
-        }        
+        }
+
+
+
+
+
+
+
+        // RANGE ATTACK
+        if (Input.GetButtonDown(playerInput.button1)
+            && !isAttacking
+            && !playerHealth.isInvincible
+            && !playerHealth.dead
+            && !playerMovement.isBetweenRooms)
+        {
+            RangeAttaque();
+        }
     }
 
     public IEnumerator Attack()
@@ -89,4 +106,12 @@ public class PlayerAttack : MonoBehaviour
         playerMovement.checkSwitchBoxMove("isAttacking", isAttacking);
         
     }
+
+    // RANGE ATTACK
+
+    public void RangeAttaque()
+    {
+        Instantiate(rangeAttackPrefab, transform.position, Quaternion.identity);
+    }
+
 }

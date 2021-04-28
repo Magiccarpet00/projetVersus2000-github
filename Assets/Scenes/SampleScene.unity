@@ -883,6 +883,7 @@ MonoBehaviour:
   isAttacking: 0
   isBufferingAttack: 0
   animator: {fileID: 1800445370}
+  rangeAttackPrefab: {fileID: 0}
   epeePrefab: {fileID: 3231854286922200953, guid: 0d6975ce1f3541a48b2ad267b3b464e3,
     type: 3}
   playerMovement: {fileID: 1319672016}
@@ -971,7 +972,7 @@ MonoBehaviour:
   horizontalAxeJoypad: Horizontal_J1
   verticalAxeJoypad: Vertical_J1
   button0: Button0_J1
-  button1: 
+  button1: Button1_J1
   button2: 
   start: 
 --- !u!1 &1357857454
@@ -1665,6 +1666,7 @@ MonoBehaviour:
   isAttacking: 0
   isBufferingAttack: 0
   animator: {fileID: 1264510712}
+  rangeAttackPrefab: {fileID: 0}
   epeePrefab: {fileID: 3231854286922200953, guid: 0d6975ce1f3541a48b2ad267b3b464e3,
     type: 3}
   playerMovement: {fileID: 1851930911}

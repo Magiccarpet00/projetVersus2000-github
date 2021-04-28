@@ -120,8 +120,7 @@ public class Enemy : MonoBehaviour
         Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Explosion]) as GameObject, transform.position, Quaternion.identity);
     }
 
-    // Provisoire
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //[Code review] ? mais pas sur pcq au final je trouve ça bien
     {
         if (collision.CompareTag("Player"))
         {            
@@ -163,6 +162,24 @@ public class Enemy : MonoBehaviour
                 {
                     StartCoroutine(Die());
                 }
+            }
+        }
+
+        if (collision.CompareTag("Range_Attack"))
+        {
+            if (!dead)
+            {
+                if (haveBubble && !destroyBubble)
+                {
+                    animatorBubble.SetTrigger("plop");
+                    destroyBubble = true;
+                }
+                else
+                {
+                    StartCoroutine(Die());
+                }
+
+                Destroy(collision.gameObject);
             }
         }
     }

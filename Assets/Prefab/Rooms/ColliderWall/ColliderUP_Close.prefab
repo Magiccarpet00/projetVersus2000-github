@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4728916605745575062}
   - component: {fileID: 2565809784819806637}
   m_Layer: 0
-  m_Name: ColliderUP
-  m_TagString: Untagged
+  m_Name: ColliderUP_Close
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
