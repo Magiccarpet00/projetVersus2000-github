@@ -193,6 +193,7 @@ public class PlayerMovement : MonoBehaviour
 
         isBumped = false;
         checkSwitchBoxMove("isBumped", isBumped);
+        destinationSlide = transform.position;
     }
 
     /*
