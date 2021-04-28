@@ -74,12 +74,6 @@ public class PlayerAttack : MonoBehaviour
             StartCoroutine(Attack()); // C'est bof d'après félix            
         }
 
-
-
-
-
-
-
         // RANGE ATTACK
         if (Input.GetButtonDown(playerInput.button1)
             && !isAttacking
