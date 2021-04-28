@@ -49,7 +49,6 @@ MonoBehaviour:
   currentHealth: 10
   damage: 1
   dead: 0
-  timeBeforeInvok: 0
   animator: {fileID: 6492566219415803909}
   maxSpeed: 0
   speed: 2
@@ -58,6 +57,7 @@ MonoBehaviour:
   - {fileID: 7422425159080248423}
   target: {fileID: 0}
   activated: 0
+  timeBeforeInvok: 0
   timeBeforeMove: 0
   dir: {x: 0, y: 0, z: 0}
   currentRoom: {fileID: 0}

@@ -38,7 +38,7 @@ public class Enemy : MonoBehaviour
     private GameObject bubble;
     public bool haveBubble;
     public bool destroyBubble;
-    public Animator animatorBubble;
+    public Animator animatorBubble; // pour moi on devrait avoir bubble.animatorBubble (i say that I say nothing)
 
     public void SetUp()
     {
@@ -133,13 +133,14 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        if (collision.CompareTag("Epée"))
+        // c'est déjà plus compact ;-)
+        if (collision.CompareTag("Epée") || collision.CompareTag("Explosion") || collision.CompareTag("Range_Attack"))
         {
             if (!dead)
             {
                 if(haveBubble && !destroyBubble)
                 {
-                    animatorBubble.SetTrigger("plop");
+                    animatorBubble.SetTrigger("plop"); // what kind of name is this ?
                     destroyBubble = true;
                 }
                 else
@@ -147,40 +148,8 @@ public class Enemy : MonoBehaviour
                     StartCoroutine(Die());
                 }
             }
-        }
-
-        if (collision.CompareTag("Explosion"))
-        {
-            if (!dead)
-            {
-                if (haveBubble && !destroyBubble)
-                {
-                    animatorBubble.SetTrigger("plop");
-                    destroyBubble = true;
-                }
-                else
-                {
-                    StartCoroutine(Die());
-                }
-            }
-        }
-
-        if (collision.CompareTag("Range_Attack"))
-        {
-            if (!dead)
-            {
-                if (haveBubble && !destroyBubble)
-                {
-                    animatorBubble.SetTrigger("plop");
-                    destroyBubble = true;
-                }
-                else
-                {
-                    StartCoroutine(Die());
-                }
-
+            if (collision.CompareTag("Range_Attack"))
                 Destroy(collision.gameObject);
-            }
         }
     }
 }
