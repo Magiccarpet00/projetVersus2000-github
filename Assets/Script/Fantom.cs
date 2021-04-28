@@ -5,13 +5,15 @@ public class Fantom : MonoBehaviour
 {
     public Transform playerToFocus;
     public float speed;
+    public int damage;
 
     public Animator animator;
     public float timeBeforeInvok; // J'aimerrais bien utiliser avec lanimation au lieux d'une constante
     public float lifeTime;
+    public float stopTime;
 
     public bool isDead;
-    public bool isActivated;
+    public bool isRunning;
 
     private void Start()
     {        
@@ -21,14 +23,17 @@ public class Fantom : MonoBehaviour
     public IEnumerator Invocation()
     {        
         yield return new WaitForSeconds(timeBeforeInvok);
-        isActivated = true;
-        yield return new WaitForSeconds(lifeTime);
+        isRunning = true;
+        yield return new WaitForSeconds(lifeTime-stopTime);
+        isRunning = false;
+        animator.SetTrigger("pre_die");
+        yield return new WaitForSeconds(stopTime);
         Die();
     }
 
     private void Update()
     {
-        if(isActivated == true)
+        if(isRunning == true)
         {
             transform.position = Vector2.MoveTowards(transform.position, playerToFocus.position, speed * Time.deltaTime);
         }
@@ -52,5 +57,21 @@ public class Fantom : MonoBehaviour
         }
             Destroy(this.gameObject);
         }
+
+    private void OnTriggerEnter2D(Collider2D collision) // ça resemble bcp a la methode dans ennemy [Code Review]
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (collision.GetComponent<PlayerHealth>().isInvincible == false)
+            {
+                Vector2 dir = collision.transform.position - this.transform.position;
+                dir = dir.normalized;
+
+                StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(dir, damage));
+            }
+        }
     }
+}
+
+
 
