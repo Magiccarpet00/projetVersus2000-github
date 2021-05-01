@@ -1733,7 +1733,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelGenerator
   m_TagString: Untagged
-  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1788,7 +1788,6 @@ MonoBehaviour:
   UP_RIGHT_DOWN_LEFT: {fileID: 7168522572659596406, guid: 99eb4ddf58d4dd244b4d2a39ba14a0b9,
     type: 3}
   allPatternInGame:
-  - {fileID: 4243784699040087873, guid: 1fe320ebeb615ff4f9cfdcf72419038b, type: 3}
   - {fileID: 6048442294966027120, guid: 43cfd9e08103ce845820ecc0e944666e, type: 3}
   allBossInGame:
   - {fileID: 4520089852928657234, guid: ab7b83125d91710468940e6c9e520d98, type: 3}

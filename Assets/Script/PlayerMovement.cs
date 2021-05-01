@@ -102,8 +102,9 @@ public class PlayerMovement : MonoBehaviour
             if(!isBumped)
             {
                 if (playerAttack.isAttacking) // Pendant l'attaque, ça glisse, attention secousse !
-                {                    
-                    rb.MovePosition(rb.position + (directionVector[InputBuffer]) * Time.fixedDeltaTime);
+                {                  
+                    // PAS SUR DE CETTE MECANIQUE
+                    //rb.MovePosition(rb.position + (directionVector[InputBuffer]) * Time.fixedDeltaTime);
                 }
                 else if (playerAttack.isBufferingAttack)
                 {
