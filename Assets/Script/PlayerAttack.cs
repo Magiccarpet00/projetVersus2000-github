@@ -9,14 +9,25 @@ public class PlayerAttack : MonoBehaviour
     public bool isAttacking;
     public bool isBufferingAttack;
 
-    public Animator animator;
-
     Dictionary<InputBufferDirection, InfoAttack> directionOffSet_And_Rotation = new Dictionary<InputBufferDirection, InfoAttack>();
+
     public GameObject rangeAttackPrefab;
     public GameObject epeePrefab;
+
+    public Animator animator;
     public PlayerMovement playerMovement;
     public PlayerHealth playerHealth;
     public PlayerInput playerInput;
+    public PlayerInventory playerInventory;
+
+    private void Start()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+        playerHealth = GetComponent<PlayerHealth>();
+        playerInput = GetComponent<PlayerInput>();
+        playerInventory = GetComponent<PlayerInventory>();
+        animator = GetComponentInChildren<Animator>();
+    }
 
     public struct InfoAttack
     {
@@ -79,7 +90,8 @@ public class PlayerAttack : MonoBehaviour
             && !isAttacking
             && !playerHealth.isInvincible
             && !playerHealth.dead
-            && !playerMovement.isBetweenRooms)
+            && !playerMovement.isBetweenRooms
+            && playerInventory.munitionRangeAttack > 0)
         {
             RangeAttaque();
         }
@@ -102,10 +114,10 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // RANGE ATTACK
-
     public void RangeAttaque()
     {
         Instantiate(rangeAttackPrefab, transform.position, Quaternion.identity);
+        playerInventory.munitionRangeAttack--;
+        playerInventory.UpdateUI();
     }
-
 }

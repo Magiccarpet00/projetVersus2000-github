@@ -7,11 +7,10 @@ public class PlayerMovement : MonoBehaviour
 {
     public float maxMoveSpeed;
     public float currentMoveSpeed;
-    public Rigidbody2D rb;
     private Vector2 movement;
 
     public Animator animator;
-
+    public Rigidbody2D rb;
     public PlayerHealth playerHealth;
     public PlayerInput playerInput;
     public PlayerAttack playerAttack;
@@ -44,6 +43,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        playerHealth = GetComponent<PlayerHealth>();
+        playerInput = GetComponent<PlayerInput>();
+        playerAttack = GetComponent<PlayerAttack>();
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponentInChildren<Animator>();
+
         currentMoveSpeed = maxMoveSpeed;
         canMove = true;
         switchBoxMove = new Dictionary<string, bool>();

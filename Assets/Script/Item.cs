@@ -11,11 +11,11 @@ public class Item : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if(collision.GetComponent<Inventory>().gold >= price)
+            if(collision.GetComponent<PlayerInventory>().gold >= price)
             {
                 AddItemToInventoryPlayer(collision);
                 RemoveObjectOfShop();
-                collision.GetComponent<Inventory>().gold -= price;
+                collision.GetComponent<PlayerInventory>().gold -= price;
             }            
         }
     }
@@ -23,7 +23,7 @@ public class Item : MonoBehaviour
     private void AddItemToInventoryPlayer(Collider2D player)
     {
         // je pense que je vais pas ajouter ce scripte a la liste Item mais un autre avec juste les info de l'item ou je sais pas
-        player.GetComponent<Inventory>().items.Add(this);
+        player.GetComponent<PlayerInventory>().items.Add(this);
     }
 
     private void RemoveObjectOfShop()

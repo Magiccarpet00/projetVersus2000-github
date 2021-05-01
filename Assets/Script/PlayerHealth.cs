@@ -27,6 +27,8 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        playerMovement = GetComponent<PlayerMovement>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     public IEnumerator TakeDamage(Vector2 _bumpForce, int amount)
