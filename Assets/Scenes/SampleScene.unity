@@ -883,7 +883,8 @@ MonoBehaviour:
   isAttacking: 0
   isBufferingAttack: 0
   animator: {fileID: 1800445370}
-  rangeAttackPrefab: {fileID: 0}
+  rangeAttackPrefab: {fileID: 3041685214359989782, guid: 32ebe32aafbbf5a42a93f8c8aa0efe81,
+    type: 3}
   epeePrefab: {fileID: 3231854286922200953, guid: 0d6975ce1f3541a48b2ad267b3b464e3,
     type: 3}
   playerMovement: {fileID: 1319672016}

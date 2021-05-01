@@ -9,6 +9,7 @@ TagManager:
   - DoorsTrigger
   - Explosion
   - Wall
+  - Range_Attack
   layers:
   - Default
   - TransparentFX
