@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     public Transform target;
     private int destinationPoint;
     public bool activated;
+    private bool isStop;
 
     [Range(0f, 10f)]
     public float timeBeforeInvok;
@@ -64,7 +65,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (activated && !dead && timeBeforeMove ==0)
+        if (activated && !dead && timeBeforeMove ==0 && !isStop)
         {
             Patrol();
         }
@@ -90,9 +91,33 @@ public class Enemy : MonoBehaviour
         //Si l'ennemi est quasiment arriver à destination
         if (Vector3.Distance(transform.position, target.position) < Constants.DESTINATION_NEARBY)
         {
-            destinationPoint = (destinationPoint + 1) % wayPoints.Length;
-            target = wayPoints[destinationPoint];
+            if(target.GetComponent<Target>().stopTarget == true)
+            {
+                StartCoroutine(StopMove());
+            }
+            else
+            {
+                ChangeTarget();
+            }            
         }
+    }
+
+    public IEnumerator StopMove()
+    {
+        isStop = true;
+
+        float timeStop = target.GetComponent<Target>().timeStop;
+        yield return new WaitForSeconds(timeStop);
+
+        isStop = false;
+        ChangeTarget();
+    }
+
+    public void ChangeTarget()
+    {
+        //Changement de target
+        destinationPoint = (destinationPoint + 1) % wayPoints.Length;
+        target = wayPoints[destinationPoint];
     }
 
     /*
