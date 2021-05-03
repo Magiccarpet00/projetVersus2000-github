@@ -1095,9 +1095,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.09}
   serializedVersion: 2
-  m_Radius: 0.2
+  m_Radius: 0.12
 --- !u!50 &1319672012
 Rigidbody2D:
   serializedVersion: 4
@@ -1788,6 +1788,9 @@ MonoBehaviour:
   UP_RIGHT_DOWN_LEFT: {fileID: 7168522572659596406, guid: 99eb4ddf58d4dd244b4d2a39ba14a0b9,
     type: 3}
   allPatternInGame:
+  - {fileID: 4243784699040087873, guid: 1fe320ebeb615ff4f9cfdcf72419038b, type: 3}
+  - {fileID: 6048442294966027120, guid: 43cfd9e08103ce845820ecc0e944666e, type: 3}
+  - {fileID: 4710122437119610777, guid: 22c176da8952fc149ac703d3b54aa8dd, type: 3}
   - {fileID: 2431862314479411834, guid: 1339889ca6747a24793bb64c5786bf41, type: 3}
   allBossInGame:
   - {fileID: 4520089852928657234, guid: ab7b83125d91710468940e6c9e520d98, type: 3}

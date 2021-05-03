@@ -164,7 +164,7 @@ public class Enemy : MonoBehaviour
         }
 
         // c'est déjà plus compact ;-)
-        if (collision.CompareTag("Epée") || collision.CompareTag("Explosion") || collision.CompareTag("Range_Attack"))
+        if (collision.CompareTag("Epée") || collision.CompareTag("Explosion"))
         {
             if (!dead)
             {
@@ -178,8 +178,39 @@ public class Enemy : MonoBehaviour
                     StartCoroutine(Die());
                 }
             }
-            if (collision.CompareTag("Range_Attack"))
+        }
+
+        if (collision.CompareTag("Range_Attack"))
+        {
+            if (!dead)
+            {
+                if (haveBubble && !destroyBubble)
+                {
+                    animatorBubble.SetTrigger("plop"); // what kind of name is this ?
+                    destroyBubble = true;
+
+                    //Redonner une munition au joueur quand il touche la bubble (PROVISOIR)
+                    GameManager.instance.players[0].GetComponent<PlayerInventory>().munitionRangeAttack++;
+                    GameManager.instance.players[0].GetComponent<PlayerInventory>().UpdateUI();
+
+                }
+                else
+                {
+                    TakeDamage(1); //ok je suis un bébé...
+                }
+
                 Destroy(collision.gameObject);
+            }
+            
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth = currentHealth - damage;
+        if(currentHealth <= 0)
+        {
+            StartCoroutine(Die());
         }
     }
 }
