@@ -1078,7 +1078,7 @@ GameObject:
   m_Layer: 0
   m_Name: PlayerTest1
   m_TagString: Player
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1788,7 +1788,7 @@ MonoBehaviour:
   UP_RIGHT_DOWN_LEFT: {fileID: 7168522572659596406, guid: 99eb4ddf58d4dd244b4d2a39ba14a0b9,
     type: 3}
   allPatternInGame:
-  - {fileID: 6048442294966027120, guid: 43cfd9e08103ce845820ecc0e944666e, type: 3}
+  - {fileID: 2431862314479411834, guid: 1339889ca6747a24793bb64c5786bf41, type: 3}
   allBossInGame:
   - {fileID: 4520089852928657234, guid: ab7b83125d91710468940e6c9e520d98, type: 3}
   shop: {fileID: 4311658509053371382, guid: 30aeae702448c934ea3c8771461fb995, type: 3}
@@ -2145,7 +2145,7 @@ GameObject:
   m_Layer: 0
   m_Name: PlayerTest2
   m_TagString: Player
-  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1

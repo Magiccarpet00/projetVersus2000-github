@@ -41,6 +41,11 @@ public class Enemy : MonoBehaviour
     public bool destroyBubble;
     public Animator animatorBubble; // pour moi on devrait avoir bubble.animatorBubble (i say that I say nothing)
 
+    private void Start()
+    {
+        target = wayPoints[0];
+    }
+
     public void SetUp()
     {
         StartCoroutine(SetUpCoroutine());  // on est rusé nous ;)
