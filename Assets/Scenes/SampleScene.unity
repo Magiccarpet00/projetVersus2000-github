@@ -1790,6 +1790,7 @@ MonoBehaviour:
   allPatternInGame:
   - {fileID: 3554882415255931243, guid: 2dc512cf47a2da64dbe6cdb7ce285b95, type: 3}
   - {fileID: 5558101628267799457, guid: 79961e9d6bde349419daee95a26a988a, type: 3}
+  - {fileID: 4710122437119610777, guid: 22c176da8952fc149ac703d3b54aa8dd, type: 3}
   allBossInGame:
   - {fileID: 4520089852928657234, guid: ab7b83125d91710468940e6c9e520d98, type: 3}
   allFloorInGame:
