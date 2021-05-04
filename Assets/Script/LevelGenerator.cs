@@ -18,6 +18,8 @@ public class LevelGenerator : MonoBehaviour
 
     public List<GameObject> allBossInGame = new List<GameObject>();
 
+    public List<GameObject> allFloorInGame = new List<GameObject>();
+
     public GameObject shop;
 
 
@@ -71,9 +73,10 @@ public class LevelGenerator : MonoBehaviour
     IEnumerator CreateLevelTemplate()
     {
         Move(Direction.UP,-1);
-        int roomRngRange, bossRngRange, roomRng, bossRng;
+        int roomRngRange, bossRngRange, floorRngRange, roomRng, bossRng, floorRng;
         roomRngRange = allPatternInGame.Count;
         bossRngRange = allBossInGame.Count;
+        floorRngRange = allFloorInGame.Count;
         // On commence par crée la structur de base du donjon, sans les portes ni la forme des room
         int id = 0;
         while (id < nbOfRooms)
@@ -92,8 +95,9 @@ public class LevelGenerator : MonoBehaviour
         {
             roomRng = UnityEngine.Random.Range(0, roomRngRange);
             bossRng= UnityEngine.Random.Range(0, bossRngRange);
-            roomsInDongeonP1[i].GetComponent<Room>().TransformationRoom(roomRng,bossRng);
-            roomsInDongeonP2[i].GetComponent<Room>().TransformationRoom(roomRng, bossRng);
+            floorRng = UnityEngine.Random.Range(0, floorRngRange);
+            roomsInDongeonP1[i].GetComponent<Room>().TransformationRoom(roomRng,bossRng,floorRng);
+            roomsInDongeonP2[i].GetComponent<Room>().TransformationRoom(roomRng, bossRng,floorRng);
         }
 
     }

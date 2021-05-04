@@ -36,7 +36,7 @@ public class Room : MonoBehaviour
 
 
     //public TypeOfRoom typeOfRoom;   
-    public void TransformationRoom(int roomRng,int bossRng)
+    public void TransformationRoom(int roomRng,int bossRng, int floorRng)
     {
         /*
          * Traduction de nos booleans d'entrées en mask 
@@ -44,7 +44,7 @@ public class Room : MonoBehaviour
         //Cette methode va rensegné les boolean ci-dessus
         updateMask();
         ApertureCheck();
-        ChangeTypeOfRoom(roomRng,bossRng);
+        ChangeTypeOfRoom(roomRng,bossRng, floorRng);
 
         GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.maskToDoor[mask].GetComponent<SpriteRenderer>().sprite;
 
@@ -267,7 +267,7 @@ public class Room : MonoBehaviour
 
     // Je voulais le faire avec des enums mais je comprend pas, ou ptet des classes 
     // abstraite, du coup je vais faire ça comme un sagouin et on verra en code CodeReview    
-    public void ChangeTypeOfRoom(int roomRng, int bossRng)
+    public void ChangeTypeOfRoom(int roomRng, int bossRng, int floorRng)
     {
         if (typeRoom == TypeRoom.SHOP)
         {
@@ -282,15 +282,19 @@ public class Room : MonoBehaviour
         }
         else if (typeRoom == TypeRoom.VANILLA)
         {
+            // POUR LE PATERN
             patternInThisRoom = Instantiate(LevelGenerator.instance.allPatternInGame[roomRng], transform.position, Quaternion.identity);
             patternInThisRoom.transform.parent = this.transform;
-
             /*
              * Partage d'information entre Room et Pattern
              */
             patternInThisRoom.GetComponent<PatternEnemy>().patternRoom = this;
 
             this.maxEnnemies = patternInThisRoom.GetComponent<PatternEnemy>().enemiesInPattern.Count; // Transfert du nombre d'ennemi du Pattern au niveau de la room          
+
+            //POUR LE SOL (FLOOR)
+            GameObject floorInThisRoom = Instantiate(LevelGenerator.instance.allFloorInGame[floorRng], transform.position, Quaternion.identity);
+            floorInThisRoom.transform.parent = this.transform;
         }
         else
         {
