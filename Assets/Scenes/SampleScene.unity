@@ -1127,7 +1127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319672010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.932, y: -0.964, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1800445368}
@@ -1788,6 +1788,7 @@ MonoBehaviour:
   UP_RIGHT_DOWN_LEFT: {fileID: 7630950021111796093, guid: 59ade5189ea48674e9067030dba4813e,
     type: 3}
   allPatternInGame:
+  - {fileID: 3554882415255931243, guid: 2dc512cf47a2da64dbe6cdb7ce285b95, type: 3}
   - {fileID: 5558101628267799457, guid: 79961e9d6bde349419daee95a26a988a, type: 3}
   allBossInGame:
   - {fileID: 4520089852928657234, guid: ab7b83125d91710468940e6c9e520d98, type: 3}
