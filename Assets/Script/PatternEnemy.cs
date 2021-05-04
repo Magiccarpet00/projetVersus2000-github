@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -11,7 +12,10 @@ public class PatternEnemy : MonoBehaviour
 
     public int maxEnemies;
     public Room patternRoom; // Permet de savoir où on est (et par extension les ennemis reliés savent où ils sont)
-        
+
+    public List<GameObject> obstacles = new List<GameObject>(); // TOUJOURS 3
+
+
     /*
      * Update: Je me sers de cette méthode pour faire tout ce qui concerne l'initialisation ici
      */
@@ -22,5 +26,11 @@ public class PatternEnemy : MonoBehaviour
             enemiesInPattern[i].SetUp();
             enemiesInPattern[i].currentRoom = patternRoom;
         }
+    }
+
+    public void SelectObstacle(int obstacleRng) // Les obstacles sont de base desactiver
+    {
+        // Petit filoutrie si sur tout les paterns ya le même nombre dobstacle total (3 par exemple)
+        obstacles[obstacleRng].SetActive(true);
     }
 }

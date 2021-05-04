@@ -73,7 +73,8 @@ public class LevelGenerator : MonoBehaviour
     IEnumerator CreateLevelTemplate()
     {
         Move(Direction.UP,-1);
-        int roomRngRange, bossRngRange, floorRngRange, roomRng, bossRng, floorRng;
+        int roomRngRange, bossRngRange, floorRngRange,
+            roomRng, bossRng, floorRng;    //[Code Review] ça va faire ptet bcp de paramettre
         roomRngRange = allPatternInGame.Count;
         bossRngRange = allBossInGame.Count;
         floorRngRange = allFloorInGame.Count;
@@ -93,11 +94,14 @@ public class LevelGenerator : MonoBehaviour
         //Ici on va transformé les roomTemplate en room avec des ouvertures sur les cotés
         for (int i = 0; i < roomsInDongeonP1.Count; i++) // ils sont ""sensés"" être les mêmes... Le seront il vraiment? ;-)
         {
+            // LE RANDOM TIME YOUHOU
             roomRng = UnityEngine.Random.Range(0, roomRngRange);
             bossRng= UnityEngine.Random.Range(0, bossRngRange);
             floorRng = UnityEngine.Random.Range(0, floorRngRange);
-            roomsInDongeonP1[i].GetComponent<Room>().TransformationRoom(roomRng,bossRng,floorRng);
-            roomsInDongeonP2[i].GetComponent<Room>().TransformationRoom(roomRng, bossRng,floorRng);
+            int obstacleRng = UnityEngine.Random.Range(0, Constants.RANDOM_OBSTACLE_COUNT);
+
+            roomsInDongeonP1[i].GetComponent<Room>().TransformationRoom(roomRng,bossRng,floorRng, obstacleRng);
+            roomsInDongeonP2[i].GetComponent<Room>().TransformationRoom(roomRng, bossRng,floorRng, obstacleRng);
         }
 
     }

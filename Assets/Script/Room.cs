@@ -36,7 +36,7 @@ public class Room : MonoBehaviour
 
 
     //public TypeOfRoom typeOfRoom;   
-    public void TransformationRoom(int roomRng,int bossRng, int floorRng)
+    public void TransformationRoom(int roomRng,int bossRng, int floorRng, int obstacleRng)
     {
         /*
          * Traduction de nos booleans d'entrées en mask 
@@ -44,7 +44,7 @@ public class Room : MonoBehaviour
         //Cette methode va rensegné les boolean ci-dessus
         updateMask();
         ApertureCheck();
-        ChangeTypeOfRoom(roomRng,bossRng, floorRng);
+        ChangeTypeOfRoom(roomRng,bossRng, floorRng, obstacleRng);
 
         GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.maskToDoor[mask].GetComponent<SpriteRenderer>().sprite;
 
@@ -267,7 +267,7 @@ public class Room : MonoBehaviour
 
     // Je voulais le faire avec des enums mais je comprend pas, ou ptet des classes 
     // abstraite, du coup je vais faire ça comme un sagouin et on verra en code CodeReview    
-    public void ChangeTypeOfRoom(int roomRng, int bossRng, int floorRng)
+    public void ChangeTypeOfRoom(int roomRng, int bossRng, int floorRng, int obstacleRng)
     {
         if (typeRoom == TypeRoom.SHOP)
         {
@@ -289,8 +289,11 @@ public class Room : MonoBehaviour
              * Partage d'information entre Room et Pattern
              */
             patternInThisRoom.GetComponent<PatternEnemy>().patternRoom = this;
+            patternInThisRoom.GetComponent<PatternEnemy>().SelectObstacle(obstacleRng);
 
             this.maxEnnemies = patternInThisRoom.GetComponent<PatternEnemy>().enemiesInPattern.Count; // Transfert du nombre d'ennemi du Pattern au niveau de la room          
+
+            
 
             //POUR LE SOL (FLOOR)
             GameObject floorInThisRoom = Instantiate(LevelGenerator.instance.allFloorInGame[floorRng], transform.position, Quaternion.identity);
