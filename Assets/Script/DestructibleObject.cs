@@ -8,6 +8,8 @@ public class DestructibleObject : MonoBehaviour
     public Animator animator;
     public BoxCollider2D boxCollider;
 
+    public GameObject coins; 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Epée") || collision.CompareTag("Explosion"))
@@ -19,6 +21,8 @@ public class DestructibleObject : MonoBehaviour
 
             animator.SetTrigger("Destroy");
             boxCollider.enabled = false;
+
+            Instantiate(coins, transform.position, Quaternion.identity);
 
         }
     }

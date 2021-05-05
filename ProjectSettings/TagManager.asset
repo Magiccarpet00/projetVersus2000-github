@@ -10,6 +10,7 @@ TagManager:
   - Explosion
   - Wall
   - Range_Attack
+  - Coins
   layers:
   - Default
   - TransparentFX

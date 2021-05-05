@@ -148,6 +148,7 @@ MonoBehaviour:
   - {fileID: 897770746088490812}
   animator: {fileID: 8377733248561043936}
   boxCollider: {fileID: 897770745738027756}
+  coins: {fileID: 7024113073348217801, guid: f4a0d2ec97e266c4cb360a60e7da9b29, type: 3}
 --- !u!1 &897770746088490814
 GameObject:
   m_ObjectHideFlags: 0
