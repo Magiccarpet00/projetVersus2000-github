@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public bool dead;
     
     public Animator animator;
+    public SpriteRenderer shadow;
 
     // Varriable patrol
     public float maxSpeed;
@@ -69,7 +70,8 @@ public class Enemy : MonoBehaviour
             bubble.transform.parent = this.transform;
         }
 
-        this.GetComponent<BoxCollider2D>().enabled = true;
+        this.GetComponent<CircleCollider2D>().enabled = true;
+        shadow.enabled = true;
         activated = true;
     }
 
@@ -137,8 +139,9 @@ public class Enemy : MonoBehaviour
     public IEnumerator Die()
     {
         dead = true;
-        this.GetComponent<BoxCollider2D>().enabled = false;
-        this.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        this.GetComponent<CircleCollider2D>().enabled = false;
+        this.GetComponentInChildren<SpriteRenderer>().enabled = false; //[Code Review] shadow et sprite trop similaire
+        shadow.enabled = false;
         currentRoom.notifyDeath();
 
         //[CODE REVIEW] Faire en sorte d'avoir le joueur responsable d'une explosion / meurtre / truc en mémoire
