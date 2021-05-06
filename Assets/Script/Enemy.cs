@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     public Transform target;
     private int destinationPoint;
     public bool activated;
+    public bool pre_activated;
     private bool isStop;
 
     [Range(0f, 10f)]
@@ -48,7 +49,11 @@ public class Enemy : MonoBehaviour
 
     public void SetUp()
     {
-        StartCoroutine(SetUpCoroutine());  // on est rusé nous ;)
+        if (!pre_activated)
+        {
+            pre_activated = true;
+            StartCoroutine(SetUpCoroutine());  // on est rusé nous ;)
+        }        
     }
 
     public IEnumerator SetUpCoroutine()
