@@ -8,16 +8,17 @@ public class SlideCoins : MonoBehaviour
     private float destinationSlideY;
     private bool onSlide = true;
 
+    private float slideOffSet = 0.5f;
     void Start()
     {
-        destinationSlideX = transform.position.x + Random.Range(-1f, 1f);
-        destinationSlideY = transform.position.y + Random.Range(-1f, 1f);
+        destinationSlideX = transform.position.x + Random.Range(-slideOffSet, slideOffSet);
+        destinationSlideY = transform.position.y + Random.Range(-slideOffSet, slideOffSet);
 
         StartCoroutine(TimeSlide());
     }
     private IEnumerator TimeSlide()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         onSlide = false;
     }
     void Update()
