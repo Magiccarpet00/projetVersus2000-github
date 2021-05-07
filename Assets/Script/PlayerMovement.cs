@@ -158,21 +158,29 @@ public class PlayerMovement : MonoBehaviour
             if (movement.x >= Constants.RADIUS_JOYSTICK)
             {
                 InputBuffer = InputBufferDirection.RIGHT;
+                animator.SetFloat("Buffer_Horizontal", 1f);
+                animator.SetFloat("Buffer_Vertical", 0f);
             }
 
             if (movement.x <= -Constants.RADIUS_JOYSTICK)
             {
                 InputBuffer = InputBufferDirection.LEFT;
+                animator.SetFloat("Buffer_Horizontal", -1f);
+                animator.SetFloat("Buffer_Vertical", 0f);
             }
 
             if (movement.y >= Constants.RADIUS_JOYSTICK)
             {
                 InputBuffer = InputBufferDirection.UP;
+                animator.SetFloat("Buffer_Horizontal", 0f);
+                animator.SetFloat("Buffer_Vertical", 1f);
             }
 
             if (movement.y <= -Constants.RADIUS_JOYSTICK)
             {
                 InputBuffer = InputBufferDirection.DOWN;
+                animator.SetFloat("Buffer_Horizontal", 0f);
+                animator.SetFloat("Buffer_Vertical", -1f);
             }
         }        
     }
