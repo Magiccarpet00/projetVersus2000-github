@@ -71,7 +71,11 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw(playerInput.horizontalAxeJoypad);
         movement.y = Input.GetAxisRaw(playerInput.verticalAxeJoypad);
 
-        if(movement.magnitude > Constants.RADIUS_JOYSTICK)
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
+
+        if (movement.magnitude > Constants.RADIUS_JOYSTICK)
         {
             onSlide = false;
         }
