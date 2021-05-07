@@ -47,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
         playerMovement.checkSwitchBoxMove("isStunned", playerMovement.isStunned);
 
         //[Annimation]
-        animator.SetBool("receiveHit", true);
+        animator.SetTrigger("receiveHit");
 
         StartCoroutine(playerMovement.Bumping(_bumpForce));
 
@@ -58,7 +58,7 @@ public class PlayerHealth : MonoBehaviour
         playerMovement.checkSwitchBoxMove("isStunned", playerMovement.isStunned);
 
         //[Annimation]
-        animator.SetBool("receiveHit", false); // Pour l'instant je triche pcq l'annime s'arrete pas au bon momment
+        //animator.SetBool("receiveHit", false); // Pour l'instant je triche pcq l'annime s'arrete pas au bon momment
 
         yield return new WaitForSeconds(Constants.TIME_INVINCIBLE_AFTER_HITSTUN);
         isInvincible = false;        
