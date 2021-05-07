@@ -105,7 +105,7 @@ public class PlayerAttack : MonoBehaviour
         epee.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(infoAttack.DelayAttack);
         
-        Destroy(epee);
+        //Destroy(epee);
 
         isAttacking = false;
         playerMovement.checkSwitchBoxMove("isAttacking", isAttacking);
