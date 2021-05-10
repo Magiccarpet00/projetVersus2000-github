@@ -35,21 +35,21 @@ public class PlayerHealth : MonoBehaviour
     {
         isInvincible = true;
 
-        currentHealth -= amount;
-        if(currentHealth <= 0)
-        {
-            Die();
-        }
-        UpdateHealthUI();
+        StartCoroutine(playerMovement.Bumping(_bumpForce));
 
         //Freeze le gugus
         playerMovement.isStunned = true;
         playerMovement.checkSwitchBoxMove("isStunned", playerMovement.isStunned);
 
+        currentHealth -= amount;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+        UpdateHealthUI();
+
         //[Annimation]
         animator.SetTrigger("receiveHit");
-
-        StartCoroutine(playerMovement.Bumping(_bumpForce));
 
         yield return new WaitForSeconds(Constants.TIME_TO_HITSTUN); // Après être repousé on ne peut plus bouger pendant TIME TO HITSTUN secondes
 
@@ -67,9 +67,8 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         dead = true;
-        this.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        animator.SetTrigger("die");
         this.GetComponent<CircleCollider2D>().enabled = false;
-        
     }
 
     public void UpdateHealthUI()

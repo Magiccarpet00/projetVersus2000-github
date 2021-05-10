@@ -137,11 +137,10 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
             }
-            
-            else if (isBumped) // On se fait déplacer par le bump sans contrôle du joueur
-            {
-                rb.MovePosition(rb.position + bumpForce * Time.fixedDeltaTime);
-            }
+        }
+        if (isBumped) // On se fait déplacer par le bump sans contrôle du joueur
+        {
+            rb.MovePosition(rb.position + bumpForce * Time.fixedDeltaTime);
         }
     }
 
