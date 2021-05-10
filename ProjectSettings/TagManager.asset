@@ -11,6 +11,8 @@ TagManager:
   - Wall
   - Range_Attack
   - Coins
+  - Enemy
+  - Bubble
   layers:
   - Default
   - TransparentFX

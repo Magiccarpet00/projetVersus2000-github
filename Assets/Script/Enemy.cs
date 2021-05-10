@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     
     public Animator animator;
     public SpriteRenderer shadow;
+    public CircleCollider2D hitbox;
 
     // Varriable patrol
     public float maxSpeed;
@@ -46,6 +47,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         target = wayPoints[0];
+        hitbox = GetComponent<CircleCollider2D>();
     }
 
     public void SetUp()
@@ -68,9 +70,15 @@ public class Enemy : MonoBehaviour
             bubble = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Bubble]) as GameObject, transform.position, Quaternion.identity);
             animatorBubble = bubble.GetComponent<Animator>();
             bubble.transform.parent = this.transform;
+            bubble.GetComponent<Bubble>().atachedEnemy = this.gameObject;
+            destroyBubble = false;
+        }
+        else
+        {
+            destroyBubble = true;
         }
 
-        this.GetComponent<CircleCollider2D>().enabled = true;
+        hitbox.enabled = true;
         shadow.enabled = true;
         activated = true;
     }
@@ -139,7 +147,7 @@ public class Enemy : MonoBehaviour
     public IEnumerator Die()
     {
         dead = true;
-        this.GetComponent<CircleCollider2D>().enabled = false;
+        hitbox.enabled = false;
         this.GetComponentInChildren<SpriteRenderer>().enabled = false; //[Code Review] shadow et sprite trop similaire
         shadow.enabled = false;
         currentRoom.notifyDeath();
@@ -172,44 +180,22 @@ public class Enemy : MonoBehaviour
         }
 
         // c'est déjà plus compact ;-)
-        if (collision.CompareTag("Epée") || collision.CompareTag("Explosion"))
+        if (collision.CompareTag("Epée") || collision.CompareTag("Explosion") || collision.CompareTag("Range_Attack"))
         {
             if (!dead)
             {
-                if(haveBubble && !destroyBubble)
-                {
-                    animatorBubble.SetTrigger("plop"); // what kind of name is this ?
-                    destroyBubble = true;
-                }
-                else
+                if (destroyBubble)
                 {
                     StartCoroutine(Die());
+                    if (collision.CompareTag("Range_Attack"))
+                    {
+                        //Redonner une munition au joueur quand il touche la bubble (PROVISOIR)
+                        GameManager.instance.players[0].GetComponent<PlayerInventory>().munitionRangeAttack++;
+                        GameManager.instance.players[0].GetComponent<PlayerInventory>().UpdateUI();
+                        Destroy(collision.gameObject);
+                    }
                 }
             }
-        }
-
-        if (collision.CompareTag("Range_Attack"))
-        {
-            if (!dead)
-            {
-                if (haveBubble && !destroyBubble)
-                {
-                    animatorBubble.SetTrigger("plop"); // what kind of name is this ?
-                    destroyBubble = true;
-
-                    //Redonner une munition au joueur quand il touche la bubble (PROVISOIR)
-                    GameManager.instance.players[0].GetComponent<PlayerInventory>().munitionRangeAttack++;
-                    GameManager.instance.players[0].GetComponent<PlayerInventory>().UpdateUI();
-
-                }
-                else
-                {
-                    TakeDamage(1); //ok je suis un bébé...
-                }
-
-                Destroy(collision.gameObject);
-            }
-            
         }
     }
 

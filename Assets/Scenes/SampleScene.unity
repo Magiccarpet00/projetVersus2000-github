@@ -188,9 +188,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1295619595
-  m_SortingLayer: 5
-  m_SortingOrder: -1
+  m_SortingLayerID: 422693501
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7f7fd5a4642b8e54dbe2d2a884016fd5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.2}
   m_FlipX: 0
@@ -2064,11 +2064,7 @@ MonoBehaviour:
   UP_RIGHT_DOWN_LEFT: {fileID: 7630950021111796093, guid: 59ade5189ea48674e9067030dba4813e,
     type: 3}
   allPatternInGame:
-  - {fileID: 4710122437119610777, guid: 22c176da8952fc149ac703d3b54aa8dd, type: 3}
   - {fileID: 2431862314479411834, guid: 1339889ca6747a24793bb64c5786bf41, type: 3}
-  - {fileID: 3554882415255931243, guid: 2dc512cf47a2da64dbe6cdb7ce285b95, type: 3}
-  - {fileID: 1394586523416233341, guid: cb0f604a7d550e8469735577fce2e278, type: 3}
-  - {fileID: 5558101628267799457, guid: 79961e9d6bde349419daee95a26a988a, type: 3}
   allBossInGame:
   - {fileID: 4520089852928657234, guid: ab7b83125d91710468940e6c9e520d98, type: 3}
   allFloorInGame:
@@ -2304,8 +2300,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1295619595
-  m_SortingLayer: 5
+  m_SortingLayerID: -2108907901
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -3777711887633120045, guid: da6495782f0131e41ac4da94b84eaf88,
     type: 3}
