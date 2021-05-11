@@ -117,7 +117,7 @@ public class PlayerAttack : MonoBehaviour
     {
         animator.SetTrigger("range_attaque");
         Vector2 posRangeAttaque = new Vector2(transform.position.x, transform.position.y + 0.5f);
-        Instantiate(rangeAttackPrefab, posRangeAttaque, Quaternion.identity);
+        GameObject rangeAttack = Instantiate(rangeAttackPrefab, posRangeAttaque, Quaternion.identity);
         playerInventory.munitionRangeAttack--;
         playerInventory.UpdateUI();
     }

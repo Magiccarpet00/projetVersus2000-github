@@ -1345,7 +1345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   isBufferingAttack: 0
-  rangeAttackPrefab: {fileID: 3041685214359989782, guid: 32ebe32aafbbf5a42a93f8c8aa0efe81,
+  rangeAttackPrefab: {fileID: 2323581752581583730, guid: 32ebe32aafbbf5a42a93f8c8aa0efe81,
     type: 3}
   epeePrefab: {fileID: 3231854286922200953, guid: 0d6975ce1f3541a48b2ad267b3b464e3,
     type: 3}

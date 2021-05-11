@@ -15,7 +15,7 @@ public class Bubble : MonoBehaviour
             animator.SetTrigger("plop");
             if (collision.CompareTag("Range_Attack"))
             {
-
+                GameObject rangeAttackRetrit = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.RangeAttackRetrit]) as GameObject, transform.position, Quaternion.identity);                
             }
         }
     }

@@ -26,9 +26,4 @@ public class RangeAttack : MonoBehaviour
             speed = 0;
         }
     }
-
-    public void AutoDestruction()
-    {
-        Destroy(this.gameObject);
-    }
 }
