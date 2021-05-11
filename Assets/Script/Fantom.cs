@@ -8,6 +8,7 @@ public class Fantom : MonoBehaviour
     public int damage;
 
     public Animator animator;
+    public SpriteRenderer shadow;
     public float timeBeforeInvok; // J'aimerrais bien utiliser avec lanimation au lieux d'une constante
     public float lifeTime;
     public float stopTime;
@@ -24,6 +25,7 @@ public class Fantom : MonoBehaviour
     {        
         yield return new WaitForSeconds(timeBeforeInvok);
         isRunning = true;
+        shadow.enabled = true;
         yield return new WaitForSeconds(lifeTime-stopTime);
         isRunning = false;
         animator.SetTrigger("pre_die");
@@ -62,7 +64,8 @@ public class Fantom : MonoBehaviour
             bullet4.GetComponent<Bullet>().currDir = Direction.RIGHT;
 
         }
-            Destroy(this.gameObject);
+        
+        Destroy(this.gameObject);
         }
 
     private void OnTriggerEnter2D(Collider2D collision) // ça resemble bcp a la methode dans ennemy [Code Review]
