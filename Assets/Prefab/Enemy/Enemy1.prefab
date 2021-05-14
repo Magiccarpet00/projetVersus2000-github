@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5711440843843787913}
   - component: {fileID: 927416267954496023}
   - component: {fileID: 8030557071406763109}
+  - component: {fileID: 4108990831455881334}
   m_Layer: 0
   m_Name: Enemy-physics
   m_TagString: Enemy
@@ -51,7 +52,8 @@ MonoBehaviour:
   dead: 0
   animator: {fileID: 6492566219415803909}
   shadow: {fileID: 7639108837204768538}
-  hitbox: {fileID: 0}
+  hitbox: {fileID: 8030557071406763109}
+  collisionBox: {fileID: 4108990831455881334}
   maxSpeed: 0
   speed: 2
   wayPoints:
@@ -83,6 +85,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.032275796}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!58 &4108990831455881334
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4200314561579519106}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.15
 --- !u!1 &7422425158517523285
 GameObject:
   m_ObjectHideFlags: 0

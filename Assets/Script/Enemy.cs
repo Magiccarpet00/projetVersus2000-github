@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public Animator animator;
     public SpriteRenderer shadow;
     public CircleCollider2D hitbox;
+    public CircleCollider2D collisionBox;
 
     // Varriable patrol
     public float maxSpeed;
@@ -47,7 +48,6 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         target = wayPoints[0];
-        hitbox = GetComponent<CircleCollider2D>();
     }
 
     public void SetUp()
@@ -148,6 +148,7 @@ public class Enemy : MonoBehaviour
     {
         dead = true;
         hitbox.enabled = false;
+        collisionBox.enabled = false;
         this.GetComponentInChildren<SpriteRenderer>().enabled = false; //[Code Review] shadow et sprite trop similaire
         shadow.enabled = false;
         currentRoom.notifyDeath();
@@ -189,9 +190,6 @@ public class Enemy : MonoBehaviour
                     StartCoroutine(Die());
                     if (collision.CompareTag("Range_Attack"))
                     {
-                        //Redonner une munition au joueur quand il touche la bubble (PROVISOIR)
-                        GameManager.instance.players[0].GetComponent<PlayerInventory>().munitionRangeAttack++;
-                        GameManager.instance.players[0].GetComponent<PlayerInventory>().UpdateUI();
                         Destroy(collision.gameObject);
                     }
                 }

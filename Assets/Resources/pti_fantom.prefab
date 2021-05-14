@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 7811420212993515688}
   - component: {fileID: 6110194243064565139}
   - component: {fileID: 6545715753435013899}
+  - component: {fileID: 8867504670815309845}
   m_Layer: 0
   m_Name: pti_fantom
   m_TagString: Untagged
@@ -230,9 +231,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.016412675, y: 0.027354479}
+  m_Offset: {x: 0, y: 0.05663997}
   serializedVersion: 2
-  m_Radius: 0.31398964
+  m_Radius: 0.27663997
 --- !u!114 &6545715753435013899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,3 +256,19 @@ MonoBehaviour:
   stopTime: 0.5
   isDead: 0
   isRunning: 0
+--- !u!58 &8867504670815309845
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7811420212993515689}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.18
