@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
         UpdateInputBuffer();
 
         //Systeme de frezze
-        if(canMove == true)
+        if (canMove == true)
         {
             currentMoveSpeed = maxMoveSpeed;
         }
