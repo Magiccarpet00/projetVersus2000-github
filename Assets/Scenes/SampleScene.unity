@@ -1346,6 +1346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   isBufferingAttack: 0
+  isDashing: 0
   rangeAttackPrefab: {fileID: 2323581752581583730, guid: 32ebe32aafbbf5a42a93f8c8aa0efe81,
     type: 3}
   epeePrefab: {fileID: 3231854286922200953, guid: 0d6975ce1f3541a48b2ad267b3b464e3,
@@ -2453,7 +2454,7 @@ MonoBehaviour:
   horizontalAxeJoypad: Horizontal_J2
   verticalAxeJoypad: Vertical_J2
   button0: Button0_J2
-  button1: 
+  button1: Button1_J2
   button2: 
   start: 
 --- !u!114 &1851930909
@@ -2497,7 +2498,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAttacking: 0
   isBufferingAttack: 0
-  rangeAttackPrefab: {fileID: 0}
+  isDashing: 0
+  rangeAttackPrefab: {fileID: 2323581752581583730, guid: 32ebe32aafbbf5a42a93f8c8aa0efe81,
+    type: 3}
   epeePrefab: {fileID: 3231854286922200953, guid: 0d6975ce1f3541a48b2ad267b3b464e3,
     type: 3}
   animator: {fileID: 1264510712}

@@ -91,20 +91,23 @@ public class PlayerAttack : MonoBehaviour
             && !playerHealth.isInvincible
             && !playerHealth.dead
             && !playerMovement.isBetweenRooms
-            && playerInventory.munitionRangeAttack > 0)
+            && playerInventory.munitionRangeAttack > 0
+            )
         {
+            Debug.Log("buuton 1");
             RangeAttaque();
+            
         }
 
-        if (Input.GetButtonDown(playerInput.button2)
-            && !isAttacking
-            && !playerHealth.isInvincible
-            && !playerHealth.dead
-            && !playerMovement.isBetweenRooms
-            && !isDashing)
-        {
-            StartCoroutine(Dash());
-        }
+        //if (Input.GetButtonDown(playerInput.button2)
+        //    && !isAttacking
+        //    && !playerHealth.isInvincible
+        //    && !playerHealth.dead
+        //    && !playerMovement.isBetweenRooms
+        //    && !isDashing)
+        //{
+        //    StartCoroutine(Dash());
+        //}
     }
 
     public IEnumerator Attack()
@@ -126,11 +129,13 @@ public class PlayerAttack : MonoBehaviour
     
     public void RangeAttaque()
     {
-        animator.SetTrigger("range_attaque");
+        animator.SetTrigger("flip");
         Vector2 posRangeAttaque = new Vector2(transform.position.x, transform.position.y + 0.5f);
         GameObject rangeAttack = Instantiate(rangeAttackPrefab, posRangeAttaque, Quaternion.identity);
 
-        StartCoroutine(SpeedUp(1f, 0.6f)); // [CodeReview] Je sais pas ou mettre les caracteristique des competence je trouve que dans constante c'est bizzare
+        float speedTime = 1f;
+        float speedStrenght = 0.6f;
+        StartCoroutine(SpeedUp(speedTime, speedStrenght)); // [CodeReview] Je sais pas ou mettre les caracteristique des competence je trouve que dans constante c'est bizzare
 
         playerInventory.munitionRangeAttack--;
         playerInventory.UpdateUI();
@@ -150,7 +155,7 @@ public class PlayerAttack : MonoBehaviour
         float dashStrenght = 3f;
 
         isDashing = true;
-        animator.SetTrigger("range_attaque");
+        animator.SetTrigger("flip");
         StartCoroutine(SpeedUp(dashStrenght, dashTime));
         yield return new WaitForSeconds(dashTime);
         isDashing = false;
