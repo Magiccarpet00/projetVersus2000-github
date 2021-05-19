@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /*
- * code panique
+ * [code panique]
  * Diviser la partie waypoint / pas waypoint
  */
 public class Enemy : MonoBehaviour
@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
     private GameObject bubble;
     public bool haveBubble;
     public bool destroyBubble;
-    public Animator animatorBubble; // pour moi on devrait avoir bubble.animatorBubble (i say that I say nothing)
+    public Animator animatorBubble; // pour moi on devrait avoir bubble.animatorBubble
 
     private void Start()
     {
@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
         if (!pre_activated)
         {
             pre_activated = true;
-            StartCoroutine(SetUpCoroutine());  // on est rusé nous ;)
+            StartCoroutine(SetUpCoroutine());
         }        
     }
 
@@ -156,9 +156,9 @@ public class Enemy : MonoBehaviour
         //[CODE REVIEW] Faire en sorte d'avoir le joueur responsable d'une explosion / meurtre / truc en mémoire
         // On peut faire ça par détection dans la pièce où on est
 
-        //On fait la detection de quelle joueur à tuer le pauvre petit gugus
+        //On fait la detection de quelle joueur à tuer le petit gugus
         GameObject detectionPlayer = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Detection_player]) as GameObject, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(0.1f); //comme ça find player a le temps de find mdr
+        yield return new WaitForSeconds(0.1f); //comme ça find player a le temps de find
         GameObject player = detectionPlayer.GetComponent<FindPlayer>().playerFind;
 
         ComboManager.instance.AddToCombo(player);
@@ -180,7 +180,6 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        // c'est déjà plus compact ;-)
         if (collision.CompareTag("Epée") || collision.CompareTag("Explosion") || collision.CompareTag("Range_Attack"))
         {
             if (!dead)

@@ -16,7 +16,7 @@ public class RangeAttaqueRetrit : MonoBehaviour
     public IEnumerator FindPlayerVoid() //[code review] J'ai bien cette thecnique pour quoi ne pas en faire qqch de générique.
     {
         GameObject detectionPlayer = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Detection_player]) as GameObject, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(0.1f); //comme ça find player a le temps de find mdr
+        yield return new WaitForSeconds(0.1f); //comme ça find player a le temps de find
         playerToFollow = detectionPlayer.GetComponent<FindPlayer>().playerFind;
     }
 

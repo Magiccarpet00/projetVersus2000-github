@@ -136,7 +136,7 @@ public class ComboManager : MonoBehaviour
         /*
          * WARNING TUTO PASSAGE PAR REFERENCE
          */
-        //playerToCombos[player].Add(playerToCurrentCombo[player]);  // oh yeah j'ai ajouté mon combo actuel à ma liste des combos :-) cool cool 
+        //playerToCombos[player].Add(playerToCurrentCombo[player]);  // oh yeah j'ai ajouté mon combo actuel à ma liste des combos
         //playerToCurrentCombo[player].Clear(); 
 
         List<ComboItem> cloneSafe = new List<ComboItem>(playerToCurrentCombo[player]);
@@ -168,7 +168,7 @@ public class ComboManager : MonoBehaviour
 
         GameObject currentRoomPlayerDefenseur = GameManager.instance.playersPosition[playerDefenseur];
 
-        // Un peut de random ça fait pas de mal ;)
+        
         float rngX = Random.Range(-Constants.RANDOM_OFFSET_INSTANSIAT_FANTOM, Constants.RANDOM_OFFSET_INSTANSIAT_FANTOM);
         float rngY = Random.Range(-Constants.RANDOM_OFFSET_INSTANSIAT_FANTOM, Constants.RANDOM_OFFSET_INSTANSIAT_FANTOM);
         Vector3 offSetPossition = new Vector3(rngX, rngY, 0f);

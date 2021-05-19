@@ -21,7 +21,7 @@ public static class PrefabFinder
     {
         RessourcesToURI = new Dictionary<Ressources, string> ();
         RessourcesToURI[Ressources.Hat] = "sousdossier/hat";
-        RessourcesToURI[Ressources.Ghost] = "pti_fantom"; // *regard désapprobateur* pour ce nom
+        RessourcesToURI[Ressources.Ghost] = "pti_fantom"; 
         RessourcesToURI[Ressources.Explosion] = "explosion";
         RessourcesToURI[Ressources.Detection_player] = "detecteur_player";
         RessourcesToURI[Ressources.Ghost_bullet] = "fantomball";

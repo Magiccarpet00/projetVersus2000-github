@@ -71,7 +71,7 @@ public class PlayerAttack : MonoBehaviour
                 && !isAttacking 
                 && !playerHealth.isInvincible 
                 && !playerHealth.dead
-                && !playerMovement.isBetweenRooms) // isInvincible c'est quand on se fait touché donc c'est ptet bof comme nom...
+                && !playerMovement.isBetweenRooms) // isInvincible : c'est quand on se fait touché
         {
             isBufferingAttack = false;
             playerMovement.checkSwitchBoxMove("isBufferingAttack", isBufferingAttack);
@@ -82,7 +82,7 @@ public class PlayerAttack : MonoBehaviour
             isAttacking = true;
             playerMovement.checkSwitchBoxMove("isAttacking", isAttacking);
 
-            StartCoroutine(Attack()); // C'est bof d'après félix            
+            StartCoroutine(Attack());          
         }
 
         // RANGE ATTACK

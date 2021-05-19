@@ -19,7 +19,7 @@ public class Explosion : MonoBehaviour
 
         foreach (var clip in ac.animationClips)
         {
-            if (clip.name == "explosion") // valeur en dur ;)
+            if (clip.name == "explosion") 
             {
                 animLength = clip.length;
                 // si on étiat propre on quitterait la boucle à ce moment

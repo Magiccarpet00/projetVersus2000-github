@@ -47,7 +47,7 @@ public class Fantom : MonoBehaviour
         {
             isDead = true;
 
-            // Code review suggestion pour d'éventuelles balles en plus (ex: diagonales...) pour pas tout reconstruire
+            // [Code review] suggestion pour d'éventuelles balles en plus (ex: diagonales...) pour pas tout reconstruire
             //for (int i = 0; i < 3; i++)
             //{
             //    GameObject bullet = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Ghost_bullet]) as GameObject, transform.position, Quaternion.identity);

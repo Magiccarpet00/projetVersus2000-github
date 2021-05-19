@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     private float lifeTime = 0.8f;
     private float lifeTimeSAFE = 5f; // Pour pas se prendre le bug de colision
     public int damage;
-    private bool hasToutch; //Has tchoutch? xDDDD
+    private bool hasToutch;
 
     //[CodeReview?]
     void Start()

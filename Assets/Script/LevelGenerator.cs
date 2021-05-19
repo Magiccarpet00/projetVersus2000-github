@@ -92,7 +92,7 @@ public class LevelGenerator : MonoBehaviour
         }       
 
         //Ici on va transformé les roomTemplate en room avec des ouvertures sur les cotés
-        for (int i = 0; i < roomsInDongeonP1.Count; i++) // ils sont ""sensés"" être les mêmes... Le seront il vraiment? ;-)
+        for (int i = 0; i < roomsInDongeonP1.Count; i++)
         {
             // LE RANDOM TIME YOUHOU
             roomRng = UnityEngine.Random.Range(0, roomRngRange);
@@ -110,20 +110,20 @@ public class LevelGenerator : MonoBehaviour
     private bool CreateRoomTemplate(int idRoom)
     {
         // C'est important la position du move() dans l'execution du code
-        if (Physics2D.OverlapCircle(transform.position, Constants.CIRCLE_RADIUS) == null)
+        if (Physics2D.OverlapCircle(transform.position, Constants.CIRCLE_RADIUS) == null) // [Code Review] Code dupliqué
         {
             GameObject room = Instantiate(roomTemplate, transform.position, Quaternion.identity);
             GameObject room2 = Instantiate(roomTemplate, new Vector2(transform.position.x, transform.position.y + Constants.OFFSET_DONGEON), Quaternion.identity);
 
             room.name = "J1-Room" + idRoom.ToString();
-            room2.name = "J2-Room" + idRoom.ToString(); // duplicati duplicata
+            room2.name = "J2-Room" + idRoom.ToString();
 
             int rng = UnityEngine.Random.Range(0, 2);
-            Move(Direction.RNG, rng); // oh no man !!! RNG !!
+            Move(Direction.RNG, rng);
             roomsInDongeonP1.Add(room);
             roomsInDongeonP2.Add(room2);
             TypeOfRoom(idRoom, room);
-            TypeOfRoom(idRoom, room2); // la classe ;-)
+            TypeOfRoom(idRoom, room2); 
             return true; 
         }
         else
@@ -135,7 +135,7 @@ public class LevelGenerator : MonoBehaviour
 
     private void Move(Direction direction, int rng)
     {
-        Direction final = default; // ;-) permet de remplacer une déclaration à null qui fera hurler le compilateur
+        Direction final = default; // permet de remplacer une déclaration à null qui fera hurler le compilateur
         if(direction == Direction.RNG)
         {
             switch (rng)
@@ -172,7 +172,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private void TypeOfRoom(int idRoom, GameObject room) //g honte 
+    private void TypeOfRoom(int idRoom, GameObject room)
     {
         if(idRoom == Constants.SHOP_ROOM) // 
         {

@@ -100,12 +100,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Félix à "tout compris ;)         
         if (!playerHealth.dead)
         {
             if(!isBumped)
             {
-                if (playerAttack.isAttacking) // Pendant l'attaque, ça glisse, attention secousse !
+                if (playerAttack.isAttacking) // Pendant l'attaque, ça glisse
                 {                  
                     // PAS SUR DE CETTE MECANIQUE
                     //rb.MovePosition(rb.position + (directionVector[InputBuffer]) * Time.fixedDeltaTime);
@@ -121,9 +120,7 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else // Deplacement normale
                 {
-                    // truc trouver sur le web...
-                    //rb.velocity = new Vector2(Mathf.Lerp(0, movement.x * currentMoveSpeed, 0.8f),
-                    //                            Mathf.Lerp(0, movement.y * currentMoveSpeed, 0.8f));
+                    
                     if (!onSlide)
                     {
                         rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
@@ -200,9 +197,7 @@ public class PlayerMovement : MonoBehaviour
                       + UnityEngine.Random.Range(-Constants.OFFSET_RANDOM_BUMPING, Constants.OFFSET_RANDOM_BUMPING);
 
         bumpForce.y = bumpForce.normalized.y * Constants.SPEED_BUMPING;
-
-
-        //que peut faire ce boolean ???
+        
         isBumped = true;
         checkSwitchBoxMove("isBumped", isBumped);
 
@@ -225,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
          * Donc là j'appelle Containsvalue sur mon dictionnaire pour voir si il n'y a ne serait ce qu'une
          * seule valeur qui est à vrai, dans ce cas je n'ai pas le droit de me déplacer. Sinon tout va bien
          */
-        canMove = switchBoxMove.ContainsValue(true) ? false : true; // so easy... >;-) oh yeah
+        canMove = switchBoxMove.ContainsValue(true) ? false : true; 
 
         if (switchBoxMove.ContainsValue(true))
         {
