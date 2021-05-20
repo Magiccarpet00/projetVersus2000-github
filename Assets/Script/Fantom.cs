@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Fantom : MonoBehaviour
 {
-    public Transform playerToFocus;
+    public GameObject room;
+    public GameObject playerToFocus;
     public float speed;
     public int damage;
 
@@ -37,8 +38,15 @@ public class Fantom : MonoBehaviour
     {
         if(isRunning == true)
         {
-            transform.position = Vector2.MoveTowards(transform.position, playerToFocus.position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, playerToFocus.transform.position, speed * Time.deltaTime);
         }
+
+        if(GameManager.instance.playersPosition[playerToFocus] != room) // [Code Review] on passe dans update du coup pas opti
+        {
+            Destroy(gameObject);
+        }
+
+        
     }
 
     private void Die()

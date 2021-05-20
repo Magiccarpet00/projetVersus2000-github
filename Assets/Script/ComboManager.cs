@@ -174,7 +174,8 @@ public class ComboManager : MonoBehaviour
         Vector3 offSetPossition = new Vector3(rngX, rngY, 0f);
         
         GameObject newFantom = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Ghost]) as GameObject, currentRoomPlayerDefenseur.transform.position + offSetPossition, Quaternion.identity);
-        newFantom.GetComponent<Fantom>().playerToFocus = playerDefenseur.transform;
+        newFantom.GetComponent<Fantom>().playerToFocus = playerDefenseur;
+        newFantom.GetComponent<Fantom>().room = GameManager.instance.playersPosition[playerDefenseur];
     }
 
 }
