@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 bumpForce;
 
     public bool canMove;
-    public bool isStunned;
     public bool isBetweenRooms;
 
     public Vector2 directionAutoWalk;
@@ -51,9 +50,12 @@ public class PlayerMovement : MonoBehaviour
 
         currentMoveSpeed = maxMoveSpeed;
         canMove = true;
+
+
         switchBoxMove = new Dictionary<string, bool>();
         switchBoxMove["isBumped"] = false;
         switchBoxMove["betweenRooms"] = false;
+        switchBoxMove["isStunned"] = false;
 
         /*
          * [CODEREVIEW] Il faut utiliser les ENUM globales et pas celles locales
@@ -87,15 +89,7 @@ public class PlayerMovement : MonoBehaviour
         //Buffer
         UpdateInputBuffer();
 
-        //Systeme de frezze
-        if (canMove == true)
-        {
-            currentMoveSpeed = maxMoveSpeed;
-        }
-        else
-        {
-            currentMoveSpeed = 0;
-        }
+        currentMoveSpeed = maxMoveSpeed;
     }
 
     private void FixedUpdate()
@@ -104,12 +98,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if(!isBumped)
             {
-                if (playerAttack.isAttacking) // Pendant l'attaque, ça glisse
-                {                  
-                    // PAS SUR DE CETTE MECANIQUE
-                    //rb.MovePosition(rb.position + (directionVector[InputBuffer]) * Time.fixedDeltaTime);
-                }
-                else if (playerAttack.isBufferingAttack)
+                
+                if (playerAttack.isBufferingAttack)
                 {
                     Slide();
                 }
@@ -118,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
                     rb.MovePosition(rb.position + directionAutoWalk * maxMoveSpeed * Time.fixedDeltaTime);
                     
                 }
-                else // Deplacement normale
+                else if(canMove)// Deplacement normale
                 {
                     
                     if (!onSlide)

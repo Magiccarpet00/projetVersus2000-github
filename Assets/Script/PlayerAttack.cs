@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static PlayerMovement;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c'est player Ability  
 {
     public bool isAttacking;
     public bool isBufferingAttack;
@@ -82,7 +82,7 @@ public class PlayerAttack : MonoBehaviour
             isAttacking = true;
             playerMovement.checkSwitchBoxMove("isAttacking", isAttacking);
 
-            StartCoroutine(Attack());          
+            StartCoroutine(Attack());
         }
 
         // RANGE ATTACK
@@ -96,18 +96,17 @@ public class PlayerAttack : MonoBehaviour
         {
             Debug.Log("buuton 1");
             RangeAttaque();
-            
         }
 
-        //if (Input.GetButtonDown(playerInput.button2)
-        //    && !isAttacking
-        //    && !playerHealth.isInvincible
-        //    && !playerHealth.dead
-        //    && !playerMovement.isBetweenRooms
-        //    && !isDashing)
-        //{
-        //    StartCoroutine(Dash());
-        //}
+        if (Input.GetButtonDown(playerInput.button2)
+            && !isAttacking
+            && !playerHealth.isInvincible
+            && !playerHealth.dead
+            && !playerMovement.isBetweenRooms
+            && !isDashing)
+        {
+            StartCoroutine(Dash());
+        }
     }
 
     public IEnumerator Attack()
@@ -151,16 +150,13 @@ public class PlayerAttack : MonoBehaviour
 
     public IEnumerator Dash()
     {
-        float dashTime = 0.5f;
-        float dashStrenght = 3f;
+        float dashTime = 0.2f;
+        float dashStrenght = 4f;
 
         isDashing = true;
-        animator.SetTrigger("flip");
+        animator.SetTrigger("dash");
         StartCoroutine(SpeedUp(dashStrenght, dashTime));
         yield return new WaitForSeconds(dashTime);
         isDashing = false;
     }
-
-
-
 }

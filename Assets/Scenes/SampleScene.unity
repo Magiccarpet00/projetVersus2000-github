@@ -1396,7 +1396,6 @@ MonoBehaviour:
   isBumped: 0
   bumpForce: {x: 0, y: 0}
   canMove: 0
-  isStunned: 0
   isBetweenRooms: 0
   directionAutoWalk: {x: 0, y: 0}
   destinationSlide: {x: 0, y: 0}
@@ -2066,12 +2065,15 @@ MonoBehaviour:
   UP_RIGHT_DOWN_LEFT: {fileID: 7630950021111796093, guid: 59ade5189ea48674e9067030dba4813e,
     type: 3}
   allPatternInGame:
+  - {fileID: 6048442294966027120, guid: 43cfd9e08103ce845820ecc0e944666e, type: 3}
   - {fileID: 4710122437119610777, guid: 22c176da8952fc149ac703d3b54aa8dd, type: 3}
   - {fileID: 2431862314479411834, guid: 1339889ca6747a24793bb64c5786bf41, type: 3}
   - {fileID: 3554882415255931243, guid: 2dc512cf47a2da64dbe6cdb7ce285b95, type: 3}
   - {fileID: 1394586523416233341, guid: cb0f604a7d550e8469735577fce2e278, type: 3}
   - {fileID: 5558101628267799457, guid: 79961e9d6bde349419daee95a26a988a, type: 3}
   - {fileID: 5038188294165341614, guid: ab18b79e440faea40a21f01822e512be, type: 3}
+  - {fileID: 5705580669720692243, guid: f3c781e953f32194080150410e3c6f98, type: 3}
+  - {fileID: 6563661161344727773, guid: 24bef3cc331e445439931a6652973c41, type: 3}
   allBossInGame:
   - {fileID: 4520089852928657234, guid: ab7b83125d91710468940e6c9e520d98, type: 3}
   allFloorInGame:
@@ -2531,7 +2533,6 @@ MonoBehaviour:
   isBumped: 0
   bumpForce: {x: 0, y: 0}
   canMove: 0
-  isStunned: 0
   isBetweenRooms: 0
   directionAutoWalk: {x: 0, y: 0}
   destinationSlide: {x: 0, y: 0}

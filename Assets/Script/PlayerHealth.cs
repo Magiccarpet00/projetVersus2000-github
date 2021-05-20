@@ -38,8 +38,7 @@ public class PlayerHealth : MonoBehaviour
         StartCoroutine(playerMovement.Bumping(_bumpForce));
 
         //Freeze le gugus
-        playerMovement.isStunned = true;
-        playerMovement.checkSwitchBoxMove("isStunned", playerMovement.isStunned);
+        playerMovement.checkSwitchBoxMove("isStunned", true);
 
         currentHealth -= amount;
         if (currentHealth <= 0)
@@ -53,12 +52,8 @@ public class PlayerHealth : MonoBehaviour
 
         yield return new WaitForSeconds(Constants.TIME_TO_HITSTUN); // Après être repousé on ne peut plus bouger pendant TIME TO HITSTUN secondes
 
-        //Freeze le gugus
-        playerMovement.isStunned = false; //[BUG] ici on passe pas avec le debug en dirrait que unity se perd dans le waitForSeconds si dessus
-        playerMovement.checkSwitchBoxMove("isStunned", playerMovement.isStunned);
-
-        //[Annimation]
-        //animator.SetBool("receiveHit", false); // Pour l'instant je triche pcq l'annime s'arrete pas au bon momment
+        //Fin freeze le gugus
+        playerMovement.checkSwitchBoxMove("isStunned", false);
 
         yield return new WaitForSeconds(Constants.TIME_INVINCIBLE_AFTER_HITSTUN);
         isInvincible = false;        
