@@ -41,11 +41,11 @@ public class AttackVersus : MonoBehaviour
                                             Quaternion.identity);
 
             TargetBullet targetBullet = bullet.GetComponent<TargetBullet>();
-            targetBullet.accuracy = 0f;
+            targetBullet.accuracy = 1f;
             targetBullet.damage = 1;
-            targetBullet.speed = 2f;
+            targetBullet.speed = 4f;
             targetBullet.playerToFocus = _playerToFocus;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.5f);
         }        
 
         yield return new WaitForSeconds(1.5f);

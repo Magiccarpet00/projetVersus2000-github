@@ -100,6 +100,11 @@ public class ComboManager : MonoBehaviour
             currentTime[player2] = -1;
             BankCombo(player2);
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            AttackVersus(player1);
+        }
     }
 
     public void AddToCombo(GameObject player)
