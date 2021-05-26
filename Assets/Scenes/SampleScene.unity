@@ -1771,6 +1771,8 @@ MonoBehaviour:
     type: 3}
   versusAttackPrefab: {fileID: 1650791425686297738, guid: 3cac9ee7caf230f4f9fb2e621a139033,
     type: 3}
+  blueBullet: {fileID: 3649916412452595449, guid: 0a433c730dadfb64fbf7f8cf6b41b6c1,
+    type: 3}
   character: 0
 --- !u!1 &1357857454
 GameObject:

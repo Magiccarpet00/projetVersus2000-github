@@ -13,7 +13,7 @@ public class AttackVersus : MonoBehaviour
     {
         if(player.GetComponent<PlayerCharacter>().character == Character.BLUE)
         {
-            StartCoroutine(BlueAttackVersus());
+            StartCoroutine(BlueAttackVersus(playerToFocus));
         }
 
         if (player.GetComponent<PlayerCharacter>().character == Character.RED)
@@ -27,11 +27,27 @@ public class AttackVersus : MonoBehaviour
         }
     }
 
-    public IEnumerator BlueAttackVersus()
+    public IEnumerator BlueAttackVersus(GameObject _playerToFocus)
     {
         animator = GetComponent<Animator>();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.5f);
         animator.SetTrigger("fire");
+        yield return new WaitForSeconds(0.2f);
+
+        for (int i = 0; i < 3; i++)
+        {
+            GameObject bullet = Instantiate(player.GetComponent<PlayerCharacter>().blueBullet,
+                                            transform.position,
+                                            Quaternion.identity);
+
+            TargetBullet targetBullet = bullet.GetComponent<TargetBullet>();
+            targetBullet.accuracy = 0f;
+            targetBullet.damage = 1;
+            targetBullet.speed = 2f;
+            targetBullet.playerToFocus = _playerToFocus;
+            yield return new WaitForSeconds(0.1f);
+        }        
+
         yield return new WaitForSeconds(1.5f);
         animator.SetTrigger("end");
     }
