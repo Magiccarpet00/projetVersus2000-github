@@ -122,7 +122,7 @@ public class ComboManager : MonoBehaviour
         if (playerToCurrentCombo[_player].Count == nbEnemiesInRoom)
         {
             Debug.Log("perfect");
-            AttackFantom(_player);
+            AttackVersus(_player);
 
             // Visuel sympa
             Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Pentagrame]) as GameObject,
@@ -153,7 +153,7 @@ public class ComboManager : MonoBehaviour
         //}
     }
     
-    public void AttackFantom(GameObject playerAttaquant)
+    public void AttackVersus(GameObject playerAttaquant)
     {
         GameObject playerDefenseur;
 
@@ -173,9 +173,11 @@ public class ComboManager : MonoBehaviour
         float rngY = Random.Range(-Constants.RANDOM_OFFSET_INSTANSIAT_FANTOM, Constants.RANDOM_OFFSET_INSTANSIAT_FANTOM);
         Vector3 offSetPossition = new Vector3(rngX, rngY, 0f);
         
-        GameObject newFantom = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Ghost]) as GameObject, currentRoomPlayerDefenseur.transform.position + offSetPossition, Quaternion.identity);
-        newFantom.GetComponent<Fantom>().playerToFocus = playerDefenseur;
-        newFantom.GetComponent<Fantom>().room = GameManager.instance.playersPosition[playerDefenseur];
+        GameObject newAttackVersus = Instantiate(playerAttaquant.GetComponent<PlayerCharacter>().versusAttackPrefab,
+                                                 currentRoomPlayerDefenseur.transform.position + offSetPossition,
+                                                 Quaternion.identity);
+        newAttackVersus.GetComponent<AttackVersus>().playerToFocus = playerDefenseur;
+        newAttackVersus.GetComponent<AttackVersus>().player = playerAttaquant;
     }
 
 }

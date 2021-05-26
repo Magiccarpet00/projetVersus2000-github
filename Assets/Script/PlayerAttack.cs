@@ -11,14 +11,12 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
 
     Dictionary<InputBufferDirection, InfoAttack> directionOffSet_And_Rotation = new Dictionary<InputBufferDirection, InfoAttack>();
 
-    public GameObject rangeAttackPrefab;
-    public GameObject epeePrefab;
-
     public Animator animator;
     public PlayerMovement playerMovement;
     public PlayerHealth playerHealth;
     public PlayerInput playerInput;
     public PlayerInventory playerInventory;
+    public PlayerCharacter playerCharacter;
 
     private void Start()
     {
@@ -27,6 +25,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         playerInput = GetComponent<PlayerInput>();
         playerInventory = GetComponent<PlayerInventory>();
         animator = GetComponentInChildren<Animator>();
+        playerCharacter = GetComponent<PlayerCharacter>();
     }
 
     public struct InfoAttack
@@ -112,7 +111,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     public IEnumerator Attack()
     {
         InfoAttack infoAttack = directionOffSet_And_Rotation[playerMovement.InputBuffer];
-        GameObject epee = Instantiate(epeePrefab, transform.position + transform.TransformDirection(infoAttack.OffsetAttack), infoAttack.RotatiisAttacking);
+        GameObject epee = Instantiate(playerCharacter.closeAttackPrefab, transform.position + transform.TransformDirection(infoAttack.OffsetAttack), infoAttack.RotatiisAttacking);
         //epee.GetComponent<Sword>().player = this.gameObject; // Pour dire à qui appartient cette épee;
 
         epee.GetComponent<Animator>().SetTrigger("Attack");
@@ -130,7 +129,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     {
         animator.SetTrigger("flip");
         Vector2 posRangeAttaque = new Vector2(transform.position.x, transform.position.y + 0.5f);
-        GameObject rangeAttack = Instantiate(rangeAttackPrefab, posRangeAttaque, Quaternion.identity);
+        GameObject rangeAttack = Instantiate(playerCharacter.rangeAttackPrefab, posRangeAttaque, Quaternion.identity);
 
         float speedTime = 1f;
         float speedStrenght = 0.6f;
