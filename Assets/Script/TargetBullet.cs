@@ -15,10 +15,7 @@ public class TargetBullet : MonoBehaviour
         // Calcule pour l'accuracy
         Vector2 target = new Vector2(playerToFocus.transform.position.x, playerToFocus.transform.position.y);
         float distance = Vector2.Distance(transform.position, target);
-        accuracyAmount = (distance * 0.5f)/ accuracy;
-
-        Debug.Log(accuracyAmount);
-
+        accuracyAmount = (distance * 0.8f)/ accuracy;
 
         // Le vrais calcul de la target
         float rngX = Random.Range(-accuracyAmount, accuracyAmount);
@@ -41,7 +38,22 @@ public class TargetBullet : MonoBehaviour
     {
         if (collision.CompareTag("Wall"))
         {
-            speed = 0;
+            StopBullet();
         }
+
+        if (collision.CompareTag("Player"))
+        {
+            if (collision.GetComponent<PlayerHealth>().isInvincible == false)
+            {
+                collision.GetComponent<PlayerHealth>().TakeDamage(dirrectionBullet, damage);
+                StopBullet();
+            }
+        }
+    }
+
+    private void StopBullet()
+    {
+        speed = 0;
+        GetComponent<Animator>().SetTrigger("hit");
     }
 }

@@ -126,7 +126,6 @@ public class ComboManager : MonoBehaviour
 
         if (playerToCurrentCombo[_player].Count == nbEnemiesInRoom)
         {
-            Debug.Log("perfect");
             AttackVersus(_player);
 
             // Visuel sympa

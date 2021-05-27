@@ -30,8 +30,11 @@ public class DoorTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.GetComponent<PlayerMovement>().isBetweenRooms = false;
-        collision.GetComponent<PlayerMovement>().checkSwitchBoxMove("betweenRooms", false);
-        collision.GetComponent<PlayerMovement>().destinationSlide = collision.transform.position;
+        if (collision.CompareTag("Player"))
+        {
+            collision.GetComponent<PlayerMovement>().isBetweenRooms = false;
+            collision.GetComponent<PlayerMovement>().checkSwitchBoxMove("betweenRooms", false);
+            collision.GetComponent<PlayerMovement>().destinationSlide = collision.transform.position;
+        }        
     }   
 }

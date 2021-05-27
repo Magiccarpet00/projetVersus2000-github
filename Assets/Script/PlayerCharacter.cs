@@ -6,7 +6,14 @@ public class PlayerCharacter : MonoBehaviour
     public GameObject rangeAttackPrefab;
     public GameObject versusAttackPrefab;
 
-    public GameObject blueBullet;
-
     public Character character; // On definie dans unity
+
+    // Blue capacity
+    public GameObject blueBullet;
+    public int blueDamageBullet;
+    public float blueAccuracyBullet;
+    public float blueSpeedBullet;
+    public float blueIntervalSpeedBullet;
+    public int blueCountBullet;
+
 }

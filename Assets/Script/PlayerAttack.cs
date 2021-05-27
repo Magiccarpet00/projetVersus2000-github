@@ -92,8 +92,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
             && !playerMovement.isBetweenRooms
             && playerInventory.munitionRangeAttack > 0
             )
-        {
-            Debug.Log("buuton 1");
+        {            
             RangeAttaque();
         }
 
@@ -111,17 +110,15 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     public IEnumerator Attack()
     {
         InfoAttack infoAttack = directionOffSet_And_Rotation[playerMovement.InputBuffer];
-        GameObject epee = Instantiate(playerCharacter.closeAttackPrefab, transform.position + transform.TransformDirection(infoAttack.OffsetAttack), infoAttack.RotatiisAttacking);
-        //epee.GetComponent<Sword>().player = this.gameObject; // Pour dire à qui appartient cette épee;
+        GameObject closeAttack = Instantiate(playerCharacter.closeAttackPrefab,
+                                             transform.position + transform.TransformDirection(infoAttack.OffsetAttack),
+                                             infoAttack.RotatiisAttacking);
 
-        epee.GetComponent<Animator>().SetTrigger("Attack");
+        closeAttack.GetComponent<Animator>().SetTrigger("Attack");
         yield return new WaitForSeconds(infoAttack.DelayAttack);
-        
-        //Destroy(epee);
 
         isAttacking = false;
         playerMovement.checkSwitchBoxMove("isAttacking", isAttacking);
-        
     }
 
     

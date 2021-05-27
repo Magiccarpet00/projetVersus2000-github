@@ -6,14 +6,11 @@ public class AttackVersus : MonoBehaviour
     public GameObject playerToFocus;
     public GameObject player;
 
-    //BLUE
-    public Animator animator;
-
     private void Start()
     {
         if(player.GetComponent<PlayerCharacter>().character == Character.BLUE)
         {
-            StartCoroutine(BlueAttackVersus(playerToFocus));
+            StartCoroutine(BlueAttackVersus(playerToFocus, player));
         }
 
         if (player.GetComponent<PlayerCharacter>().character == Character.RED)
@@ -27,25 +24,26 @@ public class AttackVersus : MonoBehaviour
         }
     }
 
-    public IEnumerator BlueAttackVersus(GameObject _playerToFocus)
+    public IEnumerator BlueAttackVersus(GameObject _playerToFocus, GameObject _player)
     {
-        animator = GetComponent<Animator>();
+        PlayerCharacter playerCharacter = _player.GetComponent<PlayerCharacter>();
+        Animator animator = GetComponent<Animator>();
         yield return new WaitForSeconds(1.5f);
         animator.SetTrigger("fire");
         yield return new WaitForSeconds(0.2f);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < playerCharacter.blueCountBullet; i++)
         {
             GameObject bullet = Instantiate(player.GetComponent<PlayerCharacter>().blueBullet,
                                             transform.position,
                                             Quaternion.identity);
 
             TargetBullet targetBullet = bullet.GetComponent<TargetBullet>();
-            targetBullet.accuracy = 1f;
-            targetBullet.damage = 1;
-            targetBullet.speed = 4f;
+            targetBullet.accuracy = playerCharacter.blueAccuracyBullet;
+            targetBullet.damage = playerCharacter.blueDamageBullet;
+            targetBullet.speed = playerCharacter.blueSpeedBullet;
             targetBullet.playerToFocus = _playerToFocus;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(playerCharacter.blueIntervalSpeedBullet);
         }        
 
         yield return new WaitForSeconds(1.5f);
