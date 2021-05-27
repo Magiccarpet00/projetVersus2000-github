@@ -45,7 +45,7 @@ public class TargetBullet : MonoBehaviour
         {
             if (collision.GetComponent<PlayerHealth>().isInvincible == false)
             {
-                collision.GetComponent<PlayerHealth>().TakeDamage(dirrectionBullet, damage);
+                StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(dirrectionBullet, damage));
                 StopBullet();
             }
         }
