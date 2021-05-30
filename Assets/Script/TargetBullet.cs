@@ -15,7 +15,7 @@ public class TargetBullet : MonoBehaviour
         // Calcule pour l'accuracy
         Vector2 target = new Vector2(playerToFocus.transform.position.x, playerToFocus.transform.position.y);
         float distance = Vector2.Distance(transform.position, target);
-        accuracyAmount = (distance * 0.8f)/ accuracy;
+        accuracyAmount = (distance * Constants.ACCURACY_MODIFICATEUR)/ accuracy;
 
         // Le vrais calcul de la target
         float rngX = Random.Range(-accuracyAmount, accuracyAmount);

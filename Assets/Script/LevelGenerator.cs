@@ -20,6 +20,8 @@ public class LevelGenerator : MonoBehaviour
 
     public List<GameObject> allFloorInGame = new List<GameObject>();
 
+    public GameObject floorShop;
+
     public GameObject shop;
 
 

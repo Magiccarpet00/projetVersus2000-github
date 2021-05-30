@@ -274,11 +274,19 @@ public class Room : MonoBehaviour
             roomFinnished = true;
             GameObject shop = Instantiate(LevelGenerator.instance.shop, transform.position, Quaternion.identity);
             shop.transform.parent = this.transform;
+
+            //POUR LE SOL (FLOOR)
+            GameObject floorInThisRoom = Instantiate(LevelGenerator.instance.floorShop, transform.position, Quaternion.identity);
+            floorInThisRoom.transform.parent = this.transform;
         }
         else if (typeRoom == TypeRoom.BOSS)
         {
             GameObject bossInRoom = Instantiate(LevelGenerator.instance.allBossInGame[bossRng], transform.position, Quaternion.identity);
             bossInRoom.transform.parent = this.transform;
+
+            //POUR LE SOL (FLOOR)                                    **floor provisoir pour le boss**
+            GameObject floorInThisRoom = Instantiate(LevelGenerator.instance.floorShop, transform.position, Quaternion.identity);
+            floorInThisRoom.transform.parent = this.transform;
         }
         else if (typeRoom == TypeRoom.VANILLA)
         {
@@ -291,9 +299,7 @@ public class Room : MonoBehaviour
             patternInThisRoom.GetComponent<PatternEnemy>().patternRoom = this;
             patternInThisRoom.GetComponent<PatternEnemy>().SelectObstacle(obstacleRng);
 
-            this.maxEnnemies = patternInThisRoom.GetComponent<PatternEnemy>().enemiesInPattern.Count; // Transfert du nombre d'ennemi du Pattern au niveau de la room          
-
-            
+            this.maxEnnemies = patternInThisRoom.GetComponent<PatternEnemy>().enemiesInPattern.Count; // Transfert du nombre d'ennemi du Pattern au niveau de la room
 
             //POUR LE SOL (FLOOR)
             GameObject floorInThisRoom = Instantiate(LevelGenerator.instance.allFloorInGame[floorRng], transform.position, Quaternion.identity);
