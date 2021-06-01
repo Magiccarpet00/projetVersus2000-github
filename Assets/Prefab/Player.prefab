@@ -1,0 +1,219 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9144719478332417000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9144719478332417007}
+  - component: {fileID: 9144719478332417006}
+  - component: {fileID: 9144719478332417001}
+  - component: {fileID: 9144719478332417010}
+  - component: {fileID: 9144719478332417004}
+  - component: {fileID: 9144719478332417011}
+  - component: {fileID: 9144719478332417008}
+  - component: {fileID: 9144719478332417005}
+  - component: {fileID: 9144719478332417009}
+  m_Layer: 0
+  m_Name: Player
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9144719478332417007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144719478332417000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &9144719478332417006
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144719478332417000}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &9144719478332417001
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144719478332417000}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.09}
+  serializedVersion: 2
+  m_Radius: 0.12
+--- !u!114 &9144719478332417010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144719478332417000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ef4fc9807754e44a1d690f09f8b46d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMoveSpeed: 3.5
+  currentMoveSpeed: 0
+  animator: {fileID: 0}
+  rb: {fileID: 0}
+  playerHealth: {fileID: 0}
+  playerInput: {fileID: 0}
+  playerAttack: {fileID: 0}
+  InputBuffer: 2
+  isBumped: 0
+  bumpForce: {x: 0, y: 0}
+  canMove: 0
+  isBetweenRooms: 0
+  directionAutoWalk: {x: 0, y: 0}
+  destinationSlide: {x: 0, y: 0}
+--- !u!114 &9144719478332417004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144719478332417000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c6bb021379df164380af38fdb9036b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAttacking: 0
+  isBufferingAttack: 0
+  isDashing: 0
+  animator: {fileID: 0}
+  playerMovement: {fileID: 0}
+  playerHealth: {fileID: 0}
+  playerInput: {fileID: 0}
+  playerInventory: {fileID: 0}
+  playerCharacter: {fileID: 0}
+--- !u!114 &9144719478332417011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144719478332417000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2e43174a2a4ab49ae8532d03ccb6b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 3
+  currentHealth: 0
+  dead: 0
+  isInvincible: 0
+  animator: {fileID: 0}
+  playerMovement: {fileID: 0}
+  NumOfHeart: 0
+  heart:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullHeart: {fileID: 7980934933768138934, guid: 2ef6e9d53552358439961fc28f552f4d,
+    type: 3}
+  emptyHeart: {fileID: 7529560616647538531, guid: 2ef6e9d53552358439961fc28f552f4d,
+    type: 3}
+--- !u!114 &9144719478332417008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144719478332417000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee9e9e64fd309944a1fc781f0889250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalAxeJoypad: Horizontal_J1
+  verticalAxeJoypad: Vertical_J1
+  button0: Button0_J1
+  button1: Button1_J1
+  button2: Button2_J1
+  start: 
+--- !u!114 &9144719478332417005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144719478332417000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7546e5db326efaf49bb1ce36665f070a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
+  gold: 0
+  munitionRangeAttack: 3
+  nbMunitionUI: {fileID: 0}
+  nbGoldUI: {fileID: 0}
+--- !u!114 &9144719478332417009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144719478332417000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd318d9f96f6ea41907f06f08868151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  closeAttackPrefab: {fileID: 0}
+  rangeAttackPrefab: {fileID: 0}
+  versusAttackPrefab: {fileID: 0}
+  character: 0
+  blueSprite: {fileID: 7298694279780720200, guid: 3c3b3c30611de0a498790722f885048c,
+    type: 3}
+  blueCloseAttack: {fileID: 3231854286922200953, guid: 0d6975ce1f3541a48b2ad267b3b464e3,
+    type: 3}
+  blueRangeAttack: {fileID: 2323581752581583730, guid: 32ebe32aafbbf5a42a93f8c8aa0efe81,
+    type: 3}
+  blueVersusAttack: {fileID: 1650791425686297738, guid: 3cac9ee7caf230f4f9fb2e621a139033,
+    type: 3}
+  blueBullet: {fileID: 3649916412452595449, guid: 0a433c730dadfb64fbf7f8cf6b41b6c1,
+    type: 3}
+  blueDamageBullet: 1
+  blueAccuracyBullet: 1
+  blueSpeedBullet: 6
+  blueIntervalSpeedBullet: 0.5
+  blueCountBullet: 4
+  redSprite: {fileID: 1952510407918898519, guid: 7beaba7a81f82844992912d80672dead,
+    type: 3}
