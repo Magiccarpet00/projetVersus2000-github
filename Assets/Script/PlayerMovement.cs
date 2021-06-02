@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerHealth playerHealth;
     public PlayerInput playerInput;
     public PlayerAttack playerAttack;
+    public PlayerCharacter playerCharacter;
 
     public Dictionary<string, bool> switchBoxMove;
     public Dictionary<InputBufferDirection, Vector2> directionVector = new Dictionary<InputBufferDirection, Vector2>();
@@ -47,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         playerAttack = GetComponent<PlayerAttack>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
+        playerCharacter = GetComponent<PlayerCharacter>();
 
         currentMoveSpeed = maxMoveSpeed;
         canMove = true;
@@ -69,7 +71,32 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        //Detection
+        //Detection des Input de deplacement
+        if(playerCharacter.character == Character.BLUE)
+        {
+            FreeInputMovement();
+        }
+
+        else if (playerCharacter.character == Character.RED)
+        {
+            if(playerAttack.isAttacking)
+            {
+                FixeInputMovement();
+            }
+            else
+            {
+                FreeInputMovement();
+            }
+        }
+
+        else if (playerCharacter.character == Character.GREEN)
+        {
+
+        }
+    }
+
+    public void FreeInputMovement()
+    {
         movement.x = Input.GetAxisRaw(playerInput.horizontalAxeJoypad);
         movement.y = Input.GetAxisRaw(playerInput.verticalAxeJoypad);
 
@@ -88,6 +115,14 @@ public class PlayerMovement : MonoBehaviour
 
         //Buffer
         UpdateInputBuffer();
+
+        currentMoveSpeed = maxMoveSpeed;
+    }
+
+    public void FixeInputMovement() // Methode qui fait que le mouvement et le mouvement de l'input buffer
+    {
+        movement = directionVector[InputBuffer];
+        onSlide = false;
 
         currentMoveSpeed = maxMoveSpeed;
     }
@@ -112,11 +147,10 @@ public class PlayerMovement : MonoBehaviour
                 {
                     
                     if (!onSlide)
-                    {
+                    {                        
                         rb.MovePosition(rb.position + movement.normalized * currentMoveSpeed * Time.fixedDeltaTime);
                         destinationSlide = new Vector2(transform.position.x + (movement.x)/Constants.SLIDE_DIVISION,
-                                                       transform.position.y + (movement.y)/Constants.SLIDE_DIVISION);
-                        
+                                                       transform.position.y + (movement.y)/Constants.SLIDE_DIVISION);                        
                     }
                     else
                     {

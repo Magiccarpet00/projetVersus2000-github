@@ -6,9 +6,10 @@ using static PlayerMovement;
 public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c'est player Ability  
 {
     public bool isAttacking;
+
+    //BLUE Varriable
     public bool isBufferingAttack;
     public bool isDashing;
-
     Dictionary<InputBufferDirection, InfoAttack> directionOffSet_And_Rotation = new Dictionary<InputBufferDirection, InfoAttack>();
 
     public Animator animator;
@@ -65,7 +66,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
 
             else if(playerCharacter.character == Character.RED)
             {
-
+                StartCoroutine(RedCloseAttack());
             }
 
             else if (playerCharacter.character == Character.GREEN)
@@ -185,7 +186,8 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
 
         float speedTime = 1f;
         float speedStrenght = 0.6f;
-        StartCoroutine(SpeedUp(speedTime, speedStrenght)); // [CodeReview] Je sais pas ou mettre les caracteristique des competence je trouve que dans constante c'est bizzare
+        int smoothsness = 2;
+        StartCoroutine(SpeedUp(speedTime, speedStrenght, smoothsness)); // [CodeReview] Je sais pas ou mettre les caracteristique des competence je trouve que dans constante c'est bizzare
 
         playerInventory.munitionRangeAttack--;
         playerInventory.UpdateUI();
@@ -194,27 +196,40 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     {
         float dashTime = 0.2f;
         float dashStrenght = 4f;
-
+        int smoothsness = 4;
         isDashing = true;
         animator.SetTrigger("dash");
-        StartCoroutine(SpeedUp(dashStrenght, dashTime));
+        StartCoroutine(SpeedUp(dashStrenght, dashTime, smoothsness));
         yield return new WaitForSeconds(dashTime);
         isDashing = false;
     }
 
     // RED COMPETENCE
+    public IEnumerator RedCloseAttack()
+    {
+        isAttacking = true;
+        animator.SetTrigger("close_attack");
 
+        float dashTime = 0.35f;
+        float dashStrenght = 5f;
+        int smoothness = 1;
+
+        StartCoroutine(SpeedUp(dashStrenght, dashTime, smoothness));
+        yield return new WaitForSeconds(0.5f);
+        isAttacking = false;
+    }
 
     // GREEN COMPETENCE
 
 
-    public IEnumerator SpeedUp(float buffSpeed, float buffTime)
+    public IEnumerator SpeedUp(float buffSpeed, float buffTime, int smoothness)
     {
         playerMovement.maxMoveSpeed += buffSpeed;
-        yield return new WaitForSeconds(buffTime/2);
-        playerMovement.maxMoveSpeed -= buffSpeed/2;
-        yield return new WaitForSeconds(buffTime/2);
-        playerMovement.maxMoveSpeed -= buffSpeed/2;
-    }
 
+        for (int i = 0; i < smoothness; i++)
+        {
+            yield return new WaitForSeconds(buffTime / smoothness);
+            playerMovement.maxMoveSpeed -= buffSpeed / smoothness;
+        }
+    }
 }
