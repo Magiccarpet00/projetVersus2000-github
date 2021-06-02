@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
     }
 }
 
-// [memo]
+// [memo ridgibody]
 /* -les enemy sont is_trigger
  * -le petit fantom sont is_trigger
  * -le bullet sont is_trigger

@@ -51,42 +51,53 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     }
     
     void Update()
-    {   //ATTACK CAC
+    {   // Bouton A enfoncer
         if (Input.GetButton(playerInput.button0) 
             && !isAttacking 
             && !playerHealth.isInvincible 
             && !playerHealth.dead
             && !playerMovement.isBetweenRooms)
         {
-            //[Annimation]
-            animator.SetBool("Button_Down", true);
+            if(playerCharacter.character == Character.BLUE)
+            {
+                BluePreCloseAttack();
+            }
 
-            isBufferingAttack = true;
-            playerMovement.checkSwitchBoxMove("isBufferingAttack", isBufferingAttack);
+            else if(playerCharacter.character == Character.RED)
+            {
 
+            }
 
-            //------REFACTOT TIME-------
+            else if (playerCharacter.character == Character.GREEN)
+            {
+
+            }
         }
 
+        // Bouton A relacher
         else if (Input.GetButtonUp(playerInput.button0)
                 && !isAttacking 
                 && !playerHealth.isInvincible 
                 && !playerHealth.dead
-                && !playerMovement.isBetweenRooms) // isInvincible : c'est quand on se fait touché
+                && !playerMovement.isBetweenRooms)
         {
-            isBufferingAttack = false;
-            playerMovement.checkSwitchBoxMove("isBufferingAttack", isBufferingAttack);
-            //[Annimation]
-            animator.SetBool("Button_Down", false);
+             if(playerCharacter.character == Character.BLUE)
+             {
+                    StartCoroutine(BlueCloseAttack());
+             }
 
-            //Lance l'attaque
-            isAttacking = true;
-            playerMovement.checkSwitchBoxMove("isAttacking", isAttacking);
+             else if(playerCharacter.character == Character.RED)
+             {
 
-            StartCoroutine(Attack());
+             }
+
+             else if (playerCharacter.character == Character.GREEN)
+             {
+
+             }
         }
 
-        // RANGE ATTACK
+        // Bouton B enfoncer
         if (Input.GetButtonDown(playerInput.button1)
             && !isAttacking
             && !playerHealth.isInvincible
@@ -94,10 +105,24 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
             && !playerMovement.isBetweenRooms
             && playerInventory.munitionRangeAttack > 0
             )
-        {            
-            RangeAttaque();
+        {
+            if (playerCharacter.character == Character.BLUE)
+            {
+                BlueRangeAttaque();
+            }
+
+            else if (playerCharacter.character == Character.RED)
+            {
+
+            }
+
+            else if (playerCharacter.character == Character.GREEN)
+            {
+
+            }
         }
 
+        // Bouton X Enfoncer 
         if (Input.GetButtonDown(playerInput.button2)
             && !isAttacking
             && !playerHealth.isInvincible
@@ -105,12 +130,42 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
             && !playerMovement.isBetweenRooms
             && !isDashing)
         {
-            StartCoroutine(Dash());
+            if (playerCharacter.character == Character.BLUE)
+            {
+                StartCoroutine(BlueDash());
+            }
+
+            else if (playerCharacter.character == Character.RED)
+            {
+
+            }
+
+            else if (playerCharacter.character == Character.GREEN)
+            {
+
+            }
         }
     }
 
-    public IEnumerator Attack()
+    // BLUE COMPETENCE
+    public void BluePreCloseAttack()
     {
+        animator.SetBool("Button_Down", true);
+
+        isBufferingAttack = true;
+        playerMovement.checkSwitchBoxMove("isBufferingAttack", isBufferingAttack);
+    }
+    public IEnumerator BlueCloseAttack()
+    {
+        isBufferingAttack = false;
+        playerMovement.checkSwitchBoxMove("isBufferingAttack", isBufferingAttack);
+        //[Annimation]
+        animator.SetBool("Button_Down", false);
+
+        //Lance l'attaque
+        isAttacking = true;
+        playerMovement.checkSwitchBoxMove("isAttacking", isAttacking);
+
         InfoAttack infoAttack = directionOffSet_And_Rotation[playerMovement.InputBuffer];
         GameObject closeAttack = Instantiate(playerCharacter.closeAttackPrefab,
                                              transform.position + transform.TransformDirection(infoAttack.OffsetAttack),
@@ -122,7 +177,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         isAttacking = false;
         playerMovement.checkSwitchBoxMove("isAttacking", isAttacking);
     }    
-    public void RangeAttaque()
+    public void BlueRangeAttaque()
     {
         animator.SetTrigger("flip");
         Vector2 posRangeAttaque = new Vector2(transform.position.x, transform.position.y + 0.5f);
@@ -135,16 +190,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         playerInventory.munitionRangeAttack--;
         playerInventory.UpdateUI();
     }
-    public IEnumerator SpeedUp(float buffSpeed, float buffTime)
-    {
-        playerMovement.maxMoveSpeed += buffSpeed;
-        yield return new WaitForSeconds(buffTime/2);
-        playerMovement.maxMoveSpeed -= buffSpeed/2;
-        yield return new WaitForSeconds(buffTime/2);
-        playerMovement.maxMoveSpeed -= buffSpeed/2;
-    }
-
-    public IEnumerator Dash()
+    public IEnumerator BlueDash()
     {
         float dashTime = 0.2f;
         float dashStrenght = 4f;
@@ -155,4 +201,20 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         yield return new WaitForSeconds(dashTime);
         isDashing = false;
     }
+
+    // RED COMPETENCE
+
+
+    // GREEN COMPETENCE
+
+
+    public IEnumerator SpeedUp(float buffSpeed, float buffTime)
+    {
+        playerMovement.maxMoveSpeed += buffSpeed;
+        yield return new WaitForSeconds(buffTime/2);
+        playerMovement.maxMoveSpeed -= buffSpeed/2;
+        yield return new WaitForSeconds(buffTime/2);
+        playerMovement.maxMoveSpeed -= buffSpeed/2;
+    }
+
 }

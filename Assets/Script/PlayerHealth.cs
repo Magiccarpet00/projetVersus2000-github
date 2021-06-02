@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
 
     public Animator animator;
     public PlayerMovement playerMovement;
+    public PlayerCharacter playerCharacter;
 
 
     //POUR LE CANVAS
@@ -27,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponentInChildren<Animator>();
+        playerCharacter = GetComponent<PlayerCharacter>();
     }
 
     public IEnumerator TakeDamage(Vector2 _bumpForce, int amount)
@@ -45,8 +47,8 @@ public class PlayerHealth : MonoBehaviour
         }
         UpdateHealthUI();
 
-        //[Annimation]
-        animator.SetTrigger("receiveHit");
+        // [Code Review] reciveiveHit et die doivent toujours etre ecrit comme ça pour que l'animator de chaque perso comprennent
+        animator.SetTrigger("receiveHit"); // 
 
         yield return new WaitForSeconds(Constants.TIME_TO_HITSTUN); // Après être repousé on ne peut plus bouger pendant TIME TO HITSTUN secondes
 
