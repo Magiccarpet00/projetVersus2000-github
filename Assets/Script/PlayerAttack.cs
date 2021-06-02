@@ -18,6 +18,14 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     public PlayerInventory playerInventory;
     public PlayerCharacter playerCharacter;
 
+    public void Awake()
+    {
+        // on regarde dans quelle dirrection est l'input buffer
+        directionOffSet_And_Rotation[InputBufferDirection.UP] = new InfoAttack(new Vector2(0f, Constants.OFFSET_ATTACK), 90f,Constants.SECOND_ATTACK_CD);
+        directionOffSet_And_Rotation[InputBufferDirection.LEFT] = new InfoAttack(new Vector2(-Constants.OFFSET_ATTACK,0f), 180f, Constants.SECOND_ATTACK_CD);
+        directionOffSet_And_Rotation[InputBufferDirection.DOWN] = new InfoAttack(new Vector2(0f, -Constants.OFFSET_ATTACK), 270f, Constants.SECOND_ATTACK_CD);
+        directionOffSet_And_Rotation[InputBufferDirection.RIGHT] = new InfoAttack(new Vector2(Constants.OFFSET_ATTACK, 0f), 0f, Constants.SECOND_ATTACK_CD);        
+    }    
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -41,15 +49,6 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         public Quaternion RotatiisAttacking { get; set; }
         public float DelayAttack { get; set; }
     }
-
-    public void Awake()
-    {
-        // on regarde dans quelle dirrection est l'input buffer
-        directionOffSet_And_Rotation[InputBufferDirection.UP] = new InfoAttack(new Vector2(0f, Constants.OFFSET_ATTACK), 90f,Constants.SECOND_ATTACK_CD);
-        directionOffSet_And_Rotation[InputBufferDirection.LEFT] = new InfoAttack(new Vector2(-Constants.OFFSET_ATTACK,0f), 180f, Constants.SECOND_ATTACK_CD);
-        directionOffSet_And_Rotation[InputBufferDirection.DOWN] = new InfoAttack(new Vector2(0f, -Constants.OFFSET_ATTACK), 270f, Constants.SECOND_ATTACK_CD);
-        directionOffSet_And_Rotation[InputBufferDirection.RIGHT] = new InfoAttack(new Vector2(Constants.OFFSET_ATTACK, 0f), 0f, Constants.SECOND_ATTACK_CD);        
-    }    
     
     void Update()
     {   //ATTACK CAC
@@ -64,6 +63,9 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
 
             isBufferingAttack = true;
             playerMovement.checkSwitchBoxMove("isBufferingAttack", isBufferingAttack);
+
+
+            //------REFACTOT TIME-------
         }
 
         else if (Input.GetButtonUp(playerInput.button0)
@@ -119,9 +121,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
 
         isAttacking = false;
         playerMovement.checkSwitchBoxMove("isAttacking", isAttacking);
-    }
-
-    
+    }    
     public void RangeAttaque()
     {
         animator.SetTrigger("flip");
