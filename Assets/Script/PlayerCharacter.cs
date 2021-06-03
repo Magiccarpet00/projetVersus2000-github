@@ -42,7 +42,7 @@ public class PlayerCharacter : MonoBehaviour
             versusAttackPrefab = blueVersusAttack;
         }
 
-        if(character == Character.RED)
+        else if(character == Character.RED)
         {
             GameObject sprite = Instantiate(redSprite, transform.position, Quaternion.identity);
             sprite.transform.parent = this.transform;
