@@ -43,6 +43,7 @@ public class AttackVersus : MonoBehaviour
             targetBullet.damage = playerCharacter.blueDamageBullet;
             targetBullet.speed = playerCharacter.blueSpeedBullet;
             targetBullet.playerToFocus = _playerToFocus;
+            targetBullet.bulletBehaviour = BulletBehaviour.TARGET;
             yield return new WaitForSeconds(playerCharacter.blueIntervalSpeedBullet);
         }        
 

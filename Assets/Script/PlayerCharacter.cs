@@ -29,6 +29,10 @@ public class PlayerCharacter : MonoBehaviour
     [Header(" --RED-- ")]
     public GameObject redSprite;
     public CircleCollider2D redAttackHitbox;
+    public GameObject redRangeAttack;
+    public int redDamageBullet;
+    public float redSpeedBullet;
+    
 
 
     private void Awake() // Ici j'utilise Awake sinon les ref au animator dans les autres script non pas le temps de s'executer dans start
@@ -47,6 +51,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             GameObject sprite = Instantiate(redSprite, transform.position, Quaternion.identity);
             sprite.transform.parent = this.transform;
+            rangeAttackPrefab = redRangeAttack;
         }
     }
 

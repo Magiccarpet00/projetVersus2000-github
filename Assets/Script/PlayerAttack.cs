@@ -116,7 +116,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
 
             else if (playerCharacter.character == Character.RED)
             {
-
+                StartCoroutine(RedRangeAttack());
             }
 
             else if (playerCharacter.character == Character.GREEN)
@@ -238,6 +238,35 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         yield return new WaitForSeconds(0.15f);
         onCoolDown = false;
     }
+    public IEnumerator RedRangeAttack()
+    {
+        Dictionary<int, Vector2> localDir = new Dictionary<int, Vector2>();
+        localDir.Add(0, Vector2.right);
+        localDir.Add(1, Vector2.down);
+        localDir.Add(2, Vector2.left);
+        localDir.Add(3, Vector2.up);
+
+        Dictionary<int, float> localRot = new Dictionary<int, float>();
+        localRot.Add(0, 0f);
+        localRot.Add(1, 270f);
+        localRot.Add(2, 180f);
+        localRot.Add(3, 90f);
+
+        animator.SetTrigger("range_attack");
+        yield return new WaitForSeconds(0.66f);
+        for (int i = 0; i < 4; i++)
+        {
+            GameObject rangeAttack = Instantiate(playerCharacter.redRangeAttack, transform.position, Quaternion.Euler(0f, 0f, localRot[i]));
+            TargetBullet bullet = rangeAttack.GetComponent<TargetBullet>();
+
+            bullet.bulletBehaviour = BulletBehaviour.DIRECTIONAL;
+            bullet.speed = playerCharacter.redSpeedBullet;
+            bullet.damage = playerCharacter.redDamageBullet;
+            bullet.dirrectionBullet = localDir[i];
+            bullet.player = this.gameObject;
+        }
+    }
+   
 
     // GREEN COMPETENCE
 

@@ -94,6 +94,7 @@ MonoBehaviour:
   playerHealth: {fileID: 0}
   playerInput: {fileID: 0}
   playerAttack: {fileID: 0}
+  playerCharacter: {fileID: 0}
   InputBuffer: 2
   isBumped: 0
   bumpForce: {x: 0, y: 0}
@@ -114,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
+  onCoolDown: 0
   isBufferingAttack: 0
   isDashing: 0
   animator: {fileID: 0}
@@ -140,6 +142,7 @@ MonoBehaviour:
   isInvincible: 0
   animator: {fileID: 0}
   playerMovement: {fileID: 0}
+  playerCharacter: {fileID: 0}
   NumOfHeart: 0
   heart:
   - {fileID: 0}
@@ -216,4 +219,8 @@ MonoBehaviour:
   blueIntervalSpeedBullet: 0.5
   blueCountBullet: 4
   redSprite: {fileID: 1952510407918898519, guid: 7beaba7a81f82844992912d80672dead,
+    type: 3}
+  redAttackHitbox: {fileID: 7303403239181144625, guid: 7beaba7a81f82844992912d80672dead,
+    type: 3}
+  redRangeAttack: {fileID: 2281276350444154649, guid: 503fa1d101b781a4ebf77f92fc6850de,
     type: 3}
