@@ -193,10 +193,15 @@ public class Enemy : MonoBehaviour
                             StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(dir, damage));
                         }
                     }
-                    else
+                    else if(collision.GetComponent<PlayerCharacter>().character == Character.BLUE)
                     {
                         StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(dir, damage));
-                    }          
+                    }
+
+                    else if(collision.GetComponent<PlayerCharacter>().character == Character.GREEN)
+                    {
+
+                    }
                 }
             }
         }

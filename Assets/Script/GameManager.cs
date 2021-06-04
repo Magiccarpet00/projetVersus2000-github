@@ -61,7 +61,6 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-            Debug.Log("enter");
             SceneManager.LoadScene(0); // ça bug defois
         }
     }

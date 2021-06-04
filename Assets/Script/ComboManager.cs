@@ -101,10 +101,6 @@ public class ComboManager : MonoBehaviour
             BankCombo(player2);
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            AttackVersus(player1);
-        }
     }
 
     public void AddToCombo(GameObject player)

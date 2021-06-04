@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6358982263386794138}
   - component: {fileID: 55477839544960375}
   - component: {fileID: 3694097151519643139}
+  - component: {fileID: 7303403239181144625}
   m_Layer: 0
   m_Name: red_sprite
   m_TagString: Untagged
@@ -103,6 +104,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &7303403239181144625
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952510407918898519}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.35
 --- !u!1 &3041959435702341041
 GameObject:
   m_ObjectHideFlags: 0

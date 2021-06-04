@@ -6,6 +6,7 @@ using static PlayerMovement;
 public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c'est player Ability  
 {
     public bool isAttacking;
+    public bool onCoolDown;
 
     //BLUE Varriable
     public bool isBufferingAttack;
@@ -55,6 +56,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     {   // Bouton A enfoncer
         if (Input.GetButton(playerInput.button0) 
             && !isAttacking 
+            && !onCoolDown
             && !playerHealth.isInvincible 
             && !playerHealth.dead
             && !playerMovement.isBetweenRooms)
@@ -207,16 +209,34 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     // RED COMPETENCE
     public IEnumerator RedCloseAttack()
     {
+        onCoolDown = true;
         isAttacking = true;
         animator.SetTrigger("close_attack");
 
+        //Size hit box --UP--
+        CircleCollider2D hitbox = GetComponent<CircleCollider2D>();
+        float oldRadius = hitbox.radius;
+        Vector2 oldOffset = hitbox.offset;
+
+        hitbox.radius = playerCharacter.redAttackHitbox.radius;
+        hitbox.offset = playerCharacter.redAttackHitbox.offset;        
+
+        //Dash
         float dashTime = 0.35f;
         float dashStrenght = 5f;
         int smoothness = 1;
 
         StartCoroutine(SpeedUp(dashStrenght, dashTime, smoothness));
-        yield return new WaitForSeconds(0.5f);
+
+        yield return new WaitForSeconds(dashTime);
+
+        //Size hit box --DOWN--
+        hitbox.radius = oldRadius;
+        hitbox.offset = oldOffset;
+
         isAttacking = false;
+        yield return new WaitForSeconds(0.15f);
+        onCoolDown = false;
     }
 
     // GREEN COMPETENCE

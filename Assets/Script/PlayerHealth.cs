@@ -48,7 +48,14 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
 
         // [Code Review] reciveiveHit et die doivent toujours etre ecrit comme ça pour que l'animator de chaque perso comprennent
-        animator.SetTrigger("receiveHit"); // 
+        animator.SetTrigger("receiveHit"); //
+
+        if(playerCharacter.character == Character.BLUE) // [Code Review] C'est une rustine pcq sinon ya une bug d'annimation et de dépaclement à cause du slide
+        {
+            GetComponent<PlayerAttack>().isBufferingAttack = false;
+            animator.SetBool("Button_Down", false);
+            playerMovement.checkSwitchBoxMove("isBufferingAttack", false);
+        }
 
         yield return new WaitForSeconds(Constants.TIME_TO_HITSTUN); // Après être repousé on ne peut plus bouger pendant TIME TO HITSTUN secondes
 
@@ -56,7 +63,7 @@ public class PlayerHealth : MonoBehaviour
         playerMovement.checkSwitchBoxMove("isStunned", false);
 
         yield return new WaitForSeconds(Constants.TIME_INVINCIBLE_AFTER_HITSTUN);
-        isInvincible = false;        
+        isInvincible = false;
     }
 
     public void Die()

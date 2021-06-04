@@ -28,6 +28,7 @@ public class PlayerCharacter : MonoBehaviour
     // RED ATRIBUE
     [Header(" --RED-- ")]
     public GameObject redSprite;
+    public CircleCollider2D redAttackHitbox;
 
 
     private void Awake() // Ici j'utilise Awake sinon les ref au animator dans les autres script non pas le temps de s'executer dans start
