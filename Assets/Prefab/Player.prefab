@@ -202,7 +202,7 @@ MonoBehaviour:
   closeAttackPrefab: {fileID: 0}
   rangeAttackPrefab: {fileID: 0}
   versusAttackPrefab: {fileID: 0}
-  character: 0
+  character: 1
   blueSprite: {fileID: 7298694279780720200, guid: 3c3b3c30611de0a498790722f885048c,
     type: 3}
   blueCloseAttack: {fileID: 3231854286922200953, guid: 0d6975ce1f3541a48b2ad267b3b464e3,
@@ -224,3 +224,5 @@ MonoBehaviour:
     type: 3}
   redRangeAttack: {fileID: 2281276350444154649, guid: 503fa1d101b781a4ebf77f92fc6850de,
     type: 3}
+  redDamageBullet: 1
+  redSpeedBullet: 3
