@@ -2629,21 +2629,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9144719478332417009, guid: a8824912cb518ef48a5106ae8b9bfb5e,
-        type: 3}
-      propertyPath: character
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9144719478332417009, guid: a8824912cb518ef48a5106ae8b9bfb5e,
-        type: 3}
-      propertyPath: redSpeedBullet
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9144719478332417009, guid: a8824912cb518ef48a5106ae8b9bfb5e,
-        type: 3}
-      propertyPath: redDamageBullet
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9144719478332417011, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}
       propertyPath: heart.Array.data[0]
