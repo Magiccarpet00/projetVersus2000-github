@@ -1680,10 +1680,11 @@ MonoBehaviour:
   allBossInGame:
   - {fileID: 4520089852928657234, guid: ab7b83125d91710468940e6c9e520d98, type: 3}
   allFloorInGame:
-  - {fileID: 3670922449670503745, guid: 9a346d3d666979046a023f3866a77791, type: 3}
-  - {fileID: 4510294642037769539, guid: 2023d3281d84e6e44a3ed1c643d7016e, type: 3}
-  - {fileID: 8455718379182378619, guid: 28ed8d44eff58cc4f93b3aa81d8b87b5, type: 3}
-  - {fileID: 6059842201975474277, guid: 651f944043940f940840286a863ece53, type: 3}
+  - {fileID: 7499375061932760082, guid: 9fb4f96ffc125a343a7c608e99014886, type: 3}
+  - {fileID: 8382447051694717196, guid: 75b072dad771e2b43807949160aa52dc, type: 3}
+  - {fileID: 2974442316634382026, guid: 1585b079f038bc7448576034f2376e27, type: 3}
+  - {fileID: 2394987703095707105, guid: 55278f37d6f4a434997464bee1b28dad, type: 3}
+  - {fileID: 8405384320479856229, guid: 0ded170681b6f25419bf1be418750859, type: 3}
   floorShop: {fileID: 506122406585103068, guid: 69de2bb9a2aa92344801b6637584d5f8,
     type: 3}
   shop: {fileID: 4311658509053371382, guid: 30aeae702448c934ea3c8771461fb995, type: 3}
@@ -2628,6 +2629,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417009, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: character
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9144719478332417011, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}

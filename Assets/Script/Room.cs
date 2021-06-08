@@ -224,18 +224,6 @@ public class Room : MonoBehaviour
             }
             
             playerOnThisRoom = true;
-
-            // [Problème pour benoit]
-            //******************************************************************************************************************
-            // Pour le follow Camera
-            // GameManager.instance.playersPosition. #j'aimerais bien changer la value du dictionaire 
-            //                                         par le GameObject de cette classe room#
-
-            //                                        #Et on peut recupérer la clef player pcq on à collision dans la methode
-            //                                         OnTriggerEnter2D juste au dessus#
-            /*
-             * Benoît: Bah c'est bon du coup non ?*/
-
             GameManager.instance.playersPosition[collision.gameObject] = this.gameObject;
 
             //******************************************************************************************************************
@@ -250,6 +238,12 @@ public class Room : MonoBehaviour
             {
                 patternInThisRoom.GetComponent<PatternEnemy>().ActivationEnnemy();
             }
+
+            if(typeRoom == TypeRoom.SHOP)
+            {
+                Animator animator = GetComponentInChildren<Animator>();
+                animator.SetTrigger("fadeoff");
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -259,6 +253,12 @@ public class Room : MonoBehaviour
             playerOnThisRoom = false;
 
             ComboManager.instance.BankCombo(collision.gameObject);
+        }
+
+        if (typeRoom == TypeRoom.SHOP)
+        {
+            Animator animator = GetComponentInChildren<Animator>();
+            animator.SetTrigger("fadein");
         }
     }
 
