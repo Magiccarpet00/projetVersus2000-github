@@ -205,7 +205,6 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         yield return new WaitForSeconds(dashTime);
         isDashing = false;
     }
-
     // RED COMPETENCE
     public IEnumerator RedCloseAttack()
     {
@@ -266,11 +265,8 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
             bullet.player = this.gameObject;
         }
     }
-   
 
     // GREEN COMPETENCE
-
-
     public IEnumerator SpeedUp(float buffSpeed, float buffTime, int smoothness)
     {
         playerMovement.maxMoveSpeed += buffSpeed;

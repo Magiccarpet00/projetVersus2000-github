@@ -324,6 +324,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: caisse_shadow
       objectReference: {fileID: 0}
+    - target: {fileID: 7539939732297206279, guid: 591c90348dad37444bf1a583dbe512c2,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539939732297206279, guid: 591c90348dad37444bf1a583dbe512c2,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7539939732297206279, guid: 591c90348dad37444bf1a583dbe512c2,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 422693501
+      objectReference: {fileID: 0}
     - target: {fileID: 7620105330376408160, guid: 591c90348dad37444bf1a583dbe512c2,
         type: 3}
       propertyPath: m_RootOrder

@@ -46,8 +46,9 @@ public class Room : MonoBehaviour
         ApertureCheck();
         ChangeTypeOfRoom(roomRng,bossRng, floorRng, obstacleRng);
 
-        GetComponent<SpriteRenderer>().sprite = LevelGenerator.instance.maskToDoor[mask].GetComponent<SpriteRenderer>().sprite;
-
+        GameObject spriteWall = Instantiate(LevelGenerator.instance.maskToDoor[mask], transform.position, Quaternion.identity);
+        spriteWall.transform.parent = this.transform;
+        
         //Faire des murs avec des GameObjects
         MakeWalls();
 
@@ -239,7 +240,7 @@ public class Room : MonoBehaviour
                 patternInThisRoom.GetComponent<PatternEnemy>().ActivationEnnemy();
             }
 
-            if(typeRoom == TypeRoom.SHOP)
+            if(typeRoom == TypeRoom.SHOP || typeRoom == TypeRoom.BOSS)
             {
                 Animator animator = GetComponentInChildren<Animator>();
                 animator.SetTrigger("fadeoff");
@@ -255,7 +256,7 @@ public class Room : MonoBehaviour
             ComboManager.instance.BankCombo(collision.gameObject);
         }
 
-        if (typeRoom == TypeRoom.SHOP)
+        if (typeRoom == TypeRoom.SHOP || typeRoom == TypeRoom.BOSS)
         {
             Animator animator = GetComponentInChildren<Animator>();
             animator.SetTrigger("fadein");
