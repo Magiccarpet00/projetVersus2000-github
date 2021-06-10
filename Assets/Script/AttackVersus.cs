@@ -15,7 +15,7 @@ public class AttackVersus : MonoBehaviour
 
         if (player.GetComponent<PlayerCharacter>().character == Character.RED)
         {
-            RedAttackVersus();
+            StartCoroutine(RedAttackVersus(playerToFocus, player));
         }
 
         if (player.GetComponent<PlayerCharacter>().character == Character.GREEN)
@@ -51,9 +51,26 @@ public class AttackVersus : MonoBehaviour
         animator.SetTrigger("end");
     }
 
-    public void RedAttackVersus()
+    public IEnumerator RedAttackVersus(GameObject _playerToFocus, GameObject _player)
     {
+        PlayerCharacter playerCharacter = _player.GetComponent<PlayerCharacter>();
 
+        for (int i = 0; i < playerCharacter.redVersusAttackCount; i++)
+        {
+            GameObject currentRoomPlayerDefenseur = GameManager.instance.playersPosition[_playerToFocus];
+
+            float rngX = Random.Range(-4f, 4f);
+            float rngY = Random.Range(-4f, 4f);
+            Vector3 offSetPossition = new Vector3(rngX, rngY, 0f);
+
+            GameObject versusAttack = Instantiate(playerCharacter.versusAttackPrefab,
+                                                  currentRoomPlayerDefenseur.transform.position + offSetPossition,
+                                                  Quaternion.identity);  // [Code Review] J'ai dupliquer du code de Combo manager pcq j'avais la flemme
+
+            
+        }
+
+        yield return new WaitForSeconds(0.2f);
     }
 
     public void GreenAttackVersus()

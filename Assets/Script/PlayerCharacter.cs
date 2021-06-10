@@ -32,6 +32,10 @@ public class PlayerCharacter : MonoBehaviour
     public GameObject redRangeAttack;
     public int redDamageBullet;
     public float redSpeedBullet;
+
+    public GameObject redVersusAttack;
+    public int redVersusAttackCount;
+    public float redVersusAttackSpeed;
     
 
 
@@ -52,6 +56,7 @@ public class PlayerCharacter : MonoBehaviour
             GameObject sprite = Instantiate(redSprite, transform.position, Quaternion.identity);
             sprite.transform.parent = this.transform;
             rangeAttackPrefab = redRangeAttack;
+            versusAttackPrefab = redVersusAttack;
         }
     }
 

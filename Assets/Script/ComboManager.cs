@@ -179,5 +179,4 @@ public class ComboManager : MonoBehaviour
         newAttackVersus.GetComponent<AttackVersus>().playerToFocus = playerDefenseur;
         newAttackVersus.GetComponent<AttackVersus>().player = playerAttaquant;
     }
-
 }
