@@ -33,6 +33,7 @@ public class PlayerCharacter : MonoBehaviour
     public int redDamageBullet;
     public float redSpeedBullet;
 
+
     public GameObject redVersusAttack;
     public int redVersusAttackCount;
     public float redVersusAttackSpeed;

@@ -41,7 +41,8 @@ public class ComboManager : MonoBehaviour
     public Dictionary<GameObject, float> currentTime = new Dictionary<GameObject, float>();
     public float maxTimeCombo;
 
-    public GameObject fantomPrefab;
+    
+
 
     public static ComboManager instance;
     private void Awake()
@@ -101,6 +102,11 @@ public class ComboManager : MonoBehaviour
             BankCombo(player2);
         }
 
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            StartCoroutine(AttackVersus(player1));
+        }
+
     }
 
     public void AddToCombo(GameObject player)
@@ -122,7 +128,7 @@ public class ComboManager : MonoBehaviour
 
         if (playerToCurrentCombo[_player].Count == nbEnemiesInRoom)
         {
-            AttackVersus(_player);
+            StartCoroutine(AttackVersus(_player));
 
             // Visuel sympa
             Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.Pentagrame]) as GameObject,
@@ -153,7 +159,7 @@ public class ComboManager : MonoBehaviour
         //}
     }
     
-    public void AttackVersus(GameObject playerAttaquant)
+    public System.Collections.IEnumerator AttackVersus(GameObject playerAttaquant)
     {
         GameObject playerDefenseur;
 
@@ -168,15 +174,66 @@ public class ComboManager : MonoBehaviour
 
         GameObject currentRoomPlayerDefenseur = GameManager.instance.playersPosition[playerDefenseur];
 
-        
-        float rngX = Random.Range(-Constants.RANDOM_OFFSET_INSTANSIAT_FANTOM, Constants.RANDOM_OFFSET_INSTANSIAT_FANTOM);
-        float rngY = Random.Range(-Constants.RANDOM_OFFSET_INSTANSIAT_FANTOM, Constants.RANDOM_OFFSET_INSTANSIAT_FANTOM);
-        Vector3 offSetPossition = new Vector3(rngX, rngY, 0f);
-        
-        GameObject newAttackVersus = Instantiate(playerAttaquant.GetComponent<PlayerCharacter>().versusAttackPrefab,
-                                                 currentRoomPlayerDefenseur.transform.position + offSetPossition,
-                                                 Quaternion.identity);
-        newAttackVersus.GetComponent<AttackVersus>().playerToFocus = playerDefenseur;
-        newAttackVersus.GetComponent<AttackVersus>().player = playerAttaquant;
+
+        PlayerCharacter playerCharacter = playerAttaquant.GetComponent<PlayerCharacter>();
+
+        if(playerCharacter.character == Character.BLUE)
+        {
+            float rngX = Random.Range(-2f, 2f);
+            float rngY = Random.Range(-2f, 2f);
+            Vector3 offSetPossition = new Vector3(rngX, rngY, 0f);
+
+            GameObject newAttackVersus = Instantiate(playerAttaquant.GetComponent<PlayerCharacter>().versusAttackPrefab,
+                                                     currentRoomPlayerDefenseur.transform.position + offSetPossition,
+                                                     Quaternion.identity);
+            newAttackVersus.GetComponent<AttackVersus>().playerToFocus = playerDefenseur;
+            newAttackVersus.GetComponent<AttackVersus>().player = playerAttaquant;
+        }
+        else if(playerCharacter.character == Character.RED)
+        {
+            List<AttackVersus> listAttackVerus = new List<AttackVersus>();
+
+            for (int i = 0; i < playerCharacter.redVersusAttackCount; i++)
+            {
+                float rngX = Random.Range(-3f, 3f);
+                float rngY = Random.Range(-3f, 1.5f);
+                Vector3 offSetPossition = new Vector3(rngX, rngY, 0f);
+
+                GameObject newAttackVersus = Instantiate(playerCharacter.versusAttackPrefab,
+                                                     currentRoomPlayerDefenseur.transform.position + offSetPossition,
+                                                     Quaternion.identity);
+
+                AttackVersus attackVersus = newAttackVersus.GetComponent<AttackVersus>();
+
+                listAttackVerus.Add(attackVersus);
+
+                attackVersus.playerToFocus = playerDefenseur;
+                attackVersus.player = playerAttaquant;
+
+                float rngTime = Random.Range(0.2f, 0.8f);
+
+                if (i == 0)
+                {
+                    listAttackVerus[0].offSetLifeTime = rngTime;
+                    //listAttackVerus[0].offSetLifeTime = 0.5f;
+                }
+                else if (i == 1)
+                {
+                    listAttackVerus[1].offSetLifeTime = rngTime + listAttackVerus[0].offSetLifeTime;
+                    //listAttackVerus[1].offSetLifeTime = 0.5f+0.5f;
+                }
+                else if (i == 2)
+                {
+                    listAttackVerus[2].offSetLifeTime = rngTime + listAttackVerus[1].offSetLifeTime + listAttackVerus[0].offSetLifeTime;
+                    //listAttackVerus[2].offSetLifeTime = 0.5f+0.5f+0.5f;
+                }
+
+                yield return new WaitForSeconds(rngTime);
+            }
+        }
+        else if (playerCharacter.character == Character.GREEN)
+        {
+
+        }
     }
 }

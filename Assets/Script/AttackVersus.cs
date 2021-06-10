@@ -6,6 +6,12 @@ public class AttackVersus : MonoBehaviour
     public GameObject playerToFocus;
     public GameObject player;
 
+
+    //RED ATTACK
+    public bool redCanMove;
+    public Vector2 newPos;
+    public float offSetLifeTime;
+
     private void Start()
     {
         if(player.GetComponent<PlayerCharacter>().character == Character.BLUE)
@@ -16,11 +22,21 @@ public class AttackVersus : MonoBehaviour
         if (player.GetComponent<PlayerCharacter>().character == Character.RED)
         {
             StartCoroutine(RedAttackVersus(playerToFocus, player));
+            StartCoroutine(RedAttackVersusTimer());
         }
 
         if (player.GetComponent<PlayerCharacter>().character == Character.GREEN)
         {
             GreenAttackVersus();
+        }
+    }
+
+    private void Update()
+    {
+        if (redCanMove)
+        {
+            RedMove(playerToFocus);
+
         }
     }
 
@@ -53,25 +69,34 @@ public class AttackVersus : MonoBehaviour
 
     public IEnumerator RedAttackVersus(GameObject _playerToFocus, GameObject _player)
     {
-        PlayerCharacter playerCharacter = _player.GetComponent<PlayerCharacter>();
-
-        for (int i = 0; i < playerCharacter.redVersusAttackCount; i++)
+        while (true)
         {
-            GameObject currentRoomPlayerDefenseur = GameManager.instance.playersPosition[_playerToFocus];
+            float rngTime = Random.Range(0.5f, 1.5f);
+            yield return new WaitForSeconds(rngTime);
 
-            float rngX = Random.Range(-4f, 4f);
-            float rngY = Random.Range(-4f, 4f);
-            Vector3 offSetPossition = new Vector3(rngX, rngY, 0f);
-
-            GameObject versusAttack = Instantiate(playerCharacter.versusAttackPrefab,
-                                                  currentRoomPlayerDefenseur.transform.position + offSetPossition,
-                                                  Quaternion.identity);  // [Code Review] J'ai dupliquer du code de Combo manager pcq j'avais la flemme
-
-            
+            float rngX = Random.Range(-1f, 1f);
+            float rngY = Random.Range(-1f, 1f);
+            newPos = new Vector2(_playerToFocus.transform.position.x + rngX, playerToFocus.transform.position.y + rngY);
         }
 
-        yield return new WaitForSeconds(0.2f);
+        
     }
+
+    public void RedMove(GameObject _playerToFocus)
+    {        
+        transform.position = Vector2.MoveTowards(transform.position, newPos, 0.2f * Time.deltaTime);
+    }
+
+    public IEnumerator RedAttackVersusTimer()
+    {
+        yield return new WaitForSeconds(3f); // Le premiere Timer pour attendre que tout se renseigne dans Combo manager 
+
+        float timer = 4f - offSetLifeTime;
+
+        yield return new WaitForSeconds(timer);
+        GetComponent<Animator>().SetTrigger("die");
+    }
+
 
     public void GreenAttackVersus()
     {

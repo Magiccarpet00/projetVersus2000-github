@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3843881072734633779}
   - component: {fileID: 3843881072734633776}
   - component: {fileID: 385928361152168077}
+  - component: {fileID: -7041911197049875050}
   m_Layer: 0
   m_Name: attack_versus_red
   m_TagString: Untagged
@@ -132,6 +133,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e77d24145e8524ab38303e65bbe045, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-7041911197049875050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3843881072734633777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f858e6132dd1c56428dce6e5c1cab616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerToFocus: {fileID: 0}
+  player: {fileID: 0}
+  redCanMove: 1
+  newPos: {x: 0, y: 0}
+  offSetLifeTime: 0
 --- !u!1 &3843881073510951336
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +219,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 422693501
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 7f7fd5a4642b8e54dbe2d2a884016fd5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.2}
   m_FlipX: 0
