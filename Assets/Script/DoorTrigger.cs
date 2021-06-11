@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
 {
@@ -15,7 +16,11 @@ public class DoorTrigger : MonoBehaviour
                     //Debug.Log("Je viens de " + roomOrigine + " et vais vers " + roomDestination);
 
                     collision.GetComponent<PlayerMovement>().TapisRoulant(roomOrigine, roomDestination);
-                    CheckGoAttackVerus(roomOrigine, roomDestination, collision.GetComponent<PlayerCharacter>());
+
+                    if(roomOrigine.roomFinnished == true && roomDestination.roomFinnished == false)
+                    {
+                    StartCoroutine(AttackVersusRetard(collision.gameObject));
+                    }   
 
                 }
 
@@ -38,13 +43,12 @@ public class DoorTrigger : MonoBehaviour
         }        
     }
 
-    public void CheckGoAttackVerus(Room roomOrigine, Room roomDestination, PlayerCharacter player)
+    public IEnumerator AttackVersusRetard(GameObject player)
     {
-        if (roomOrigine.roomFinnished && roomDestination.roomFinnished!)
-        {
-            player.goAttackVersus = 1;
-            
-        }
+        yield return new WaitForSeconds(1.2f); // On attend que le joueur rentre dans la salle
+        player.GetComponent<PlayerCharacter>().goAttackVersus = 1;
     }
+
+   
 
 }

@@ -193,6 +193,8 @@ public class ComboManager : MonoBehaviour
             // [Code Panique] C'est pas ma faute c'est la doc qui a dit de faire commme ça, moi je voulais un bool
             yield return new WaitUntil(() => playerDefenseur.GetComponent<PlayerCharacter>().goAttackVersus >= 1);
 
+            playerDefenseur.GetComponent<PlayerCharacter>().goAttackVersus = 0;
+
             currentRoomPlayerDefenseur = GameManager.instance.playersPosition[playerDefenseur];
             StartCoroutine(AttackVersusCharacter(playerAttaquant, playerDefenseur, currentRoomPlayerDefenseur));
 
