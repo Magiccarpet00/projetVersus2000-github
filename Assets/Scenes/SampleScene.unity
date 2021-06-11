@@ -205,8 +205,6 @@ MonoBehaviour:
   player1: {fileID: 1319672010}
   player2: {fileID: 1209849208}
   maxTimeCombo: 0.5
-  fantomPrefab: {fileID: 7811420212993515689, guid: 98fe29042d5cef646b8c664bda6d2ec4,
-    type: 3}
 --- !u!1 &271516523
 GameObject:
   m_ObjectHideFlags: 0
@@ -2739,11 +2737,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9144719478332417009, guid: a8824912cb518ef48a5106ae8b9bfb5e,
-        type: 3}
-      propertyPath: character
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9144719478332417011, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}

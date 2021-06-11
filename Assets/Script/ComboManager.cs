@@ -41,7 +41,7 @@ public class ComboManager : MonoBehaviour
     public Dictionary<GameObject, float> currentTime = new Dictionary<GameObject, float>();
     public float maxTimeCombo;
 
-    
+    public List<GameObject> wattingListAttackVersusJ1 = new List<GameObject>();
 
 
     public static ComboManager instance;
@@ -186,8 +186,12 @@ public class ComboManager : MonoBehaviour
             GameObject newAttackVersus = Instantiate(playerAttaquant.GetComponent<PlayerCharacter>().versusAttackPrefab,
                                                      currentRoomPlayerDefenseur.transform.position + offSetPossition,
                                                      Quaternion.identity);
-            newAttackVersus.GetComponent<AttackVersus>().playerToFocus = playerDefenseur;
-            newAttackVersus.GetComponent<AttackVersus>().player = playerAttaquant;
+
+            AttackVersus attackVersus = newAttackVersus.GetComponent<AttackVersus>();
+
+            attackVersus.playerToFocus = playerDefenseur;
+            attackVersus.player = playerAttaquant;
+            attackVersus.currentRoom = currentRoomPlayerDefenseur;
         }
         else if(playerCharacter.character == Character.RED)
         {
@@ -209,28 +213,34 @@ public class ComboManager : MonoBehaviour
 
                 attackVersus.playerToFocus = playerDefenseur;
                 attackVersus.player = playerAttaquant;
+                attackVersus.currentRoom = currentRoomPlayerDefenseur;
+                attackVersus.redDamage = playerCharacter.redVersusAttackDamage;
 
-                float rngTime = Random.Range(0.2f, 0.8f);
+                //---------Pour L'invocation asyncrhone---------------
+
+                // [Code Panique] en plus ça marche pas
+                float rngTime = 0.5f;
+                //float rngTime = Random.Range(0.2f, 0.8f);
 
                 if (i == 0)
                 {
-                    listAttackVerus[0].offSetLifeTime = rngTime;
-                    //listAttackVerus[0].offSetLifeTime = 0.5f;
+                    //listAttackVerus[0].offSetLifeTime = rngTime;
+                    listAttackVerus[0].offSetLifeTime = 0.5f;
                 }
                 else if (i == 1)
                 {
-                    listAttackVerus[1].offSetLifeTime = rngTime + listAttackVerus[0].offSetLifeTime;
-                    //listAttackVerus[1].offSetLifeTime = 0.5f+0.5f;
+                    //listAttackVerus[1].offSetLifeTime = rngTime + listAttackVerus[0].offSetLifeTime;
+                    listAttackVerus[1].offSetLifeTime = 1f;
                 }
                 else if (i == 2)
                 {
-                    listAttackVerus[2].offSetLifeTime = rngTime + listAttackVerus[1].offSetLifeTime + listAttackVerus[0].offSetLifeTime;
-                    //listAttackVerus[2].offSetLifeTime = 0.5f+0.5f+0.5f;
+                    //listAttackVerus[2].offSetLifeTime = rngTime + listAttackVerus[1].offSetLifeTime + listAttackVerus[0].offSetLifeTime;
+                    listAttackVerus[2].offSetLifeTime = 1.5f;
                 }
-
                 yield return new WaitForSeconds(rngTime);
             }
         }
+
         else if (playerCharacter.character == Character.GREEN)
         {
 

@@ -5,12 +5,14 @@ public class AttackVersus : MonoBehaviour
 {
     public GameObject playerToFocus;
     public GameObject player;
+    public GameObject currentRoom;
 
 
     //RED ATTACK
     public bool redCanMove;
     public Vector2 newPos;
     public float offSetLifeTime;
+    public int redDamage;
 
     private void Start()
     {
@@ -36,7 +38,11 @@ public class AttackVersus : MonoBehaviour
         if (redCanMove)
         {
             RedMove(playerToFocus);
+        }
 
+        if (GameManager.instance.playersPosition[playerToFocus] != currentRoom) // [Code Review] on passe dans update du coup pas opti
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -103,4 +109,18 @@ public class AttackVersus : MonoBehaviour
 
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (collision.GetComponent<PlayerHealth>().isInvincible == false)
+            {
+                if (player.GetComponent<PlayerCharacter>().character == Character.RED)
+                {
+                    StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(newPos.normalized, redDamage));
+                }
+            }                
+        }        
+    }
 }
