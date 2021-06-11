@@ -9,6 +9,11 @@ public class PlayerCharacter : MonoBehaviour
 
     public Character character;
 
+    //Je sais pas trop ou le mettre
+    public int goAttackVersus = 0;
+    // 0 => on attend dans la coroutine AttackVersus de ComboManager
+    // 1 => on lance l'attack Versus de l'autre sur lui même
+
 
     // BLUE ATRIBUE
     [Header(" --BLUE-- ")]

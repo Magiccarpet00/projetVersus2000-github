@@ -44,6 +44,7 @@ public class ComboManager : MonoBehaviour
     public List<GameObject> wattingListAttackVersusJ1 = new List<GameObject>();
 
 
+
     public static ComboManager instance;
     private void Awake()
     {
@@ -102,11 +103,21 @@ public class ComboManager : MonoBehaviour
             BankCombo(player2);
         }
 
+
+
+        // ------POUR LES GIGA TEST------
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             StartCoroutine(AttackVersus(player1));
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            player2.GetComponent<PlayerCharacter>().goAttackVersus = 1;
+        }
+
+        // --------------------------------
     }
 
     public void AddToCombo(GameObject player)
@@ -128,6 +139,8 @@ public class ComboManager : MonoBehaviour
 
         if (playerToCurrentCombo[_player].Count == nbEnemiesInRoom)
         {
+
+
             StartCoroutine(AttackVersus(_player));
 
             // Visuel sympa
@@ -174,16 +187,33 @@ public class ComboManager : MonoBehaviour
 
         GameObject currentRoomPlayerDefenseur = GameManager.instance.playersPosition[playerDefenseur];
 
+        // On regarde si on fait l'attack versus mnt our si on la declanche plus tard
+        if(currentRoomPlayerDefenseur.GetComponent<Room>().roomFinnished == true)
+        {
+            // [Code Panique] C'est pas ma faute c'est la doc qui a dit de faire commme ça, moi je voulais un bool
+            yield return new WaitUntil(() => playerDefenseur.GetComponent<PlayerCharacter>().goAttackVersus >= 1);
 
+            currentRoomPlayerDefenseur = GameManager.instance.playersPosition[playerDefenseur];
+            StartCoroutine(AttackVersusCharacter(playerAttaquant, playerDefenseur, currentRoomPlayerDefenseur));
+
+        }
+        else if(currentRoomPlayerDefenseur.GetComponent<Room>().roomFinnished == false)
+        {
+            StartCoroutine(AttackVersusCharacter(playerAttaquant, playerDefenseur, currentRoomPlayerDefenseur));
+        }
+    }
+
+    public System.Collections.IEnumerator AttackVersusCharacter(GameObject playerAttaquant, GameObject playerDefenseur, GameObject currentRoomPlayerDefenseur)
+    {
         PlayerCharacter playerCharacter = playerAttaquant.GetComponent<PlayerCharacter>();
 
-        if(playerCharacter.character == Character.BLUE)
+        if (playerCharacter.character == Character.BLUE)
         {
             float rngX = Random.Range(-2f, 2f);
             float rngY = Random.Range(-2f, 2f);
             Vector3 offSetPossition = new Vector3(rngX, rngY, 0f);
 
-            GameObject newAttackVersus = Instantiate(playerAttaquant.GetComponent<PlayerCharacter>().versusAttackPrefab,
+            GameObject newAttackVersus = Instantiate(playerCharacter.versusAttackPrefab,
                                                      currentRoomPlayerDefenseur.transform.position + offSetPossition,
                                                      Quaternion.identity);
 
@@ -193,7 +223,8 @@ public class ComboManager : MonoBehaviour
             attackVersus.player = playerAttaquant;
             attackVersus.currentRoom = currentRoomPlayerDefenseur;
         }
-        else if(playerCharacter.character == Character.RED)
+
+        else if (playerCharacter.character == Character.RED)
         {
             List<AttackVersus> listAttackVerus = new List<AttackVersus>();
 

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DoorTrigger : MonoBehaviour
 {
@@ -17,6 +15,8 @@ public class DoorTrigger : MonoBehaviour
                     //Debug.Log("Je viens de " + roomOrigine + " et vais vers " + roomDestination);
 
                     collision.GetComponent<PlayerMovement>().TapisRoulant(roomOrigine, roomDestination);
+                    CheckGoAttackVerus(roomOrigine, roomDestination, collision.GetComponent<PlayerCharacter>());
+
                 }
 
                 else if (GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomDestination)
@@ -36,5 +36,15 @@ public class DoorTrigger : MonoBehaviour
             collision.GetComponent<PlayerMovement>().checkSwitchBoxMove("betweenRooms", false);
             collision.GetComponent<PlayerMovement>().destinationSlide = collision.transform.position;
         }        
-    }   
+    }
+
+    public void CheckGoAttackVerus(Room roomOrigine, Room roomDestination, PlayerCharacter player)
+    {
+        if (roomOrigine.roomFinnished && roomDestination.roomFinnished!)
+        {
+            player.goAttackVersus = 1;
+            
+        }
+    }
+
 }
