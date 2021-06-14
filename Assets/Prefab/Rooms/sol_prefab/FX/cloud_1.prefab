@@ -98,7 +98,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   rb: {fileID: 0}
   growAmount: 1
-  growSpeed: 0.05
+  growSpeed: 0.1
   dirSwitch: 0
   randomDir: {x: 0, y: 0}
   randomDirInvert: {x: 0, y: 0}

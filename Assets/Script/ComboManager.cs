@@ -172,6 +172,10 @@ public class ComboManager : MonoBehaviour
         //}
     }
     
+    // [Code Review]
+    // Enfait c'est une mauvaise idée de mettre attackVersus dans Combo Manager 
+    // pcq c'est un singleton et qu'il y a des coroutine donc ça fait buger quand on l'appelle deux fois alors que
+    // La couroutine n'est pas fini
     public System.Collections.IEnumerator AttackVersus(GameObject playerAttaquant)
     {
         GameObject playerDefenseur;

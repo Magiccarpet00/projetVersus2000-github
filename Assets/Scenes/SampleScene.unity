@@ -1487,7 +1487,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newPos: {fileID: 388002317}
   timeOffSet: 0.2
-  posOffSet: {x: -0.1, y: -0.45, z: -10}
+  posOffSet: {x: 0.1, y: -0.45, z: -10}
   playerToFollow: {fileID: 1209849208}
 --- !u!20 &1472467427
 Camera:
@@ -2922,6 +2922,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417009, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: character
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9144719478332417011, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}
