@@ -14,12 +14,36 @@ public class DoorTrigger : MonoBehaviour
               {
                   // Deplacement automatique de RoomOrigine vers RoomDestination
                   collision.GetComponent<PlayerMovement>().AutoWalk(roomOrigine, roomDestination);
+
+                  if(roomOrigine.typeRoom == TypeRoom.VANILLA && roomDestination.typeRoom == TypeRoom.SHOP)
+                  {
+                       Animator animator = roomDestination.GetComponentInChildren<Animator>();
+                       animator.SetTrigger("fadeoff");
+                  }
+                  if(roomOrigine.typeRoom == TypeRoom.SHOP && roomDestination.typeRoom == TypeRoom.VANILLA)
+                  {
+                       Animator animator = roomDestination.GetComponentInChildren<Animator>();
+                       animator.SetTrigger("fadein");
+                  }
+
               }
 
               else if (GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomDestination)
               {
                   // Deplacement automatique de RoomDestination vers RoomOrigine
                   collision.GetComponent<PlayerMovement>().AutoWalk(roomDestination, roomOrigine);
+
+
+                  if (roomOrigine.typeRoom == TypeRoom.SHOP && roomDestination.typeRoom == TypeRoom.VANILLA)
+                  {
+                      Animator animator = roomDestination.GetComponentInChildren<Animator>();
+                      animator.SetTrigger("fadeoff");
+                  }
+                  if (roomOrigine.typeRoom == TypeRoom.VANILLA && roomDestination.typeRoom == TypeRoom.SHOP)
+                  {
+                      Animator animator = roomDestination.GetComponentInChildren<Animator>();
+                      animator.SetTrigger("fadein");
+                  }
               }
          }
     }
@@ -58,7 +82,7 @@ public class DoorTrigger : MonoBehaviour
                 if (roomDestination.typeRoom == TypeRoom.VANILLA && roomDestination.roomFinnished == false)
                 {
                     roomDestination.patternInThisRoom.GetComponent<PatternEnemy>().ActivationEnnemy();
-                }                
+                }
             }
             else if (GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomDestination)
             {

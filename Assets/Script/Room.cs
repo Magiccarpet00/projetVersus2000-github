@@ -209,53 +209,6 @@ public class Room : MonoBehaviour
         }
     }
 
-    //-----------Detection du joueur de dans la room------------
-
-    // Ici on peut se retrouver dans le cas ou le joueur est dans 2 rooms à la fois quand il est entre 2 rooms
-    // Je ferrais des ferification au moment des super pour savoir si le joueur n'est pas entre les rooms
-
-    
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //if (collision.CompareTag("Player"))
-        //{        
-        //    //playerOnThisRoom = true;   [REFACTOT] Visiblement c'est inutile 
-        //    GameManager.instance.playersPosition[collision.gameObject] = this.gameObject;
-
-        //    // Si on revient dans une room qu'on à fini on reste enfermé dedant sinon
-        //    if (roomFinnished == false)
-        //    {
-        //        CloseDoor();
-        //    }
-
-        //    if (typeRoom == TypeRoom.VANILLA && roomFinnished == false)
-        //    {
-        //        patternInThisRoom.GetComponent<PatternEnemy>().ActivationEnnemy();
-        //    }
-
-        //    if(typeRoom == TypeRoom.SHOP || typeRoom == TypeRoom.BOSS)
-        //    {
-        //        Animator animator = GetComponentInChildren<Animator>();
-        //        animator.SetTrigger("fadeoff");
-        //    }
-        //}
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        //if (collision.CompareTag("Player"))
-        //{
-        //    //playerOnThisRoom = false; [REFACTOT] Visiblement c'est inutile 
-
-        //    ComboManager.instance.BankCombo(collision.gameObject);
-        //}
-
-        //if (typeRoom == TypeRoom.SHOP || typeRoom == TypeRoom.BOSS)
-        //{
-        //    Animator animator = GetComponentInChildren<Animator>();
-        //    animator.SetTrigger("fadein");
-        //}
-    }
-
 
     //-----------Creation des Pattern d'enemies-----------------
 
