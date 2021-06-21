@@ -8,38 +8,87 @@ public class DoorTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            
-                if (GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomOrigine)
-                {
-                    //Debug.Log("Je viens de " + roomOrigine + " et vais vers " + roomDestination);
+         if (collision.CompareTag("Player"))
+         {
+              if (GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomOrigine)
+              {
+                  // Deplacement automatique de RoomOrigine vers RoomDestination
+                  collision.GetComponent<PlayerMovement>().AutoWalk(roomOrigine, roomDestination);
+              }
 
-                    collision.GetComponent<PlayerMovement>().TapisRoulant(roomOrigine, roomDestination);
-
-                    if(roomOrigine.roomFinnished == true && roomDestination.roomFinnished == false)
-                    {
-                    StartCoroutine(AttackVersusRetard(collision.gameObject));
-                    }   
-
-                }
-
-                else if (GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomDestination)
-                {
-                    //Debug.Log("Je viens de " + roomDestination + " et vais vers " + roomOrigine);
-
-                    collision.GetComponent<PlayerMovement>().TapisRoulant(roomDestination, roomOrigine);
-                } 
-        }
+              else if (GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomDestination)
+              {
+                  // Deplacement automatique de RoomDestination vers RoomOrigine
+                  collision.GetComponent<PlayerMovement>().AutoWalk(roomDestination, roomOrigine);
+              }
+         }
     }
 
+    //[REFACTOT] J'ai enlever ce qu'il y avais dans OntriggerEnter2D de Room pour le mettre dans cette classe.
+    //           Mais je dupplique du code avec les if roomDestination et roomOrigine
     private void OnTriggerExit2D(Collider2D collision)
     {
+
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerMovement>().isBetweenRooms = false;
-            collision.GetComponent<PlayerMovement>().checkSwitchBoxMove("betweenRooms", false);
-            collision.GetComponent<PlayerMovement>().destinationSlide = collision.transform.position;
+            // Stop de l'autoWalk
+            PlayerMovement playerMovement = collision.GetComponent<PlayerMovement>();
+            playerMovement.isBetweenRooms = false;
+            playerMovement.checkSwitchBoxMove("betweenRooms", false);
+            playerMovement.destinationSlide = collision.transform.position;
+
+
+            if (GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomOrigine)
+            {     
+                
+                GameManager.instance.playersPosition[collision.gameObject] = roomDestination.gameObject;
+
+                // Lancement de AttackVersus dans la prochaine room
+                if (roomOrigine.roomFinnished == true && roomDestination.roomFinnished == false)
+                {
+                    StartCoroutine(AttackVersusRetard(collision.gameObject));
+                }
+
+                // Si on revient dans une room qu'on à fini on reste enfermé dedant sinon
+                if (roomDestination.roomFinnished == false)
+                {
+                    roomDestination.CloseDoor();
+                }
+
+                if (roomDestination.typeRoom == TypeRoom.VANILLA && roomDestination.roomFinnished == false)
+                {
+                    roomDestination.patternInThisRoom.GetComponent<PatternEnemy>().ActivationEnnemy();
+                }                
+            }
+            else if (GameManager.instance.playersPosition[collision.gameObject].GetComponent<Room>() == roomDestination)
+            {
+
+                GameManager.instance.playersPosition[collision.gameObject] = roomOrigine.gameObject;
+
+                // Lancement de AttackVersus dans la prochaine room
+                if (roomDestination.roomFinnished == true && roomOrigine.roomFinnished == false)
+                {
+                    StartCoroutine(AttackVersusRetard(collision.gameObject));
+                }
+
+                // Si on revient dans une room qu'on à fini on reste enfermé dedant sinon
+                if (roomOrigine.roomFinnished == false)
+                {
+                    roomOrigine.CloseDoor();
+                }
+
+                if (roomOrigine.typeRoom == TypeRoom.VANILLA && roomOrigine.roomFinnished == false)
+                {
+                    roomOrigine.patternInThisRoom.GetComponent<PatternEnemy>().ActivationEnnemy();
+                }
+
+            }
+
+            if (collision.CompareTag("Player"))
+            {
+                ComboManager.instance.BankCombo(collision.gameObject);
+            }
+
         }        
     }
 

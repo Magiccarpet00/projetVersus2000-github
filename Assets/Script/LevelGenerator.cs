@@ -104,8 +104,13 @@ public class LevelGenerator : MonoBehaviour
 
             roomsInDongeonP1[i].GetComponent<Room>().TransformationRoom(roomRng,bossRng,floorRng, obstacleRng);
             roomsInDongeonP2[i].GetComponent<Room>().TransformationRoom(roomRng, bossRng,floorRng, obstacleRng);
-        }
 
+            //[REFACTOT] DoorTrigger, magouille provisoir
+            if(i == 0)
+            {
+                GameManager.instance.playersPosition[GameManager.instance.players[0]] = roomsInDongeonP1[0];
+            }            
+        }
     }
 
     
@@ -133,6 +138,9 @@ public class LevelGenerator : MonoBehaviour
             Move(Direction.UP, -1);
             return false;
         }
+
+        
+
     }
 
     private void Move(Direction direction, int rng)

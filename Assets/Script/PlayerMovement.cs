@@ -256,7 +256,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void TapisRoulant(Room roomOrigine, Room roomDestination)
+    public void AutoWalk(Room roomOrigine, Room roomDestination)
     {
         isBetweenRooms = true;
         checkSwitchBoxMove("betweenRooms", isBetweenRooms);

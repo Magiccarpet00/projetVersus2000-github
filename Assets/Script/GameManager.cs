@@ -68,9 +68,15 @@ public class GameManager : MonoBehaviour
 
 // [memo ridgibody]
 /* -les enemy sont is_trigger
+<<<<<<< Updated upstream
  * -le petit fantom sont is_trigger
  * -le bullet sont is_trigger
  * 
  * -le joueur est solid avec rb
  * -l'epée est is_trigger avec rb 
+=======
+ * -le joueur est solid avec rb
+ * -l'epée est is_trigger avec rb
+ * -les petit fantom sont is_trigger
+>>>>>>> Stashed changes
  * */

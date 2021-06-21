@@ -176,6 +176,11 @@ PrefabInstance:
       propertyPath: timeBeforeInvok
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1949257691818624966, guid: 71826ff6a50fc6f499890db2e0858493,
+        type: 3}
+      propertyPath: stopTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5711440843843787913, guid: 71826ff6a50fc6f499890db2e0858493,
         type: 3}
       propertyPath: m_LocalPosition.x

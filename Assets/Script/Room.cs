@@ -217,50 +217,43 @@ public class Room : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            foreach (var item in neighbors.Keys)
-            {
-                //Debug.Log("Mes voisins sont: " + neighbors[item]);
-            }
-            
-            playerOnThisRoom = true;
-            GameManager.instance.playersPosition[collision.gameObject] = this.gameObject;
+        //if (collision.CompareTag("Player"))
+        //{        
+        //    //playerOnThisRoom = true;   [REFACTOT] Visiblement c'est inutile 
+        //    GameManager.instance.playersPosition[collision.gameObject] = this.gameObject;
 
-            //******************************************************************************************************************
+        //    // Si on revient dans une room qu'on à fini on reste enfermé dedant sinon
+        //    if (roomFinnished == false)
+        //    {
+        //        CloseDoor();
+        //    }
 
-            // Si on revient dans une room qu'on à fini on reste enfermé dedant sinon
-            if (roomFinnished == false)
-            {
-                CloseDoor();
-            }
+        //    if (typeRoom == TypeRoom.VANILLA && roomFinnished == false)
+        //    {
+        //        patternInThisRoom.GetComponent<PatternEnemy>().ActivationEnnemy();
+        //    }
 
-            if (typeRoom == TypeRoom.VANILLA && roomFinnished == false)
-            {
-                patternInThisRoom.GetComponent<PatternEnemy>().ActivationEnnemy();
-            }
-
-            if(typeRoom == TypeRoom.SHOP || typeRoom == TypeRoom.BOSS)
-            {
-                Animator animator = GetComponentInChildren<Animator>();
-                animator.SetTrigger("fadeoff");
-            }
-        }
+        //    if(typeRoom == TypeRoom.SHOP || typeRoom == TypeRoom.BOSS)
+        //    {
+        //        Animator animator = GetComponentInChildren<Animator>();
+        //        animator.SetTrigger("fadeoff");
+        //    }
+        //}
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
-        {
-            playerOnThisRoom = false;
+        //if (collision.CompareTag("Player"))
+        //{
+        //    //playerOnThisRoom = false; [REFACTOT] Visiblement c'est inutile 
 
-            ComboManager.instance.BankCombo(collision.gameObject);
-        }
+        //    ComboManager.instance.BankCombo(collision.gameObject);
+        //}
 
-        if (typeRoom == TypeRoom.SHOP || typeRoom == TypeRoom.BOSS)
-        {
-            Animator animator = GetComponentInChildren<Animator>();
-            animator.SetTrigger("fadein");
-        }
+        //if (typeRoom == TypeRoom.SHOP || typeRoom == TypeRoom.BOSS)
+        //{
+        //    Animator animator = GetComponentInChildren<Animator>();
+        //    animator.SetTrigger("fadein");
+        //}
     }
 
 

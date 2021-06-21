@@ -161,7 +161,7 @@ public class ComboManager : MonoBehaviour
         List<ComboItem> cloneSafe = new List<ComboItem>(playerToCurrentCombo[player]);
         playerToCombos[player].Add(cloneSafe);
         playerToCurrentCombo[player].Clear();
-        /* Todo: Ne pas ajouter de combo vides (Liste 0 combo item)*/
+        /* Todo: Ne pas ajouter de combo vides (Liste 0 combo item)*/ 
 
         //int i = 1;
         //Debug.Log("Stockage d'un nouveau combo. Combo stockés:");
