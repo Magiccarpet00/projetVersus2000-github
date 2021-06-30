@@ -18,9 +18,11 @@ public class LevelGenerator : MonoBehaviour
 
     public List<GameObject> allBossInGame = new List<GameObject>();
 
-    public List<GameObject> allFloorInGame = new List<GameObject>();
+    public List<GameObject> allFloorInGame = new List<GameObject>();    
 
     public GameObject floorShop;
+
+    public GameObject floorFirstRoom;
 
     public GameObject shop;
 
@@ -74,7 +76,6 @@ public class LevelGenerator : MonoBehaviour
 
     IEnumerator CreateLevelTemplate()
     {
-        Move(Direction.UP,-1);
         int roomRngRange, bossRngRange, floorRngRange,
             roomRng, bossRng, floorRng;    //[Code Review] ça va faire ptet bcp de paramettre
         roomRngRange = allPatternInGame.Count;
@@ -89,9 +90,10 @@ public class LevelGenerator : MonoBehaviour
             if (createdRoom == true)
             {
                 id++;
-            }
+            }            
+
             yield return new WaitForSeconds(.1f);
-        }       
+        }
 
         //Ici on va transformé les roomTemplate en room avec des ouvertures sur les cotés
         for (int i = 0; i < roomsInDongeonP1.Count; i++)
@@ -105,7 +107,7 @@ public class LevelGenerator : MonoBehaviour
             roomsInDongeonP1[i].GetComponent<Room>().TransformationRoom(roomRng,bossRng,floorRng, obstacleRng);
             roomsInDongeonP2[i].GetComponent<Room>().TransformationRoom(roomRng, bossRng,floorRng, obstacleRng);
 
-            //[REFACTOT] DoorTrigger, magouille provisoir
+            //[REFACTOT] DoorTrigger, magouille provisoir pour la camera
             if(i == 0)
             {
                 GameManager.instance.playersPosition[GameManager.instance.players[0]] = roomsInDongeonP1[0];
@@ -125,8 +127,16 @@ public class LevelGenerator : MonoBehaviour
             room.name = "J1-Room" + idRoom.ToString();
             room2.name = "J2-Room" + idRoom.ToString();
 
-            int rng = UnityEngine.Random.Range(0, 2);
-            Move(Direction.RNG, rng);
+            if(idRoom == 0)
+            {
+                Move(Direction.UP, -1);
+            }
+            else
+            {
+                int rng = UnityEngine.Random.Range(0, 2);
+                Move(Direction.RNG, rng);
+            }
+            
             roomsInDongeonP1.Add(room);
             roomsInDongeonP2.Add(room2);
             TypeOfRoom(idRoom, room);
@@ -193,6 +203,10 @@ public class LevelGenerator : MonoBehaviour
         {
             //Boss room
             room.GetComponent<Room>().typeRoom = TypeRoom.BOSS;
+        }
+        else if(idRoom == 0)
+        {
+            room.GetComponent<Room>().typeRoom = TypeRoom.FIRST_ROOM;
         }
         else
         {

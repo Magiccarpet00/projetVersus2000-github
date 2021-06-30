@@ -252,6 +252,12 @@ public class Room : MonoBehaviour
             GameObject floorInThisRoom = Instantiate(LevelGenerator.instance.allFloorInGame[floorRng], transform.position, Quaternion.identity);
             floorInThisRoom.transform.parent = this.transform;
         }
+        else if (typeRoom == TypeRoom.FIRST_ROOM)
+        {
+            //Pour le SOL (FLOOR)
+            GameObject floorInThisRoom = Instantiate(LevelGenerator.instance.floorFirstRoom, transform.position, Quaternion.identity);
+            floorInThisRoom.transform.parent = this.transform;
+        }
         else
         {
             // Si on tombe ici c'est la merde car on est dans un type de room non défini.

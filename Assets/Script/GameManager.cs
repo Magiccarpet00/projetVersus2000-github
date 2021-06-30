@@ -27,12 +27,21 @@ public class GameManager : MonoBehaviour
     public LevelGenerator levelGenerator;
     public GameObject[] startRooms;
 
+    //Pour l'ouverture de la premiere porte
+    public Dictionary<BoutonStart, bool> boutonsStart = new Dictionary<BoutonStart, bool>();
+    public BoutonStart boutonJ1;
+    public BoutonStart boutonJ2;
+
     private void Start()
     {
         for (int i = 0; i < players.Length; i++)
         {
             playersPosition.Add(players[i], startRooms[i]);
         }
+
+        // Les bouton pour les ouvertures de porte
+        boutonsStart.Add(boutonJ1, false);
+        boutonsStart.Add(boutonJ2, false);
     }
 
     void Update()
@@ -64,6 +73,20 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(0); // ça bug defois
         }
     }
+
+    public void BoutonCheck()
+    {
+        if(boutonsStart[boutonJ1] == true && boutonsStart[boutonJ2] == true) // [Code Review] ça ya moyen de mieux l'ecrire je crois
+        {
+            OpenFirstDoor();
+        }
+    }
+
+    public void OpenFirstDoor()
+    {
+
+    }
+
 }
 
 // [memo ridgibody]

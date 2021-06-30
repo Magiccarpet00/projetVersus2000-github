@@ -5,5 +5,6 @@ public enum TypeRoom
 {
     SHOP,
     BOSS,
-    VANILLA        
+    VANILLA,
+    FIRST_ROOM
 }
