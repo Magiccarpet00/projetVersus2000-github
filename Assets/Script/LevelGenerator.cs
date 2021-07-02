@@ -107,11 +107,17 @@ public class LevelGenerator : MonoBehaviour
             roomsInDongeonP1[i].GetComponent<Room>().TransformationRoom(roomRng,bossRng,floorRng, obstacleRng);
             roomsInDongeonP2[i].GetComponent<Room>().TransformationRoom(roomRng, bossRng,floorRng, obstacleRng);
 
-            //[REFACTOT] DoorTrigger, magouille provisoir pour la camera
-            if(i == 0)
-            {
-                GameManager.instance.playersPosition[GameManager.instance.players[0]] = roomsInDongeonP1[0];
-            }            
+            InitialistionPlayerPosition(i);
+        }
+    }
+
+    // Pour que la variable dans GameManager soit renseigner
+    public void InitialistionPlayerPosition(int i)
+    {
+        if (i == 0)
+        {
+            GameManager.instance.playersPosition[GameManager.instance.players[0]] = roomsInDongeonP1[0];
+            GameManager.instance.playersPosition[GameManager.instance.players[1]] = roomsInDongeonP2[0];
         }
     }
 

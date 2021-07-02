@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public BoutonStart boutonJ1;
     public BoutonStart boutonJ2;
 
+    public GameObject[] firstDoor;
+
     private void Start()
     {
         for (int i = 0; i < players.Length; i++)
@@ -84,7 +86,10 @@ public class GameManager : MonoBehaviour
 
     public void OpenFirstDoor()
     {
-
+        for (int i = 0; i < firstDoor.Length; i++)
+        {
+            firstDoor[i].SetActive(false);
+        }
     }
 
 }
