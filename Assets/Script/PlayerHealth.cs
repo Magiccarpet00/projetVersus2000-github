@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
         UpdateHealthUI();
 
         // [Code Review] reciveiveHit et die doivent toujours etre ecrit comme ça pour que l'animator de chaque perso comprennent
-        animator.SetTrigger("receiveHit"); //
+        animator.SetTrigger("receiveHit");
 
         if(playerCharacter.character == Character.BLUE) // [Code Review] C'est une rustine pcq sinon ya une bug d'annimation et de dépaclement à cause du slide
         {

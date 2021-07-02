@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6986462628386190464}
   - component: {fileID: 7626873903397315318}
   - component: {fileID: 4122881116660264218}
-  - component: {fileID: -4186030918829489926}
   - component: {fileID: 5522701581642008040}
   m_Layer: 0
   m_Name: bullet_attack_versus_blue
@@ -144,24 +143,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f4b7911d7684b48874a0f5d4873ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerToFocus: {fileID: 0}
-  dirrectionBullet: {x: 0, y: 0}
+  bulletBehaviour: 0
   damage: 0
   speed: 0
+  dirrectionBullet: {x: 0, y: 0}
+  player: {fileID: 0}
+  playerToFocus: {fileID: 0}
   accuracyAmount: 0
   accuracy: 0
---- !u!114 &-4186030918829489926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3649916412452595449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20e77d24145e8524ab38303e65bbe045, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &5522701581642008040
 Rigidbody2D:
   serializedVersion: 4

@@ -67,6 +67,10 @@ public class PlayerMovement : MonoBehaviour
         directionVector.Add(InputBufferDirection.LEFT, new Vector2(-Constants.VECTOR_DIRECTION_ATTACK,0f));
         directionVector.Add(InputBufferDirection.RIGHT, new Vector2(Constants.VECTOR_DIRECTION_ATTACK, 0f));
         directionVector.Add(InputBufferDirection.UP, new Vector2(0f, Constants.VECTOR_DIRECTION_ATTACK));
+
+
+        //[Code Panique] je met une rustine pour le slide, j'ai l'impresion que c'est ça qui fait buger le reload
+        destinationSlide = transform.position;
     }
 
     private void Update()

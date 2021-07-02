@@ -74,6 +74,7 @@ public class TargetBullet : MonoBehaviour
     private void StopBullet()
     {
         speed = 0;
-        GetComponent<Animator>().SetTrigger("hit"); // Il faut que hit sois generique a toute les bullets
+        GetComponent<Animator>().SetTrigger("hit");
+        // Il faut que hit sois generique a toute les bullets
     }
 }

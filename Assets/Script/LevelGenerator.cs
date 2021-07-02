@@ -92,7 +92,7 @@ public class LevelGenerator : MonoBehaviour
                 id++;
             }            
 
-            yield return new WaitForSeconds(.1f);
+            yield return new WaitForSeconds(.01f);
         }
 
         //Ici on va transformé les roomTemplate en room avec des ouvertures sur les cotés
