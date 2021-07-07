@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
     public Animator animator;
     public SpriteRenderer shadow;
     public CircleCollider2D hitbox;
-    public CircleCollider2D collisionBox;
 
     // Varriable patrol
     public float maxSpeed;
@@ -148,7 +147,6 @@ public class Enemy : MonoBehaviour
     {
         dead = true;
         hitbox.enabled = false;
-        collisionBox.enabled = false;
         this.GetComponentInChildren<SpriteRenderer>().enabled = false; //[Code Review] shadow et sprite trop similaire
         shadow.enabled = false;
         currentRoom.notifyDeath();
@@ -185,7 +183,7 @@ public class Enemy : MonoBehaviour
                             }
                             else
                             {
-                                StartCoroutine(collision.GetComponent<PlayerHealth>().TakeDamage(dir, 0));
+                                collision.GetComponent<PlayerAttack>().RedCloseAttackRetrit();
                             }
                         }
                         else

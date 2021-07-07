@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float maxMoveSpeed;
     public float currentMoveSpeed;
-    private Vector2 movement;
+    public Vector2 movement;
 
     public Animator animator;
     public Rigidbody2D rb;

@@ -14,7 +14,6 @@ public class PlayerCharacter : MonoBehaviour
     // 0 => on attend dans la coroutine AttackVersus de ComboManager
     // 1 => on lance l'attack Versus de l'autre sur lui même
 
-
     // BLUE ATRIBUE
     [Header(" --BLUE-- ")]
     public GameObject blueSprite; // Le sprite contient l'animator, les animation et l'ombre

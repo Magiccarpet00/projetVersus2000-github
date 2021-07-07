@@ -205,6 +205,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         yield return new WaitForSeconds(dashTime);
         isDashing = false;
     }
+
     // RED COMPETENCE
     public IEnumerator RedCloseAttack()
     {
@@ -237,6 +238,12 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         yield return new WaitForSeconds(0.15f);
         onCoolDown = false;
     }
+
+    public void RedCloseAttackRetrit()
+    {
+        StartCoroutine(playerMovement.Bumping(-playerMovement.movement));
+    }
+
     public IEnumerator RedRangeAttack()
     {
         Dictionary<int, Vector2> localDir = new Dictionary<int, Vector2>();
@@ -267,6 +274,9 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     }
 
     // GREEN COMPETENCE
+
+
+    // UTILITAIRE
     public IEnumerator SpeedUp(float buffSpeed, float buffTime, int smoothness)
     {
         playerMovement.maxMoveSpeed += buffSpeed;
