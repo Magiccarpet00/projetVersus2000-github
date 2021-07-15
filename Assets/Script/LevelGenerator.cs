@@ -200,12 +200,12 @@ public class LevelGenerator : MonoBehaviour
 
     private void TypeOfRoom(int idRoom, GameObject room)
     {
-        if(idRoom == Constants.SHOP_ROOM) // 
-        {
-            //Shop room
-            room.GetComponent<Room>().typeRoom = TypeRoom.SHOP;
-        }
-        else if(idRoom == nbOfRooms-1)
+        //if(idRoom == Constants.SHOP_ROOM) // 
+        //{
+        //    //Shop room
+        //    room.GetComponent<Room>().typeRoom = TypeRoom.SHOP;
+        //}
+        if(idRoom == nbOfRooms-1)
         {
             //Boss room
             room.GetComponent<Room>().typeRoom = TypeRoom.BOSS;
@@ -220,6 +220,4 @@ public class LevelGenerator : MonoBehaviour
             room.GetComponent<Room>().typeRoom = TypeRoom.VANILLA;
         }
     }
-
-    
 }

@@ -6,9 +6,7 @@ public class DestructibleObject : MonoBehaviour
 {
     public SpriteRenderer[] sprite;
     public Animator animator;
-    public BoxCollider2D boxCollider;
-
-    public GameObject coins; 
+    public BoxCollider2D boxCollider;    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,9 +19,6 @@ public class DestructibleObject : MonoBehaviour
 
             animator.SetTrigger("Destroy");
             boxCollider.enabled = false;
-
-            Instantiate(coins, transform.position, Quaternion.identity);
-
         }
     }
 }
