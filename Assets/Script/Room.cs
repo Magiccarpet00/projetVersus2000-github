@@ -228,11 +228,11 @@ public class Room : MonoBehaviour
         }
         else if (typeRoom == TypeRoom.BOSS)
         {
-            GameObject bossInRoom = Instantiate(LevelGenerator.instance.allBossInGame[bossRng], transform.position, Quaternion.identity);
+            GameObject bossInRoom = Instantiate(LevelGenerator.instance.allBossInGame[bossRng], transform.position + new Vector3(0f, 0.5f, 0f), Quaternion.identity);
             bossInRoom.transform.parent = this.transform;
 
             //POUR LE SOL (FLOOR)                                    **floor provisoir pour le boss**
-            GameObject floorInThisRoom = Instantiate(LevelGenerator.instance.floorShop, transform.position, Quaternion.identity);
+            GameObject floorInThisRoom = Instantiate(LevelGenerator.instance.floorFirstRoom, transform.position, Quaternion.identity);
             floorInThisRoom.transform.parent = this.transform;
         }
         else if (typeRoom == TypeRoom.VANILLA)
