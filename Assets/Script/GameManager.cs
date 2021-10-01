@@ -105,6 +105,27 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void ShowBannerWhenPlayerDie()
+    {
+        if(gameFinnished == false)
+        {
+            if (players[0].GetComponent<PlayerHealth>().currentHealth <= 0)
+            {
+                bandeauJ2Win.SetActive(true);
+                gameFinnished = true;
+                StartCoroutine(WaitAndReload(2.5f));
+                
+            }
+
+            if (players[1].GetComponent<PlayerHealth>().currentHealth <= 0)
+            {
+                bandeauJ1Win.SetActive(true);
+                gameFinnished = true;
+                StartCoroutine(WaitAndReload(2.5f));
+            }
+
+        }
+    }
 }
 
 // [memo ridgibody]

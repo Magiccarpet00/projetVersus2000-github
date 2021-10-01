@@ -71,6 +71,7 @@ public class PlayerHealth : MonoBehaviour
         dead = true;
         animator.SetTrigger("die");
         this.GetComponent<CircleCollider2D>().enabled = false;
+        GameManager.instance.ShowBannerWhenPlayerDie();
     }
 
     //public void UpdateHealthUI()
