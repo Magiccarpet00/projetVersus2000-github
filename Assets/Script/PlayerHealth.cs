@@ -45,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
-        UpdateHealthUI();
+        //UpdateHealthUI();
 
         // [Code Review] reciveiveHit et die doivent toujours etre ecrit comme ça pour que l'animator de chaque perso comprennent
         animator.SetTrigger("receiveHit");
@@ -73,18 +73,18 @@ public class PlayerHealth : MonoBehaviour
         this.GetComponent<CircleCollider2D>().enabled = false;
     }
 
-    public void UpdateHealthUI()
-    {
-        for (int i = 0; i < heart.Length; i++)
-        {
-            if(i < currentHealth)
-            {
-                heart[i].sprite = fullHeart;
-            }
-            else
-            {
-                heart[i].sprite = emptyHeart;
-            }
-        }
-    }
+    //public void UpdateHealthUI()
+    //{
+    //    for (int i = 0; i < heart.Length; i++)
+    //    {
+    //        if(i < currentHealth)
+    //        {
+    //            heart[i].sprite = fullHeart;
+    //        }
+    //        else
+    //        {
+    //            heart[i].sprite = emptyHeart;
+    //        }
+    //    }
+    //}
 }

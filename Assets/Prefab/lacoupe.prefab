@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7368664822718164884}
   - component: {fileID: 7368664822718164885}
   - component: {fileID: 7368664822718164887}
+  - component: {fileID: -4050256013912620014}
   m_Layer: 0
   m_Name: lacoupe
   m_TagString: Untagged
@@ -109,6 +110,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3894087, y: 0.83036613}
   m_EdgeRadius: 0
+--- !u!114 &-4050256013912620014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7368664822718164890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e46c66d0cd70dac419bba2da8c6a0a3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7368664823318083889
 PrefabInstance:
   m_ObjectHideFlags: 0

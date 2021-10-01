@@ -39,7 +39,7 @@ public class RangeAttaqueRetrit : MonoBehaviour
         {
             Destroy(this.gameObject);
             collision.GetComponent<PlayerInventory>().munitionRangeAttack++;
-            collision.GetComponent<PlayerInventory>().UpdateUI();
+            //collision.GetComponent<PlayerInventory>().UpdateUI();
         }
     }
 }

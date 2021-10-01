@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +34,12 @@ public class GameManager : MonoBehaviour
     public BoutonStart boutonJ2;
 
     public GameObject[] firstDoor;
+
+    //Pour la victoire
+    public bool gameFinnished;
+    public GameObject bandeauJ1Win;
+    public GameObject bandeauJ2Win;
+
 
     private void Start()
     {
@@ -90,6 +97,12 @@ public class GameManager : MonoBehaviour
         {
             firstDoor[i].SetActive(false);
         }
+    }
+
+    public IEnumerator WaitAndReload(float seconde)
+    {
+        yield return new WaitForSeconds(seconde);
+        SceneManager.LoadScene(0);
     }
 
 }

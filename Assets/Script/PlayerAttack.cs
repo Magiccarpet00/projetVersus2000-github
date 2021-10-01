@@ -192,7 +192,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         StartCoroutine(SpeedUp(speedTime, speedStrenght, smoothsness)); // [CodeReview] Je sais pas ou mettre les caracteristique des competence je trouve que dans constante c'est bizzare
 
         playerInventory.munitionRangeAttack--;
-        playerInventory.UpdateUI();
+        //playerInventory.UpdateUI();
     }
     public IEnumerator BlueDash()
     {
