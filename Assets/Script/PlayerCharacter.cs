@@ -42,7 +42,12 @@ public class PlayerCharacter : MonoBehaviour
     public int redVersusAttackCount;
     public float redVersusAttackSpeed;
     public int redVersusAttackDamage;
-    
+
+
+    // GREEN ATRIBUE
+    [Header(" --GREEN-- ")]
+    public GameObject greenSprite;
+
 
 
     private void Awake() // Ici j'utilise Awake sinon les ref au animator dans les autres script non pas le temps de s'executer dans start
@@ -63,6 +68,12 @@ public class PlayerCharacter : MonoBehaviour
             sprite.transform.parent = this.transform;
             rangeAttackPrefab = redRangeAttack;
             versusAttackPrefab = redVersusAttack;
+        }
+
+        else if(character == Character.GREEN)
+        {
+            GameObject sprite = Instantiate(greenSprite, transform.position, Quaternion.identity);
+            sprite.transform.parent = this.transform;
         }
     }
 

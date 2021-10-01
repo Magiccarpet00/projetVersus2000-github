@@ -89,6 +89,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxMoveSpeed: 3.5
   currentMoveSpeed: 0
+  movement: {x: 0, y: 0}
   animator: {fileID: 0}
   rb: {fileID: 0}
   playerHealth: {fileID: 0}
@@ -203,6 +204,7 @@ MonoBehaviour:
   rangeAttackPrefab: {fileID: 0}
   versusAttackPrefab: {fileID: 0}
   character: 1
+  goAttackVersus: 0
   blueSprite: {fileID: 7298694279780720200, guid: 3c3b3c30611de0a498790722f885048c,
     type: 3}
   blueCloseAttack: {fileID: 3231854286922200953, guid: 0d6975ce1f3541a48b2ad267b3b464e3,
@@ -231,3 +233,5 @@ MonoBehaviour:
   redVersusAttackCount: 3
   redVersusAttackSpeed: 2
   redVersusAttackDamage: 2
+  greenSprite: {fileID: 3900104534630545896, guid: 080d6ffbf4cb68840b50515138c4f401,
+    type: 3}
