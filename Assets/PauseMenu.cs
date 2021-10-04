@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.B))
             {
-
+                SelectBouton(posCursor);
             }
 
         }
@@ -87,6 +87,26 @@ public class PauseMenu : MonoBehaviour
     }
 
 
+    public void SelectBouton(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                ReprendreBouton();
+                break;
+
+            case 1:
+                RecommencerBouton();
+                break;
+
+            case 2:
+                QuitterBouton();
+                break;                
+        }
+
+
+    }
+
     public void ReprendreBouton()
     {
         Resume();
@@ -94,6 +114,7 @@ public class PauseMenu : MonoBehaviour
 
     public void RecommencerBouton()
     {
+        Resume();
         SceneManager.LoadScene(0);
     }
 

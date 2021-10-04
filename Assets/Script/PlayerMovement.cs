@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         //Detection des Input de deplacement
-        if(playerCharacter.character == Character.BLUE)
+        if(playerCharacter.character == Character.BLUE )
         {
             FreeInputMovement();
         }
