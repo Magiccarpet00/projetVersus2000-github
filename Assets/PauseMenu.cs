@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
 
     public int posCursor = 0;
     public GameObject[] cursor;
+    public PlayerInput playerInput;
 
 
     public static PauseMenu instance;
@@ -35,20 +36,20 @@ public class PauseMenu : MonoBehaviour
 
         if (gameIsPaused) // Les input quand le jeu est en pause
         {
-            if(Input.GetKeyDown(KeyCode.S) ||
+            if( Input.GetAxis(playerInput.verticalAxeJoypad) == 1f ||
                Input.GetKeyDown(KeyCode.DownArrow))
             {
                 MoveCursor(1);
             }
 
-            if (Input.GetKeyDown(KeyCode.Z) ||
+            if ( Input.GetAxis(playerInput.verticalAxeJoypad) == -1f ||
                Input.GetKeyDown(KeyCode.UpArrow))
             {
                 MoveCursor(-1);
             }
 
 
-            if (Input.GetKeyDown(KeyCode.B))
+            if (Input.GetButtonDown(playerInput.button0))
             {
                 SelectBouton(posCursor);
             }

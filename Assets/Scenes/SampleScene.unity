@@ -321,12 +321,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22fdd7759f472a549937794b5c210ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameIsPaused: 0
   pauseMenuUI: {fileID: 754235399}
   posCursor: 0
   cursor:
   - {fileID: 205716297}
   - {fileID: 1303147996}
   - {fileID: 1776089718}
+  playerInput: {fileID: 1319672013}
 --- !u!1 &145559645
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,6 +716,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417008, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: button0
+      value: Button0_J2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417008, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: button1
+      value: Button1_J2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417008, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: button2
+      value: Button2_J2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417008, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: verticalAxeJoypad
+      value: Vertical_J2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417008, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: horizontalAxeJoypad
+      value: Horizontal_J2
       objectReference: {fileID: 0}
     - target: {fileID: 9144719478332417009, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}
@@ -1240,6 +1267,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 9144719479231609634}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1319672013 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9144719478332417008, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+    type: 3}
+  m_PrefabInstance: {fileID: 9144719479231609634}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319672010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ee9e9e64fd309944a1fc781f0889250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1472467425
 GameObject:
   m_ObjectHideFlags: 0
