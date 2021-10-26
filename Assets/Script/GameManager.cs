@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator WaitAndReload(float seconde)
     {
         yield return new WaitForSeconds(seconde);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void ShowBannerWhenPlayerDie()

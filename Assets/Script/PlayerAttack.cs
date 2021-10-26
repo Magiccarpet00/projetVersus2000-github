@@ -13,6 +13,9 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     public bool isDashing;
     Dictionary<InputBufferDirection, InfoAttack> directionOffSet_And_Rotation = new Dictionary<InputBufferDirection, InfoAttack>();
 
+    //RED Variable
+    public bool cdRangeAtkRed;
+
     public Animator animator;
     public PlayerMovement playerMovement;
     public PlayerHealth playerHealth;
@@ -59,7 +62,8 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
             && !onCoolDown
             && !playerHealth.isInvincible 
             && !playerHealth.dead
-            && !playerMovement.isBetweenRooms)
+            && !playerMovement.isBetweenRooms
+            && !PauseMenu.instance.gameIsPaused)
         {
             if(playerCharacter.character == Character.BLUE)
             {
@@ -82,7 +86,8 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
                 && !isAttacking 
                 && !playerHealth.isInvincible 
                 && !playerHealth.dead
-                && !playerMovement.isBetweenRooms)
+                && !playerMovement.isBetweenRooms
+                && !PauseMenu.instance.gameIsPaused)
         {
              if(playerCharacter.character == Character.BLUE)
              {
@@ -107,6 +112,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
             && !playerHealth.dead
             && !playerMovement.isBetweenRooms
             && playerInventory.munitionRangeAttack > 0
+            && !PauseMenu.instance.gameIsPaused
             )
         {
             if (playerCharacter.character == Character.BLUE)
@@ -114,7 +120,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
                 BlueRangeAttaque();
             }
 
-            else if (playerCharacter.character == Character.RED)
+            else if (playerCharacter.character == Character.RED && cdRangeAtkRed == false)
             {
                 StartCoroutine(RedRangeAttack());
             }
@@ -131,7 +137,8 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
             && !playerHealth.isInvincible
             && !playerHealth.dead
             && !playerMovement.isBetweenRooms
-            && !isDashing)
+            && !isDashing
+            && !PauseMenu.instance.gameIsPaused)
         {
             if (playerCharacter.character == Character.BLUE)
             {
@@ -219,7 +226,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         Vector2 oldOffset = hitbox.offset;
 
         hitbox.radius = playerCharacter.redAttackHitbox.radius;
-        hitbox.offset = playerCharacter.redAttackHitbox.offset;        
+        hitbox.offset = playerCharacter.redAttackHitbox.offset;
 
         //Dash
         float dashTime = 0.35f;
@@ -258,6 +265,8 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         localRot.Add(2, 180f);
         localRot.Add(3, 90f);
 
+        cdRangeAtkRed = true;
+
         animator.SetTrigger("range_attack");
         yield return new WaitForSeconds(0.66f);
         for (int i = 0; i < 4; i++)
@@ -271,6 +280,10 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
             bullet.dirrectionBullet = localDir[i];
             bullet.player = this.gameObject;
         }
+
+        yield return new WaitForSeconds(0.5f);
+
+        cdRangeAtkRed = false;
     }
 
     // GREEN COMPETENCE

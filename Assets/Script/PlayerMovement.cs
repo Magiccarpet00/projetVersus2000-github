@@ -75,28 +75,33 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        //Detection des Input de deplacement
-        if(playerCharacter.character == Character.BLUE )
+        if (PauseMenu.instance.gameIsPaused == false)
         {
-            FreeInputMovement();
-        }
-
-        else if (playerCharacter.character == Character.RED)
-        {
-            if(playerAttack.isAttacking)
-            {
-                FixeInputMovement();
-            }
-            else
+            //Detection des Input de deplacement
+            if (playerCharacter.character == Character.BLUE)
             {
                 FreeInputMovement();
             }
+
+            else if (playerCharacter.character == Character.RED)
+            {
+                if (playerAttack.isAttacking)
+                {
+                    FixeInputMovement();
+                }
+                else
+                {
+                    FreeInputMovement();
+                }
+            }
+
+            else if (playerCharacter.character == Character.GREEN)
+            {
+
+            }
         }
 
-        else if (playerCharacter.character == Character.GREEN)
-        {
-
-        }
+        
     }
 
     public void FreeInputMovement()

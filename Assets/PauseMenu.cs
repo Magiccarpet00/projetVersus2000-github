@@ -4,14 +4,20 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool gameIsPaused = false;
+    public bool gameIsPaused = false;
 
     public GameObject pauseMenuUI;
 
     public int posCursor = 0;
     public GameObject[] cursor;
 
-    public 
+
+    public static PauseMenu instance;
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -115,7 +121,7 @@ public class PauseMenu : MonoBehaviour
     public void RecommencerBouton()
     {
         Resume();
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitterBouton()
