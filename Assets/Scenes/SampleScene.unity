@@ -329,6 +329,7 @@ MonoBehaviour:
   - {fileID: 1303147996}
   - {fileID: 1776089718}
   playerInput: {fileID: 1319672013}
+  cdCursor: 0
 --- !u!1 &145559645
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,6 +781,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: CameraJ1
   m_TagString: MainCamera
@@ -803,6 +805,14 @@ MonoBehaviour:
   timeOffSet: 0.2
   posOffSet: {x: -0.1, y: -0.45, z: -10}
   playerToFollow: {fileID: 1319672010}
+--- !u!81 &519420030
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2112,6 +2122,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417008, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: start
+      value: Start_J1
       objectReference: {fileID: 0}
     - target: {fileID: 9144719478332417009, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}
