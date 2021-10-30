@@ -145,3 +145,4 @@ MonoBehaviour:
   deadEnnemies: 0
   playerOnThisRoom: 0
   roomFinnished: 0
+  sound_opendoor: {fileID: 8300000, guid: dcb0e1f3671589e41bd91adaf29c3fd2, type: 3}

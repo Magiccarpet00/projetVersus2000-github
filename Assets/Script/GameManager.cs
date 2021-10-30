@@ -40,6 +40,10 @@ public class GameManager : MonoBehaviour
     public GameObject bandeauJ1Win;
     public GameObject bandeauJ2Win;
 
+    //SOUND effect
+    //[Header(" --SOUND-- ")]
+    
+
 
     private void Start()
     {
@@ -78,6 +82,7 @@ public class GameManager : MonoBehaviour
         if(boutonsStart[boutonJ1] == true && boutonsStart[boutonJ2] == true) // [Code Review] ça ya moyen de mieux l'ecrire je crois
         {
             OpenFirstDoor();
+            
         }
     }
 

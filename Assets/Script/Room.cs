@@ -32,7 +32,9 @@ public class Room : MonoBehaviour
 
     public bool playerOnThisRoom; // Cette varriable est accsesible depuis LevelGenerator dans la liste roomsInDugeon
     public bool roomFinnished;
+
     
+
 
 
     //public TypeOfRoom typeOfRoom;   

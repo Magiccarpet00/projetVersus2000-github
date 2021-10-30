@@ -5,6 +5,8 @@ using UnityEngine;
 public class Explosion : MonoBehaviour
 {
     public Collider2D hitbox;
+
+    public AudioClip sound_explosion;
     private void Start()
     {
         ActivationHitbox();
@@ -30,6 +32,7 @@ public class Explosion : MonoBehaviour
     public void EnableHitbox()
     {
         hitbox.enabled = true;
+        AudioManager.instance.PlayClipAt(sound_explosion, transform.position);
     }
     public void DestroyMe()
     {

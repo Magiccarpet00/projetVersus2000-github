@@ -134,3 +134,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   atachedEnemy: {fileID: 0}
+  sound_bubblePlop: {fileID: 8300000, guid: c5bfac964932852489c35a3245d2c196, type: 3}

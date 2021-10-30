@@ -12,6 +12,13 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     public bool isBufferingAttack;
     public bool isDashing;
     Dictionary<InputBufferDirection, InfoAttack> directionOffSet_And_Rotation = new Dictionary<InputBufferDirection, InfoAttack>();
+    public AudioClip sound_preCloseAtk;
+    public AudioClip sound_closeAtk;
+    public AudioClip sound_rangeAtk;
+    public AudioClip sound_dash;
+
+
+
 
     //RED Variable
     public bool cdRangeAtkRed;
@@ -56,8 +63,23 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     }
     
     void Update()
-    {   // Bouton A enfoncer
-        if (Input.GetButton(playerInput.button0) 
+    {   // [CODE CARNAGE]
+        if (Input.GetButtonDown(playerInput.button0) 
+            && !isAttacking
+            && !onCoolDown
+            && !playerHealth.isInvincible
+            && !playerHealth.dead
+            && !playerMovement.isBetweenRooms
+            && !PauseMenu.instance.gameIsPaused)
+        {
+            if(playerCharacter.character == Character.BLUE)
+            {
+                AudioManager.instance.PlayClipAt(sound_preCloseAtk, transform.position);
+            }
+            
+        }
+
+        if (Input.GetButton(playerInput.button0)  // Bouton A enfoncer
             && !isAttacking 
             && !onCoolDown
             && !playerHealth.isInvincible 
@@ -79,7 +101,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
             {
 
             }
-        }
+        }        
 
         // Bouton A relacher
         else if (Input.GetButtonUp(playerInput.button0)
@@ -159,7 +181,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
 
     // BLUE COMPETENCE
     public void BluePreCloseAttack()
-    {
+    {        
         animator.SetBool("Button_Down", true);
 
         isBufferingAttack = true;
@@ -167,6 +189,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     }
     public IEnumerator BlueCloseAttack()
     {
+        AudioManager.instance.PlayClipAt(sound_closeAtk, transform.position);
         isBufferingAttack = false;
         playerMovement.checkSwitchBoxMove("isBufferingAttack", isBufferingAttack);
         //[Annimation]
@@ -189,6 +212,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     }    
     public void BlueRangeAttaque()
     {
+        AudioManager.instance.PlayClipAt(sound_rangeAtk, transform.position);
         animator.SetTrigger("flip");
         Vector2 posRangeAttaque = new Vector2(transform.position.x, transform.position.y + 0.5f);
         GameObject rangeAttack = Instantiate(playerCharacter.rangeAttackPrefab, posRangeAttaque, Quaternion.identity);
@@ -203,6 +227,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     }
     public IEnumerator BlueDash()
     {
+        AudioManager.instance.PlayClipAt(sound_dash, transform.position);
         float dashTime = 0.2f;
         float dashStrenght = 4f;
         int smoothsness = 4;

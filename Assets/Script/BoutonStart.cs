@@ -4,6 +4,9 @@ public class BoutonStart : MonoBehaviour
 {
     public Animator animator;
 
+    //Sound effect
+    public AudioClip sound_button;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -13,6 +16,7 @@ public class BoutonStart : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            AudioManager.instance.PlayClipAt(sound_button, transform.position);
             animator.SetBool("on", true);
             GameManager.instance.boutonsStart[this] = true;
             GameManager.instance.BoutonCheck();

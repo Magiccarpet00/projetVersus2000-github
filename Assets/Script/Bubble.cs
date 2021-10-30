@@ -4,6 +4,8 @@ public class Bubble : MonoBehaviour
 {
     public Animator animator;
     public GameObject atachedEnemy;
+
+    public AudioClip sound_bubblePlop;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -36,4 +38,10 @@ public class Bubble : MonoBehaviour
         atachedEnemy.GetComponent<Enemy>().destroyBubble = true;
         Destroy(this.gameObject);
     }
+
+    public void PlaySound() // Elle est appelé dans plop
+    {
+        AudioManager.instance.PlayClipAt(sound_bubblePlop, transform.position);
+    }
+        
 }

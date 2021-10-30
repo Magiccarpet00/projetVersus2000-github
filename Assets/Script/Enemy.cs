@@ -44,6 +44,8 @@ public class Enemy : MonoBehaviour
     public bool destroyBubble;
     public Animator animatorBubble; // pour moi on devrait avoir bubble.animatorBubble
 
+
+
     private void Start()
     {
         target = wayPoints[0];
