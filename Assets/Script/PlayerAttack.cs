@@ -12,8 +12,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     public bool isBufferingAttack;
     public bool isDashing;
     Dictionary<InputBufferDirection, InfoAttack> directionOffSet_And_Rotation = new Dictionary<InputBufferDirection, InfoAttack>();
-    public AudioClip sound_preCloseAtk;
-    public AudioClip sound_closeAtk;
+    public AudioClip sound_preCloseAtk;    
     public AudioClip sound_rangeAtk;
     public AudioClip sound_dash;
 
@@ -28,7 +27,12 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     public PlayerHealth playerHealth;
     public PlayerInput playerInput;
     public PlayerInventory playerInventory;
-    public PlayerCharacter playerCharacter;
+    public PlayerCharacter playerCharacter; 
+
+
+    public AudioClip sound_RedCloseAtk;
+    public AudioClip sound_RedRangeAtk;
+    public AudioClip sound_RedRangeAtk2;
 
     public void Awake()
     {
@@ -189,7 +193,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     }
     public IEnumerator BlueCloseAttack()
     {
-        AudioManager.instance.PlayClipAt(sound_closeAtk, transform.position);
+        AudioManager.instance.PlayClipAt(sound_RedCloseAtk, transform.position);
         isBufferingAttack = false;
         playerMovement.checkSwitchBoxMove("isBufferingAttack", isBufferingAttack);
         //[Annimation]
@@ -258,6 +262,10 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         float dashStrenght = 5f;
         int smoothness = 1;
 
+        //Pour le son
+        AudioManager.instance.PlayClipAt(sound_RedCloseAtk, transform.position);
+
+
         StartCoroutine(SpeedUp(dashStrenght, dashTime, smoothness));
 
         yield return new WaitForSeconds(dashTime);
@@ -293,7 +301,12 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         cdRangeAtkRed = true;
 
         animator.SetTrigger("range_attack");
+        AudioManager.instance.PlayClipAt(sound_RedRangeAtk, transform.position);
+
         yield return new WaitForSeconds(0.66f);
+
+        AudioManager.instance.PlayClipAt(sound_RedRangeAtk2, transform.position);
+
         for (int i = 0; i < 4; i++)
         {
             GameObject rangeAttack = Instantiate(playerCharacter.redRangeAttack, transform.position, Quaternion.Euler(0f, 0f, localRot[i]));

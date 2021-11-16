@@ -14,6 +14,8 @@ public class Room : MonoBehaviour
     public String mask;
     public String maskDoor;
 
+    
+
     public GameObject doorTrigger_UP_DOWN, doorTrigger_RIGHT_LEFT;
 
     public GameObject doorRight, doorLeft, doorUp, doorDown;
@@ -140,6 +142,7 @@ public class Room : MonoBehaviour
         {  
             roomFinnished = true;
             OpenDoor();
+            
         }
     }
 

@@ -262,7 +262,6 @@ MonoBehaviour:
   gameFinnished: 0
   bandeauJ1Win: {fileID: 90185963}
   bandeauJ2Win: {fileID: 379183290}
-  sound_openFirstDoor: {fileID: 8300000, guid: fa4ad405db12e8648b4d334fd168454e, type: 3}
 --- !u!4 &100424933
 Transform:
   m_ObjectHideFlags: 0
@@ -654,6 +653,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417004, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: sound_RedCloseAtk
+      value: 
+      objectReference: {fileID: 8300000, guid: f19df186e3f3a5b41986ce389dffc541, type: 3}
     - target: {fileID: 9144719478332417005, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}
       propertyPath: nbGoldUI
@@ -754,6 +758,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417011, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: sound_takehit
+      value: 
+      objectReference: {fileID: 8300000, guid: caf16b163a828fb4eba6c1a8d19a0c8e, type: 3}
     - target: {fileID: 9144719478332417011, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}
       propertyPath: heart.Array.data[0]
@@ -2138,6 +2147,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417004, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: sound_RedCloseAtk
+      value: 
+      objectReference: {fileID: 8300000, guid: f19df186e3f3a5b41986ce389dffc541, type: 3}
+    - target: {fileID: 9144719478332417004, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: sound_RedRangeAtk
+      value: 
+      objectReference: {fileID: 8300000, guid: b78f2c1c1c31cc6448e2ceb329d4502e, type: 3}
     - target: {fileID: 9144719478332417005, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}
       propertyPath: nbGoldUI
@@ -2218,6 +2237,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417011, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: sound_takehit
+      value: 
+      objectReference: {fileID: 8300000, guid: caf16b163a828fb4eba6c1a8d19a0c8e, type: 3}
     - target: {fileID: 9144719478332417011, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}
       propertyPath: heart.Array.data[0]

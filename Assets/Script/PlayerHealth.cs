@@ -15,6 +15,8 @@ public class PlayerHealth : MonoBehaviour
     public PlayerMovement playerMovement;
     public PlayerCharacter playerCharacter;
 
+    public AudioClip sound_takehit;
+
 
     //POUR LE CANVAS
 
@@ -49,6 +51,8 @@ public class PlayerHealth : MonoBehaviour
 
         // [Code Review] reciveiveHit et die doivent toujours etre ecrit comme ça pour que l'animator de chaque perso comprennent
         animator.SetTrigger("receiveHit");
+        PlaySoundTakehit();
+
 
         if(playerCharacter.character == Character.BLUE) // [Code Review] C'est une rustine pcq sinon ya une bug d'annimation et de dépaclement à cause du slide
         {
@@ -72,6 +76,11 @@ public class PlayerHealth : MonoBehaviour
         animator.SetTrigger("die");
         this.GetComponent<CircleCollider2D>().enabled = false;
         GameManager.instance.ShowBannerWhenPlayerDie();
+    }
+
+    public void PlaySoundTakehit()
+    {
+        AudioManager.instance.PlayClipAt(sound_takehit, transform.position);
     }
 
     //public void UpdateHealthUI()

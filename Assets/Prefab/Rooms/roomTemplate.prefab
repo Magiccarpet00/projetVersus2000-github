@@ -127,6 +127,7 @@ MonoBehaviour:
   openDown: 0
   mask: 
   maskDoor: 
+  sound_OpenDoor: {fileID: 8300000, guid: 3fde5e27f40173f4ab5181ed89d0ed2e, type: 3}
   doorTrigger_UP_DOWN: {fileID: 3622052944588567505, guid: 6bb86e9ee4d87e9468649713f34c75bf,
     type: 3}
   doorTrigger_RIGHT_LEFT: {fileID: 6955541964096802423, guid: 03870cc9451118d49a631d35d76e2ab0,
@@ -145,4 +146,3 @@ MonoBehaviour:
   deadEnnemies: 0
   playerOnThisRoom: 0
   roomFinnished: 0
-  sound_opendoor: {fileID: 8300000, guid: dcb0e1f3671589e41bd91adaf29c3fd2, type: 3}

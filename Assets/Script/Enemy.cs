@@ -13,7 +13,8 @@ public class Enemy : MonoBehaviour
     public float currentHealth;
     public int damage;
     public bool dead;
-    
+    public AudioClip sound_hitDeath;
+
     public Animator animator;
     public SpriteRenderer shadow;
     public CircleCollider2D hitbox;
@@ -152,6 +153,7 @@ public class Enemy : MonoBehaviour
         this.GetComponentInChildren<SpriteRenderer>().enabled = false; //[Code Review] shadow et sprite trop similaire
         shadow.enabled = false;
         currentRoom.notifyDeath();
+        PlaySoundHitDeath();
 
         //[CODE REVIEW] Faire en sorte d'avoir le joueur responsable d'une explosion / meurtre / truc en mémoire
         // On peut faire ça par détection dans la pièce où on est
@@ -229,5 +231,9 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(Die());
         }
+    }
+
+    public void PlaySoundHitDeath() {
+        AudioManager.instance.PlayClipAt(sound_hitDeath, transform.position);
     }
 }
