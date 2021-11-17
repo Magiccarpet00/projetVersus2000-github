@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    
+
+    public AudioClip sound_victoire;
+
     private void Awake()
     {
         instance = this;
@@ -118,6 +120,8 @@ public class GameManager : MonoBehaviour
                 gameFinnished = true;
                 StartCoroutine(WaitAndReload(2.5f));
             }
+
+            AudioManager.instance.PlayClipAt(sound_victoire, transform.position);
 
         }
     }

@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e46c66d0cd70dac419bba2da8c6a0a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player1: {fileID: 0}
+  sound_victoire: {fileID: 8300000, guid: 917b747ebe6a1034186c233bad1b409a, type: 3}
 --- !u!1001 &7368664823318083889
 PrefabInstance:
   m_ObjectHideFlags: 0
