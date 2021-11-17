@@ -13,6 +13,9 @@ public class AttackVersus : MonoBehaviour
     public Vector2 newPos;
     public float offSetLifeTime;
     public int redDamage;
+    public AudioClip sound_RedAttackVersusSpawn;
+    public AudioClip sound_BlueAttackVersusSpawn;
+    public AudioClip sound_BlueAttackVersusShot;
 
     private void Start()
     {
@@ -48,6 +51,8 @@ public class AttackVersus : MonoBehaviour
 
     public IEnumerator BlueAttackVersus(GameObject _playerToFocus, GameObject _player)
     {
+
+        AudioManager.instance.PlayClipAt(sound_BlueAttackVersusSpawn, transform.position);
         PlayerCharacter playerCharacter = _player.GetComponent<PlayerCharacter>();
         Animator animator = GetComponent<Animator>();
         yield return new WaitForSeconds(1.5f);
@@ -59,6 +64,7 @@ public class AttackVersus : MonoBehaviour
             GameObject bullet = Instantiate(player.GetComponent<PlayerCharacter>().blueBullet,
                                             transform.position,
                                             Quaternion.identity);
+            AudioManager.instance.PlayClipAt(sound_BlueAttackVersusShot, transform.position);
 
             TargetBullet targetBullet = bullet.GetComponent<TargetBullet>();
             targetBullet.accuracy = playerCharacter.blueAccuracyBullet;
@@ -75,6 +81,9 @@ public class AttackVersus : MonoBehaviour
 
     public IEnumerator RedAttackVersus(GameObject _playerToFocus, GameObject _player)
     {
+        AudioManager.instance.PlayClipAt(sound_RedAttackVersusSpawn, transform.position);
+
+
         while (true)
         {
             float rngTime = Random.Range(0.5f, 1.5f);

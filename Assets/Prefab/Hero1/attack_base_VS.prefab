@@ -136,6 +136,11 @@ MonoBehaviour:
   newPos: {x: 0, y: 0}
   offSetLifeTime: 0
   redDamage: 0
+  sound_RedAttackVersusSpawn: {fileID: 0}
+  sound_BlueAttackVersusSpawn: {fileID: 8300000, guid: 829e27cdc8780764aaf8be020d67c7f5,
+    type: 3}
+  sound_BlueAttackVersusShot: {fileID: 8300000, guid: be2a18ba6d5ecc14e977d8fb628207e3,
+    type: 3}
 --- !u!1 &1650791425799371111
 GameObject:
   m_ObjectHideFlags: 0

@@ -725,6 +725,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9144719478332417008, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}
+      propertyPath: start
+      value: Start_J1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417008, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
       propertyPath: button0
       value: Button0_J2
       objectReference: {fileID: 0}
@@ -903,6 +908,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AudioMangerTEMPORAIRE
+      objectReference: {fileID: 0}
+    - target: {fileID: 222716294898633568, guid: 9c8d2e87be8d79a448da8caa76f55662,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 222716294898633581, guid: 9c8d2e87be8d79a448da8caa76f55662,
         type: 3}
@@ -2151,12 +2161,17 @@ PrefabInstance:
         type: 3}
       propertyPath: sound_RedCloseAtk
       value: 
-      objectReference: {fileID: 8300000, guid: f19df186e3f3a5b41986ce389dffc541, type: 3}
+      objectReference: {fileID: 8300000, guid: bf828ede6c6760c4cae87d37fda9b762, type: 3}
     - target: {fileID: 9144719478332417004, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}
       propertyPath: sound_RedRangeAtk
       value: 
       objectReference: {fileID: 8300000, guid: b78f2c1c1c31cc6448e2ceb329d4502e, type: 3}
+    - target: {fileID: 9144719478332417004, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: sound_RedRangeAtk2
+      value: 
+      objectReference: {fileID: 8300000, guid: da9eab037dbe8264e92e65595f8e818a, type: 3}
     - target: {fileID: 9144719478332417005, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}
       propertyPath: nbGoldUI

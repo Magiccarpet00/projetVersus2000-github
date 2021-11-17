@@ -48,8 +48,6 @@ public class PlayerCharacter : MonoBehaviour
     [Header(" --GREEN-- ")]
     public GameObject greenSprite;
 
-
-
     private void Awake() // Ici j'utilise Awake sinon les ref au animator dans les autres script non pas le temps de s'executer dans start
     {
         if(character == Character.BLUE)
