@@ -24,7 +24,7 @@ public class StartMenu : MonoBehaviour
     {    
         buttonStart.SetTrigger("go");
         titleScreen.SetTrigger("go");
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.4f);
         audioManager.PlayNextSong();
         SceneManager.LoadScene(1);        
     }

@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbd4c4f31e1a2d4098897139732a23e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound_victoire: {fileID: 8300000, guid: 917b747ebe6a1034186c233bad1b409a, type: 3}
   players:
   - {fileID: 1319672010}
   - {fileID: 1209849208}
@@ -653,6 +654,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9144719478332417004, guid: a8824912cb518ef48a5106ae8b9bfb5e,
+        type: 3}
+      propertyPath: sound_rangeAtk
+      value: 
+      objectReference: {fileID: 8300000, guid: fc28d9bf88b47e949bab65503578874e, type: 3}
     - target: {fileID: 9144719478332417004, guid: a8824912cb518ef48a5106ae8b9bfb5e,
         type: 3}
       propertyPath: sound_RedCloseAtk
