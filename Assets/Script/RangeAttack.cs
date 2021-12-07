@@ -5,6 +5,7 @@ public class RangeAttack : MonoBehaviour
 {
     public int damage;
     public float speed;
+    public Character character;
 
     private Animator animator;
     private void Start()

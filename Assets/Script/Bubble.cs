@@ -15,8 +15,8 @@ public class Bubble : MonoBehaviour
         if(collision.CompareTag("Epée") || collision.CompareTag("Explosion") || collision.CompareTag("Range_Attack"))
         {
             animator.SetTrigger("plop");
-            if (collision.CompareTag("Range_Attack"))
-            {
+            if (collision.CompareTag("Range_Attack") && (collision.GetComponent<RangeAttack>().character == Character.BLUE) )
+            {                
                 GameObject rangeAttackRetrit = Instantiate(Resources.Load(PrefabFinder.RessourcesToURI[Ressources.RangeAttackRetrit]) as GameObject, transform.position, Quaternion.identity);                
             }
         }

@@ -12,7 +12,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     public bool isBufferingAttack;
     public bool isDashing;
     Dictionary<InputBufferDirection, InfoAttack> directionOffSet_And_Rotation = new Dictionary<InputBufferDirection, InfoAttack>();
-    public AudioClip sound_preCloseAtk;    
+    public AudioClip sound_preCloseAtk;
     public AudioClip sound_rangeAtk;
     public AudioClip sound_dash;
 
@@ -27,7 +27,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     public PlayerHealth playerHealth;
     public PlayerInput playerInput;
     public PlayerInventory playerInventory;
-    public PlayerCharacter playerCharacter; 
+    public PlayerCharacter playerCharacter;
 
 
     public AudioClip sound_RedCloseAtk;
@@ -37,11 +37,11 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     public void Awake()
     {
         // on regarde dans quelle dirrection est l'input buffer
-        directionOffSet_And_Rotation[InputBufferDirection.UP] = new InfoAttack(new Vector2(0f, Constants.OFFSET_ATTACK), 90f,Constants.SECOND_ATTACK_CD);
-        directionOffSet_And_Rotation[InputBufferDirection.LEFT] = new InfoAttack(new Vector2(-Constants.OFFSET_ATTACK,0f), 180f, Constants.SECOND_ATTACK_CD);
+        directionOffSet_And_Rotation[InputBufferDirection.UP] = new InfoAttack(new Vector2(0f, Constants.OFFSET_ATTACK), 90f, Constants.SECOND_ATTACK_CD);
+        directionOffSet_And_Rotation[InputBufferDirection.LEFT] = new InfoAttack(new Vector2(-Constants.OFFSET_ATTACK, 0f), 180f, Constants.SECOND_ATTACK_CD);
         directionOffSet_And_Rotation[InputBufferDirection.DOWN] = new InfoAttack(new Vector2(0f, -Constants.OFFSET_ATTACK), 270f, Constants.SECOND_ATTACK_CD);
-        directionOffSet_And_Rotation[InputBufferDirection.RIGHT] = new InfoAttack(new Vector2(Constants.OFFSET_ATTACK, 0f), 0f, Constants.SECOND_ATTACK_CD);        
-    }    
+        directionOffSet_And_Rotation[InputBufferDirection.RIGHT] = new InfoAttack(new Vector2(Constants.OFFSET_ATTACK, 0f), 0f, Constants.SECOND_ATTACK_CD);
+    }
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
@@ -65,10 +65,10 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         public Quaternion RotatiisAttacking { get; set; }
         public float DelayAttack { get; set; }
     }
-    
+
     void Update()
     {   // [CODE CARNAGE]
-        if (Input.GetButtonDown(playerInput.button0) 
+        if (Input.GetButtonDown(playerInput.button0)
             && !isAttacking
             && !onCoolDown
             && !playerHealth.isInvincible
@@ -76,27 +76,27 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
             && !playerMovement.isBetweenRooms
             && !PauseMenu.instance.gameIsPaused)
         {
-            if(playerCharacter.character == Character.BLUE)
+            if (playerCharacter.character == Character.BLUE)
             {
                 AudioManager.instance.PlayClipAt(sound_preCloseAtk, transform.position);
             }
-            
+
         }
 
         if (Input.GetButton(playerInput.button0)  // Bouton A enfoncer
-            && !isAttacking 
+            && !isAttacking
             && !onCoolDown
-            && !playerHealth.isInvincible 
+            && !playerHealth.isInvincible
             && !playerHealth.dead
             && !playerMovement.isBetweenRooms
             && !PauseMenu.instance.gameIsPaused)
         {
-            if(playerCharacter.character == Character.BLUE)
+            if (playerCharacter.character == Character.BLUE)
             {
                 BluePreCloseAttack();
             }
 
-            else if(playerCharacter.character == Character.RED)
+            else if (playerCharacter.character == Character.RED)
             {
                 StartCoroutine(RedCloseAttack());
             }
@@ -105,30 +105,30 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
             {
 
             }
-        }        
+        }
 
         // Bouton A relacher
         else if (Input.GetButtonUp(playerInput.button0)
-                && !isAttacking 
-                && !playerHealth.isInvincible 
+                && !isAttacking
+                && !playerHealth.isInvincible
                 && !playerHealth.dead
                 && !playerMovement.isBetweenRooms
                 && !PauseMenu.instance.gameIsPaused)
         {
-             if(playerCharacter.character == Character.BLUE)
-             {
-                    StartCoroutine(BlueCloseAttack());
-             }
+            if (playerCharacter.character == Character.BLUE)
+            {
+                StartCoroutine(BlueCloseAttack());
+            }
 
-             else if(playerCharacter.character == Character.RED)
-             {
+            else if (playerCharacter.character == Character.RED)
+            {
 
-             }
+            }
 
-             else if (playerCharacter.character == Character.GREEN)
-             {
+            else if (playerCharacter.character == Character.GREEN)
+            {
 
-             }
+            }
         }
 
         // Bouton B enfoncer
@@ -185,7 +185,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
 
     // BLUE COMPETENCE
     public void BluePreCloseAttack()
-    {        
+    {
         animator.SetBool("Button_Down", true);
 
         isBufferingAttack = true;
@@ -213,7 +213,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
 
         isAttacking = false;
         playerMovement.checkSwitchBoxMove("isAttacking", isAttacking);
-    }    
+    }
     public void BlueRangeAttaque()
     {
         AudioManager.instance.PlayClipAt(sound_rangeAtk, transform.position);
@@ -228,6 +228,8 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
 
         playerInventory.munitionRangeAttack--;
         //playerInventory.UpdateUI();
+        RangeAttack ra = rangeAttack.GetComponent<RangeAttack>();
+        ra.character = Character.BLUE;
     }
     public IEnumerator BlueDash()
     {
@@ -311,6 +313,9 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         {
             GameObject rangeAttack = Instantiate(playerCharacter.redRangeAttack, transform.position, Quaternion.Euler(0f, 0f, localRot[i]));
             TargetBullet bullet = rangeAttack.GetComponent<TargetBullet>();
+
+            //RangeAttack ra = rangeAttack.GetComponent<RangeAttack>();
+            //ra.character = Character.RED;
 
             bullet.bulletBehaviour = BulletBehaviour.DIRECTIONAL;
             bullet.speed = playerCharacter.redSpeedBullet;
