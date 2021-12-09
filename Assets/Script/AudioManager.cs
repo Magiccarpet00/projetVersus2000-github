@@ -9,7 +9,6 @@ public class AudioManager : MonoBehaviour
 
     public AudioMixerGroup soundEffectMixer;
 
-
     public static AudioManager instance;
 
     private void Awake()
@@ -19,8 +18,8 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        audioSource.clip = playlist[0];
-        audioSource.Play();
+        //audioSource.clip = playlist[0];
+        //audioSource.Play();
     }
     
     void Update()
@@ -28,7 +27,7 @@ public class AudioManager : MonoBehaviour
         if (!audioSource.isPlaying)
         {
             PlayNextSong();
-        }   
+        }
     }
 
     public void PlayNextSong()

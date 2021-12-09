@@ -11,6 +11,12 @@ public class StartMenu : MonoBehaviour
     //Sound effect    
     public AudioClip sound_start;
 
+
+    private void Start()
+    {
+        
+    }
+
     void Update()
     {
         if (Input.anyKeyDown)
@@ -24,8 +30,7 @@ public class StartMenu : MonoBehaviour
     {    
         buttonStart.SetTrigger("go");
         titleScreen.SetTrigger("go");
-        yield return new WaitForSeconds(1.4f);
-        audioManager.PlayNextSong();
+        yield return new WaitForSeconds(1.4f);        
         SceneManager.LoadScene(1);        
     }
 
