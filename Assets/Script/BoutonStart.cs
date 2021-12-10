@@ -20,7 +20,7 @@ public class BoutonStart : MonoBehaviour
             animator.SetBool("on", true);
             GameManager.instance.boutonsStart[this] = true;
             GameManager.instance.BoutonCheck();
-        }        
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -29,6 +29,6 @@ public class BoutonStart : MonoBehaviour
         {
             animator.SetBool("on", false);
             GameManager.instance.boutonsStart[this] = false;
-        }        
+        }
     }
 }
