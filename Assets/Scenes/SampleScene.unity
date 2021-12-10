@@ -824,7 +824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newPos: {fileID: 0}
   timeOffSet: 0.2
-  posOffSet: {x: -0.1, y: -0.45, z: -10}
+  posOffSet: {x: 0, y: 0, z: -10}
   playerToFollow: {fileID: 1319672010}
 --- !u!81 &519420030
 AudioListener:
@@ -856,12 +856,12 @@ Camera:
     x: 0
     y: 0
     width: 0.5
-    height: 1
+    height: 0.9
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 4.9
+  orthographic size: 3.9
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
