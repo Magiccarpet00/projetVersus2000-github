@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
             else if (playerCharacter.character == Character.GREEN)
             {
-
+                FreeInputMovement();
             }
         }
 
