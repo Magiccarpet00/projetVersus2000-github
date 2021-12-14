@@ -14,12 +14,12 @@ public class PlayerHealth : MonoBehaviour
     public Animator animator;
     public PlayerMovement playerMovement;
     public PlayerCharacter playerCharacter;
+    public PlayerUI playerUI;
 
     public AudioClip sound_takehit;
 
 
     //POUR LE CANVAS
-
     public int NumOfHeart;
     public Image[] heart;
     public Sprite fullHeart;
@@ -31,6 +31,7 @@ public class PlayerHealth : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponentInChildren<Animator>();
         playerCharacter = GetComponent<PlayerCharacter>();
+        playerUI = GetComponent<PlayerUI>();
     }
 
     public IEnumerator TakeDamage(Vector2 _bumpForce, int amount)
@@ -47,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
-        //UpdateHealthUI();
+        playerUI.updateLifeUI();
 
         // [Code Review] reciveiveHit et die doivent toujours etre ecrit comme ça pour que l'animator de chaque perso comprennent
         animator.SetTrigger("receiveHit");

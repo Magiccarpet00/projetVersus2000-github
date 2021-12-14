@@ -28,6 +28,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
     public PlayerInput playerInput;
     public PlayerInventory playerInventory;
     public PlayerCharacter playerCharacter;
+    public PlayerUI playerUI;
 
 
     public AudioClip sound_RedCloseAtk;
@@ -50,6 +51,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         playerInventory = GetComponent<PlayerInventory>();
         animator = GetComponentInChildren<Animator>();
         playerCharacter = GetComponent<PlayerCharacter>();
+        playerUI = GetComponent<PlayerUI>();
     }
 
     public struct InfoAttack
@@ -227,7 +229,7 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
         StartCoroutine(SpeedUp(speedTime, speedStrenght, smoothsness)); // [CodeReview] Je sais pas ou mettre les caracteristique des competence je trouve que dans constante c'est bizzare
 
         playerInventory.munitionRangeAttack--;
-        //playerInventory.UpdateUI();
+        playerUI.updateMunnitionUI();
         RangeAttack ra = rangeAttack.GetComponent<RangeAttack>();
         ra.character = Character.BLUE;
     }
@@ -323,6 +325,8 @@ public class PlayerAttack : MonoBehaviour //C'est plus vraiment player attaque c
             bullet.dirrectionBullet = localDir[i];
             bullet.player = this.gameObject;
         }
+        playerInventory.munitionRangeAttack--;
+        playerUI.updateMunnitionUI();
 
         yield return new WaitForSeconds(0.5f);
 
