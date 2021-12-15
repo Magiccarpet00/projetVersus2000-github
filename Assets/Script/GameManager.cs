@@ -61,22 +61,22 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            for (int i = 0; i < players.Length; i++)
-            {
-                Debug.Log(playersPosition[players[i]]);
-                GameObject go = playersPosition[players[i]];
-                Room r = playersPosition[players[i]].GetComponent<Room>();
-            }
-        }
+        //if (Input.GetKeyDown(KeyCode.R))
+        //{
+        //    for (int i = 0; i < players.Length; i++)
+        //    {
+        //        Debug.Log(playersPosition[players[i]]);
+        //        GameObject go = playersPosition[players[i]];
+        //        Room r = playersPosition[players[i]].GetComponent<Room>();
+        //    }
+        //}
 
         
 
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
-        {
-            SceneManager.LoadScene(0); // ça bug defois
-        }
+        //if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        //{
+        //    SceneManager.LoadScene(0); // ça bug defois
+        //}
     }
 
     public void BoutonCheck()

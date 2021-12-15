@@ -107,15 +107,15 @@ public class ComboManager : MonoBehaviour
 
         // ------POUR LES GIGA TEST------
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            StartCoroutine(AttackVersus(player1));
-        }
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    StartCoroutine(AttackVersus(player1));
+        //}
 
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            player2.GetComponent<PlayerCharacter>().goAttackVersus = 1;
-        }
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    player2.GetComponent<PlayerCharacter>().goAttackVersus = 1;
+        //}
 
         // --------------------------------
     }
